@@ -1,6 +1,6 @@
 # Add a course using the shared lesson template
 
-The seven project content files contain paired English / Simplified Chinese lesson text. All seven courses use the same renderer, navigation, validation and progress handling. `courses.js` supplies course-level titles, completion messages, files and prerequisites. `projects.js` lists the wider learning path.
+The seven project content files contain paired English / Simplified Chinese lesson text. Projects 0–5 share the guided renderer. Project 6 uses `assets/capstone.js` for its open brief, notebook and self-review, with shared routing, language and navigation. `courses.js` supplies course-level titles, completion messages, files and prerequisites. `projects.js` lists the wider learning path.
 
 ## Lesson schema
 
@@ -29,6 +29,14 @@ All lessons automatically receive See → Understand → Do → Compare → Chec
 
 The route parser and sidebar course switch automatically support registered courses. Course progress is stored independently under `matlab-lab:v2`, with one global language preference. Version-1 Boot Camp progress migrates automatically on the same site origin. Answer drafts and feedback are namespaced by course and lesson. Reset clears progress for all courses.
 
-`requires` locks a course until its prerequisite is complete. Its overview remains visible. Use `requires` to identify the previous registered course. Current Projects 0–6 all have complete guided lessons.
+`requires` locks a course until its prerequisite is complete. Its overview remains visible. Use `requires` to identify the previous registered course. Projects 0–5 have guided lessons. Project 6 has open working sections with no answer key.
 
 Before publication, run the MATLAB examples in your teaching environment; verify both translations, references and SVG values; test correct/empty/wrong answers, rounded values, any dependent fields, navigation, reload, language switching, keyboard use and narrow screens. Update reference scripts when lesson code changes.
+
+## Open independent project
+
+`investigation.js` registers `kind: "capstone"`, `openNavigation: true`, no `requires`, and eight sections with `open: true`. Each section supplies paired `title`, `goal`, `see`, `understand`, `steps`, `compare`, `checks` and `prompts` (`id`, bilingual `label`). The course also supplies `brief`, `scope`, `requirements`, `deliverables`, `freedom`, `directions`, `extension` and `rubric`. Do not add a numeric answer key to this project.
+
+Self-review marks are independent, so completing section 8 does not mark sections 1–7. Old worked-investigation IDs do not carry over as new self-review. Notes use the separate `matlab-lab:capstone:v1` key and are bounded to known prompts and 6,000 characters per field. Input autosaves; explicit Save gives status. Markdown export preserves student text and bilingual prompts. The site does not upload or grade it. Teacher preview keeps edits in memory and disables self-review persistence. Resetting progress preserves notes; clearing site data removes both.
+
+Use paired `fmt({en,zh})` text in capstone panels so both languages reserve the same space. Keep a realistic scope and concrete evidence requirements while leaving the topic, mathematics and model to the student.

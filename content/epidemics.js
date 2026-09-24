@@ -13,8 +13,8 @@ root.LAB_EXTENSIONS["epidemics"]={
     "zh": "模拟传染过程"
   },
   "headline": {
-    "en": "Three groups.\nOne changing system.",
-    "zh": "三个群体。\n一个变化的系统。"
+    "en": "SIR\nsimulation",
+    "zh": "SIR\n模拟"
   },
   "description": {
     "en": "Follow transfers through a fictional population.\nTest your model before trusting it.",
@@ -24,7 +24,7 @@ root.LAB_EXTENSIONS["epidemics"]={
   "duration": 50,
   "previewPlot": "sir-curves",
   "fileName": "epidemics.m",
-  "previewCode": "Run → compare → investigate",
+  "previewCode": "plot(t,S,t,I,t,R)",
   "reference": "downloads/epidemics_reference.m",
   "lessons": [
     {
@@ -751,8 +751,8 @@ root.LAB_EXTENSIONS["epidemics"]={
     }
   ],
   "completeTitle": {
-    "en": "You built a working model.",
-    "zh": "你建立了一个可运行的模型。"
+    "en": "Project checks complete",
+    "zh": "项目检查已完成"
   },
   "completeText": {
     "en": "Save your script and explain what the results mean.\nYour next project is ready.",

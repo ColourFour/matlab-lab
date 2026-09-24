@@ -2,7 +2,7 @@
 
 **[Live course](https://colourfour.github.io/matlab-lab/)** · **[Teacher preview](https://colourfour.github.io/matlab-lab/?review=1)**
 
-A static English / Simplified Chinese MATLAB course for high-school beginners. Seven projects, eight missions each: **56 lessons**. No build step, backend, external fonts, libraries or package installation is needed.
+A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. No build step, backend, external fonts, libraries or package installation is needed.
 
 | Project | Students build | New ideas |
 |---|---|---|
@@ -12,17 +12,17 @@ A static English / Simplified Chinese MATLAB course for high-school beginners. S
 | 3 · Make a Fractal | A Sierpiński carpet | Matrices, two-dimensional indexing, block replacement, loops, scaling |
 | 4 · Compress an Image | A block-averaged grayscale image | Nested loops, reconstruction, value counts, mean squared error |
 | 5 · Simulate an Epidemic | A fictional SIR system | Simultaneous updates, Euler steps, conservation, sensitivity, numerical resolution |
-| 6 · Your Own Investigation | A worked investigation, then an independent report | Questions, predictions, controls, evidence, interpretation, limitations |
+| 6 · Independent Project | A defended recommendation for a system students choose | Model design, competing alternatives, held-out tests, failure analysis, reproducibility |
 
-Each mission follows **See → Understand → Do → Compare → Check → Continue**. English and Chinese share code, diagrams and answer keys. Paired text reserves the same lesson layout in both languages. Progress and language persist locally; completing a project unlocks the next. Every course overview is always accessible.
+Each mission follows **See → Understand → Do → Compare → Check → Continue**. English and Chinese share code, diagrams and answer keys. Paired text reserves the same lesson layout in both languages. Progress and language persist locally; completing a guided project unlocks the next. **Project 6 and all eight of its sections are open from the start.** Every course overview is always accessible.
 
-Allow roughly 40–50 minutes per guided project, plus separate time for the independent investigation and discussion. Timing is an estimate to adjust after your classroom audit.
+Allow roughly 40–50 minutes per guided project, with **6–10 hours over two weeks** for Project 6, individually or in pairs. Timing is an estimate to adjust after your classroom audit.
 
 ## Audit the course
 
 Open **Teacher preview** to browse every lesson without prerequisites. Try checkpoint answers, switch language and copy code normally. Preview does not write student progress or language to storage. Return to student mode using the banner. It is a teaching convenience, not access control; the answer keys are public static source.
 
-Reference scripts in `downloads/` contain independently runnable sections: use MATLAB **Run Section** for one mission at a time. Starter scripts contain the first mission. Project 6 also includes a [bilingual report guide and teacher rubric](downloads/investigation-guide.md). The site checks worked-example results, not the quality of the independent report.
+Reference scripts in `downloads/` contain independently runnable sections: use MATLAB **Run Section** for one mission at a time. Starter scripts contain the first mission. Project 6 also includes a [bilingual report guide and teacher rubric](downloads/investigation-guide.md). Its optional skeleton and testing utilities do not supply a model or solution. Local notes and self-review marks are not grades.
 
 ## Run locally
 
@@ -47,15 +47,15 @@ Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The s
 - Project 3 shows finite approximations to an ideal fractal. Keep levels at 4 or below in the guided exercise.
 - Project 4 teaches lossy spatial downsampling by block means, not JPEG/PNG encoding or SVD. Ratios count equally typed numeric values and exclude metadata. It uses a generated image, so no image files or extra toolbox are required.
 - Project 5 uses invented SIR parameters and a closed, uniformly mixed population with lasting immunity. It is a mathematical exercise, not a calibrated forecast. Conservation and step-size checks test the implementation, not real-world predictive validity.
-- Project 6's checkpoints assess the worked example and planning concepts. The independent script, graph, table and report require teacher review using the supplied rubric.
+- Project 6 asks students to recommend a change to a system they choose. They define an objective and constraint, compare a baseline with at least two substantive alternatives, test at least three operating conditions including a held-out case, and investigate failure and sensitivity. A well-supported negative finding can earn full marks. Submit reproducible code/data, a comparison table, at least two purposeful figures, a two-page decision memo and a five-minute demonstration. Teachers assess these using the 20-mark rubric.
 
-Progress is stored in this browser on this device, separately for each project. Existing Boot Camp and Projectile Motion progress is preserved when the new courses load. Localhost and the public address have separate storage. Answer drafts last until reload. Shared computers share progress; use **Setup & help → Reset all project progress** between students. Private browsing or clearing site data can remove records. When storage is unavailable, the app warns and continues in memory.
+Progress is stored in this browser on this device, separately for each project. Existing Boot Camp and Projectile Motion progress is preserved when the new courses load. Localhost and the public address have separate storage. Guided answer drafts last until reload. Project 6 notes autosave separately and survive reload; export them to keep a backup or move devices. Self-review can be recorded in any order after entering notes or file references. **Reset all project progress** removes completion/self-review marks but keeps Project 6 notes. Shared computers share these records: export needed work, then clear this site’s browser data between students to remove notes as well. Private browsing or clearing site data can remove records. When storage is unavailable, the app warns and continues in memory.
 
 ## Source structure
 
 - `index.html`: entry point and ordered, deferred scripts.
 - `content/`: one editable lesson file per project; course metadata, catalog and numeric visual specifications.
-- `assets/app.js`, `core.js`, `styles.css`: shared renderer, validation, persistence, routing and responsive layout.
+- `assets/app.js`, `core.js`, `capstone.js`, `styles.css`: shared renderer, validation, persistence, routing and responsive layout.
 - `assets/*diagrams.js`: accessible inline SVGs. No generated bitmap assets or external image dependencies.
 - `downloads/`: MATLAB starters/references and bilingual investigation guide.
 - `tests/`: validation, independent numeric checks, migration tests and browser QA record.
@@ -63,7 +63,7 @@ Progress is stored in this browser on this device, separately for each project. 
 
 ## Verification and remaining audit
 
-Run `node --test tests/*.test.cjs` with Node 18+. Tests cover 56 checkpoint sets, bilingual completeness, malformed input, numerical tolerance, dependencies, progress migration, fractal geometry, compression error, projectile physics and SIR updates. See [QA record](tests/QA.md) for browser results.
+Run `node --test tests/*.test.cjs` with Node 18+. Tests cover 48 guided checkpoint sets, open capstone navigation/state, notebook sanitation/export/escaping, bilingual completeness, malformed input, numerical tolerance, dependencies, progress migration, fractal geometry, compression error, projectile physics and SIR updates. See [QA record](tests/QA.md) for browser results.
 
 **MATLAB itself is not installed in the build environment.** Numerical outputs were independently checked in JavaScript/Python, and the site was tested in a browser. Run the supplied `.m` sections in your school MATLAB version during your audit, and review the Chinese teaching language and pacing with your class context in mind.
 

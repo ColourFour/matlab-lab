@@ -13,8 +13,8 @@ root.LAB_EXTENSIONS["probability"]={
     "zh": "挑战概率"
   },
   "headline": {
-    "en": "Can chance\nbe fair?",
-    "zh": "随机游戏\n公平吗？"
+    "en": "Probability and\nexpected value",
+    "zh": "概率与\n期望值"
   },
   "description": {
     "en": "Simulate a fictional token game.\nUse evidence to test its rules.",
@@ -24,7 +24,7 @@ root.LAB_EXTENSIONS["probability"]={
   "duration": 50,
   "previewPlot": "prob-net",
   "fileName": "probability.m",
-  "previewCode": "Run → compare → investigate",
+  "previewCode": "mean(net)",
   "reference": "downloads/probability_reference.m",
   "lessons": [
     {
@@ -717,8 +717,8 @@ root.LAB_EXTENSIONS["probability"]={
     }
   ],
   "completeTitle": {
-    "en": "You built a working model.",
-    "zh": "你建立了一个可运行的模型。"
+    "en": "Project checks complete",
+    "zh": "项目检查已完成"
   },
   "completeText": {
     "en": "Save your script and explain what the results mean.\nYour next project is ready.",

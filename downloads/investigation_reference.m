@@ -1,61 +1,37 @@
-% Run one section at a time using Run Section.
-% Each mission is independent and resets its own inputs.
+%% Optional MATLAB testing utilities / 可选 MATLAB 检验工具示例
+% These independent examples are not a solution to Project 6.
+% 以下独立示例不是项目 6 的解答。使用 Run Section 分别运行。
 
-%% 1 Ask a testable question / 提出可检验问题
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-numel(speed)
+%% A. A numerical correctness check / 数值正确性检查
+expected = 1;
+actual = sum([0.1 0.2 0.7]);
+assert(abs(actual - expected) < 1e-10, 'Check failed');
+% Replace both the case and the expected value with a justified test.
+% 用有依据的测试案例与预期值替换它们。
 
-%% 2 Write a prediction / 写出预测
-speedFactor = 2;
-predictedRangeFactor = speedFactor^2;
-predictedRangeFactor
+%% B. Record repeated outcomes / 记录重复结果
+% Invented example values, not a model's results.
+% 虚构示例数值，不是某个模型的结果。
+outcomes = [10 12 9 11 13];
+summary = [mean(outcomes) min(outcomes) max(outcomes)];
+summary
+% Min/max show this sample's spread, not a confidence interval.
+% 最小值/最大值表示样本范围，不是置信区间。
 
-%% 3 Make a fair test plan / 制定公平检验方案
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-[speed(1) speed(end) angle gravity]
-
-%% 4 Collect paired evidence / 收集配对证据
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-results = [speed; range]';
-results
-
-%% 5 Make the graph explain / 让图像清楚表达
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-plot(speed, range, '-o');
-xlabel('Speed (m/s)'); ylabel('Range (m)');
-title('Fixed angle: 45 degrees'); grid on;
-
-%% 6 Test the prediction / 检验预测
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-measuredFactor = range(3)/range(1);
-constant = range./speed.^2;
-[measuredFactor max(constant)-min(constant) < 1e-10]
-
-%% 7 Test sensitivity / 检验敏感性
-speed = [20 21]; angle = 45; gravity = 9.81;
-range = speed.^2*sind(2*angle)/gravity;
-percentChange = 100*(range(2)-range(1))/range(1);
-percentChange
-
-%% 8 Build your own study / 开展自己的研究
-gravity = 9.81; angle = 45;
-speed = [10 15 20 25 30];
-range = speed.^2*sind(2*angle)/gravity;
-% Worked example only: replace with your own question and model.
-% Question: how does speed affect range at 45 degrees?
-% Prediction: doubling speed gives four times the range.
-% Controls: angle, gravity, no drag, same launch/landing height.
-results = [speed; range]';
-plot(speed, range, '-o');
-xlabel('Speed (m/s)'); ylabel('Range (m)'); grid on;
-results
+%% C. Compare feasibility before ranking / 先检查可行性，再排序
+% Invented costs and errors. Lower error is better in this example.
+% 虚构成本与误差。本示例中误差越低越好。
+cost = [4 8 12];
+error = [7 5 2];
+budget = 10;
+feasible = cost <= budget;
+indices = find(feasible);
+if isempty(indices)
+    disp('No feasible design');
+else
+    [bestError, localIndex] = min(error(indices));
+    selected = indices(localIndex);
+    [selected bestError cost(selected)]
+end
+% The lowest error overall is infeasible under this budget.
+% 全部方案中最低的误差，对应方案却超出预算。

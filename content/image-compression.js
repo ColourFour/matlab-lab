@@ -13,8 +13,8 @@ root.LAB_EXTENSIONS["image-compression"]={
     "zh": "压缩图像"
   },
   "headline": {
-    "en": "A picture\nis numbers.",
-    "zh": "图像\n就是数字。"
+    "en": "Image\ncompression",
+    "zh": "图像\n压缩"
   },
   "description": {
     "en": "Store fewer values with block averages.\nMeasure what detail is lost.",
@@ -24,7 +24,7 @@ root.LAB_EXTENSIONS["image-compression"]={
   "duration": 50,
   "previewPlot": "image-two",
   "fileName": "image_compression.m",
-  "previewCode": "Run → compare → investigate",
+  "previewCode": "mean(block(:))",
   "reference": "downloads/image_compression_reference.m",
   "lessons": [
     {
@@ -702,8 +702,8 @@ root.LAB_EXTENSIONS["image-compression"]={
     }
   ],
   "completeTitle": {
-    "en": "You built a working model.",
-    "zh": "你建立了一个可运行的模型。"
+    "en": "Project checks complete",
+    "zh": "项目检查已完成"
   },
   "completeText": {
     "en": "Save your script and explain what the results mean.\nYour next project is ready.",

@@ -13,8 +13,8 @@ root.LAB_EXTENSIONS["fractals"]={
     "zh": "制作分形"
   },
   "headline": {
-    "en": "One rule.\nEndless detail.",
-    "zh": "一条规则。\n不断细分。"
+    "en": "Sierpiński\ncarpet",
+    "zh": "谢尔宾斯基\n地毯"
   },
   "description": {
     "en": "Replace each square with a smaller pattern.\nBuild a Sierpiński carpet.",
@@ -24,7 +24,7 @@ root.LAB_EXTENSIONS["fractals"]={
   "duration": 50,
   "previewPlot": "carpet-three",
   "fileName": "fractals.m",
-  "previewCode": "Run → compare → investigate",
+  "previewCode": "kron(A, mask)",
   "reference": "downloads/fractals_reference.m",
   "lessons": [
     {
@@ -672,8 +672,8 @@ root.LAB_EXTENSIONS["fractals"]={
     }
   ],
   "completeTitle": {
-    "en": "You built a working model.",
-    "zh": "你建立了一个可运行的模型。"
+    "en": "Project checks complete",
+    "zh": "项目检查已完成"
   },
   "completeText": {
     "en": "Save your script and explain what the results mean.\nYour next project is ready.",

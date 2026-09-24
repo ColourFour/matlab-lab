@@ -5,5 +5,5 @@ window.LAB_PROJECTS = [
   { id: 'fractals', number: '03', title: {en:'Make a fractal',zh:'制作分形'}, summary:{en:'Find patterns in repetition.',zh:'在重复中发现规律。'}, icon:'cells', available:true },
   { id: 'image-compression', number: '04', title: {en:'Compress an image',zh:'压缩图像'}, summary:{en:'See the numbers in a picture.',zh:'看看图像里的数字。'}, icon:'box', available:true },
   { id: 'epidemics', number: '05', title: {en:'Simulate an epidemic',zh:'模拟传染过程'}, summary:{en:'Watch a model change over time.',zh:'观察模型随时间变化。'}, icon:'steps', available:true },
-  { id: 'investigation', number: '06', title: {en:'Your own investigation',zh:'自主探究'}, summary:{en:'Ask a question. Build a model.',zh:'提出问题，建立模型。'}, icon:'flag', available:true }
+  { id: 'investigation', number: '06', title: {en:'Independent Project',zh:'自主项目'}, summary:{en:'Defend a design decision with evidence.',zh:'用证据论证设计决策。'}, icon:'flag', available:true }
 ];

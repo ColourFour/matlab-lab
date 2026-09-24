@@ -34,3 +34,15 @@ This is local browser/model QA, not certification across every browser, screen r
 - MATLAB is unavailable locally; these are numerical/browser checks, not native MATLAB execution. Teacher execution of the provided `.m` sections remains part of the classroom audit.
 - After resetting test progress, a direct Project 5 lesson URL correctly returned its locked overview and named Project 4 as its prerequisite. Teacher preview opened the same lesson, accepted a correct answer, and kept progress at 0; returning to student mode restored the lock.
 - Copy returned the complete SIR script; hint toggled; the report download link worked; help/reset wording covers all seven courses. At 320 px the hub showed seven course cards without document overflow. No browser console errors or warnings were recorded.
+
+## Open Project 6 and language revision — 2026-09-24
+
+This revision replaces the former eight guided investigation lessons. Current structure: **48 guided lessons + 8 open working sections**. The earlier Project 6 checks above describe the previous release.
+
+- Removed promotional headline/tagline copy. Rebuilt Project 6 around a student-chosen system and a recommendation supported by reproducible evidence, competing designs, constraints, held-out evaluation, failure analysis and a realistic 6–10-hour scope.
+- All eight sections are accessible with zero guided-course progress. Entered section 8 first, rejected an empty self-review, saved bilingual notes and recorded only that section. Reload and language switching preserved notes and its mark. Removing the mark worked. Test notes were cleared afterward.
+- Teacher preview disabled self-review, accepted temporary notes, and restored original saved notes on return to student mode.
+- All eight section panel positions and sizes match across English/Chinese on desktop and at 390 px. No horizontal document overflow at 390 px. Project overview also fits at 320 px after changing its nested cards to one column.
+- Inspected desktop overview and mobile working sections visually. Topic disclosures open correctly. Export opens a readable, selectable Markdown preview containing all eight sections and a correctly named download link. The browser automation did not report its native download event, so the copyable preview also provides access without relying on download support. Export content and escaping are covered by unit checks.
+- All **28 automated test groups pass**, covering the existing guided course, independent self-review state, old Project 6 migration, bounded notebook text, readiness without fake quality grading, bilingual exports and HTML escaping.
+- Native MATLAB execution remains unverified in this environment. The optional Project 6 files are a skeleton and testing utilities, not a supplied project solution.

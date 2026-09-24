@@ -27,11 +27,12 @@
     const candidate = raw && raw.version === 1 ? raw : {};
     const supplied = Array.isArray(candidate.completed) ? candidate.completed : [];
     const completed = [];
-    // Only a contiguous series can unlock the next module.
-    for (const lesson of lessons) { if (!supplied.includes(lesson.id)) break; completed.push(lesson.id); }
+    const open=lessons.every(l=>l.open===true);
+    // Guided lessons require a prefix; independent self-reviews may be recorded in any order.
+    for (const lesson of lessons) { if (!supplied.includes(lesson.id)) {if(open)continue;break;} completed.push(lesson.id); }
     const index = lessons.findIndex(l => l.id === candidate.lastLesson);
     return { version: 1, lang: candidate.lang === 'zh' ? 'zh' : 'en', completed,
-      lastLesson: index >= 0 && index <= completed.length ? candidate.lastLesson : lessons[Math.min(completed.length, lessons.length-1)].id };
+      lastLesson: index >= 0 && (open || index <= completed.length) ? candidate.lastLesson : lessons[Math.min(completed.length, lessons.length-1)].id };
   }
   function cleanAppState(raw,courses,legacy=null) {
     const candidate=raw?.version===2?raw:{};
