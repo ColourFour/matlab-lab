@@ -36,3 +36,9 @@ body{line-height:1.5}
 @media(max-width:1200px){.project-one-card{padding:23px;gap:22px}.project-one-card h2{font-size:23px}.course-copy h2{min-height:74px}}
 @media(max-width:950px){.project-one-card{flex-direction:column;align-items:flex-start;gap:16px}.project-one-card .button{align-self:flex-end}.course-copy h2{min-height:68px}}
 @media(max-width:720px){.course-switch{display:inline-flex;padding:0;float:right;margin:0 0 10px;min-width:156px}.course-switch>a{font-size:11px;min-height:30px;padding:3px 9px}.sidebar-course{clear:both;padding-top:2px}.project-one-card{padding:22px}.course-copy h2{min-height:74px}}
+/* Seven-course navigation remains compact at every width. */
+.course-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;min-width:0}
+.course-switch>a{min-width:0;justify-content:center;white-space:nowrap}.future-card{transition:border-color .15s,background .15s}.future-card:hover{border-color:var(--teal);background:#f1f7f3}.future-card>div{min-width:0}.future-card h3{overflow-wrap:anywhere}.teacher-link{margin-top:24px}.review-banner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}.review-banner .text-button{white-space:normal}.teaching-svg{max-width:100%}
+@media(max-width:720px){.course-switch{float:none;display:flex;flex-wrap:wrap;width:100%;padding:0;margin:10px 0}.course-switch>a{flex:1 0 20%;font-size:11px}.future-grid{grid-template-columns:1fr}.future-card{min-width:0}}
+.sidebar-course>strong{line-height:24px}.all-projects{line-height:20px}.course-switch>a{line-height:18px}.lesson-nav{line-height:20px}.progress-caption{line-height:18px}.question .input-note{line-height:1.6}
+@media(max-width:720px){.sidebar-course>strong,.progress-caption{min-height:36px}}

@@ -22,3 +22,15 @@ Run `node --test tests/*.test.cjs`: **14 test groups pass**. Coverage includes b
 The browser validates entered results, not a student's MATLAB script. MATLAB examples were not executed in MATLAB here; their syntax follows core documentation and the numeric model results were independently verified. Do a teacher walkthrough in your school's MATLAB environment before class, especially account access and Editor/Figures panels.
 
 This is local browser/model QA, not certification across every browser, screen reader or MATLAB release. Storage-denied behavior is defensive; corrupted state and migration were covered in automated tests.
+
+## Full-course expansion — 2026-09-24
+
+- Seven courses / 56 lessons; added 40 new lessons in Projects 2–6.
+- All 40 new checkpoints exercised in the actual browser in student mode: empty input rejected, correct values accepted (including stated rounding), sequential progress reached 8/8 per course.
+- Project 2 completion linked to Project 3; subsequent prerequisites opened through real checkpoint completion. Final investigation completion explicitly distinguishes worked checks from independent teacher-reviewed work. Completion survived reload.
+- Every new lesson measured in both languages: six lesson-section rectangles and code text match on desktop. At 390 px, all 40 have zero measured section shift and no horizontal document overflow after fixing shared progress-caption and input-note sizing.
+- Independent automated calculations verify carpet cells/counts, block means/MSE, SIR population conservation and simultaneous updates, time-step refinement, and investigation square-law calculations.
+- Existing two-course progress migrates with all five new histories initially empty.
+- MATLAB is unavailable locally; these are numerical/browser checks, not native MATLAB execution. Teacher execution of the provided `.m` sections remains part of the classroom audit.
+- After resetting test progress, a direct Project 5 lesson URL correctly returned its locked overview and named Project 4 as its prerequisite. Teacher preview opened the same lesson, accepted a correct answer, and kept progress at 0; returning to student mode restored the lock.
+- Copy returned the complete SIR script; hint toggled; the report download link worked; help/reset wording covers all seven courses. At 320 px the hub showed seven course cards without document overflow. No browser console errors or warnings were recorded.
