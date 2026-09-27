@@ -50,3 +50,13 @@ Optional fields: `code`, `output`, `plot`, `diagram`, `visual`, `filename`, `obs
 The original content files remain the detailed reference and course metadata. Keep both sources and downloadable examples consistent when changing math or answer keys. `LabGuide.clean` restores known, bounded fields, revalidates solved answers and prevents resuming past an unanswered checkpoint. `matlab-lab:guided:v1` stores the current lesson/step and answers separately from existing course completions. Teacher preview uses memory only.
 
 Test the student route through every revised lesson, not just correct values in isolated functions. Test an incorrect result, return/back, resume, language switching, copy, export, help and mobile layout. Use identical geometry in both languages through `fmt`. Build version query strings in index.html ensure updated JS/CSS replace browser caches.
+
+## Transfer checks and rewards (September 28)
+
+Use exactly one `transfer: true` checkpoint per guided lesson. Keep the worked example and its expected output. Then ask for a **new result** using changed inputs or a measurement not shown in the example. Supply a short runnable `code` block and numeric/vector `question`; do not include `output`, `plot`, an answer-revealing hint, or a multiple-choice shortcut on this step. When a new command is necessary, explain its role in one short sentence. Code runs in Command Window unless `append` is set. Reused variables must be defined earlier in this lesson.
+
+The original course question sets remain reference examples; `content/guided.js` is authoritative for active student checkpoints. Generated lesson exports include both practice and transfer code. Static reference downloads contain the worked examples, not the new answer key. Independently calculate new numeric results and test rounded input.
+
+Guide records now have payload `version: 2` under the existing storage key. Old step records restart; separate completed-course records and notebooks are untouched. Revise the payload version again if reordered steps or changed answers make old positions unsafe.
+
+`LabCelebrate.play` runs only after a newly correct form submission. Never call it from render, resume, language switching, or manual acknowledgements. Keep the overlay outside the rerendered app, decorative and pointer-transparent, bounded to 36 particles and one live cleanup timer. Respect reduced motion and clear overlays on navigation. All sixteen CSS variants should appear once per shuffled batch.

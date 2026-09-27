@@ -80,6 +80,7 @@
  function assignmentParts(v){const en=v.en.replace(/^Final task: /,'').split(/(?<=[.!?])\s+/).filter(Boolean),zh=v.zh.split(/(?<=[。！？])/).filter(Boolean);return Array.from({length:Math.max(en.length,zh.length)},(_,i)=>({en:en[i]||'',zh:zh[i]||''}));}
  function completion(){if(course.kind==='capstone')return capOverview();const next=Object.values(courses).find(c=>c.number===course.number+1);return `<section class="student-home"><span class="completion-check">${icon('check')}</span><h1>${F('Project complete','项目完成')}</h1><p>${fmt(course.title)}</p><div class="home-preview">${LabDiagrams.plot(course.previewPlot,store.lang)}</div><p>${F('Keep your script and graph. Show one result you can explain.','保留脚本和图像。展示一个你能解释的结果。')}</p><a class="button primary" href="${next?overview(next):'#/map'}">${next?F('Open the next project','打开下一个项目'):F('Course map','课程目录')} ${icon('arrow')}</a><details class="completion-files"><summary>${F('Reference files','参考文件')}</summary><a href="${course.reference}" download>${F('Download reference code','下载参考代码')}</a></details></section>`;}
  function render(focus=false){
+  LabCelebrate.clear();
   current=route();document.documentElement.lang=store.lang==='zh'?'zh-Hans':'en';document.body.classList.add('student-mode');
   if(current.page==='lesson'&&course.kind!=='capstone'){
    const st=LabGuide.entry(book,key()),steps=guides[key()];book.active=key();state.lastLesson=course.lessons[current.index].id;
@@ -127,7 +128,7 @@
    case 'review-section':{if(review)return;capture();const l=course.lessons[current.index];if(state.completed.includes(l.id))state.completed=state.completed.filter(id=>id!==l.id);else if(LabCapstone.ready(notebook.notes[l.id],l))state.completed.push(l.id);else{document.getElementById('notebook-status').textContent=tr('Add notes for both prompts first.','请先填写两个提示的笔记。');return;}persist();render();break;}
   }
  });
- app.addEventListener('submit',e=>{if(e.target.id!=='guided-check')return;e.preventDefault();capture();const st=LabGuide.entry(book,key()),qid=e.target.dataset.question;feedback[key()]=LabGuide.check(guides[key()],st,qid,st.answers[qid]||'',LabCore);saveGuide();render();document.getElementById('step-feedback')?.focus({preventScroll:true});document.getElementById('step-feedback')?.scrollIntoView({block:'nearest'});});
+ app.addEventListener('submit',e=>{if(e.target.id!=='guided-check')return;e.preventDefault();capture();const st=LabGuide.entry(book,key()),qid=e.target.dataset.question,alreadySolved=st.solved.includes(qid);feedback[key()]=LabGuide.check(guides[key()],st,qid,st.answers[qid]||'',LabCore);saveGuide();render();document.getElementById('step-feedback')?.focus({preventScroll:true});document.getElementById('step-feedback')?.scrollIntoView({block:'nearest'});if(feedback[key()]&&!alreadySolved)LabCelebrate.play(document.getElementById('step-feedback'));});
  window.addEventListener('hashchange',()=>{capture();render(true);});
  document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();document.getElementById('main').focus();});
  persist();render();

@@ -1,4 +1,4 @@
-/* Short bilingual learning steps. MATLAB runs in MATLAB, not in this website. */
+/* Short bilingual learning steps. Worked examples precede fresh MATLAB transfer checks. */
 (function(root){root.LAB_GUIDES={
   "bootcamp:first-command": [
     {
@@ -77,89 +77,36 @@
       "id": "3"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check the number you saw",
-        "zh": "检查刚才看到的数字"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Enter the number MATLAB displayed.",
-        "zh": "输入 MATLAB 显示的数字。"
+        "en": "Try a new calculation. Run this command in MATLAB.",
+        "zh": "试一次新的计算。在 MATLAB 中运行这条命令。"
       },
-      "phase": "check",
+      "code": "137 + 286",
       "question": {
-        "id": "first-four",
+        "id": "transfer-v2",
         "label": {
-          "en": "What number appeared?",
-          "zh": "出现了哪个数字？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 4,
-        "placeholder": {
-          "en": "Number",
-          "zh": "数字"
-        }
+        "answer": 423,
+        "tolerance": 0
       },
       "win": {
-        "en": "You ran a command and read its answer.",
-        "zh": "你运行了命令，并读出了答案。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
-      "id": "4",
       "hint": {
-        "en": "Run `2 + 2` again. Enter only the number below ans, without ans or the equals sign.",
-        "zh": "重新运行 `2 + 2`。只输入 ans 下方的数字，不要输入 ans 或等号。"
-      }
-    },
-    {
-      "title": {
-        "en": "Change one number",
-        "zh": "改变一个数字"
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
-      "text": {
-        "en": "Run the new command in MATLAB.",
-        "zh": "在 MATLAB 运行新命令。"
-      },
-      "phase": "do",
-      "code": "2 + 5",
-      "output": "ans =\n     7",
-      "typed": true,
-      "ack": {
-        "en": "I see the new answer",
-        "zh": "我看到了新答案"
-      },
-      "id": "5"
-    },
-    {
-      "title": {
-        "en": "Read the changed answer",
-        "zh": "读出改变后的答案"
-      },
-      "text": {
-        "en": "Enter the result of `2 + 5`.",
-        "zh": "输入 `2 + 5` 的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "result",
-        "label": {
-          "en": "What number appeared now?",
-          "zh": "现在出现了哪个数字？"
-        },
-        "type": "number",
-        "answer": 7,
-        "placeholder": {
-          "en": "Number",
-          "zh": "数字"
-        }
-      },
-      "win": {
-        "en": "Changing the command changed the result.",
-        "zh": "改变命令，就改变了结果。"
-      },
-      "id": "6",
-      "hint": {
-        "en": "Run `2 + 5` again. Enter the new answer, not the earlier 4.",
-        "zh": "重新运行 `2 + 5`。输入新的答案，不是之前的 4。"
-      }
+      "transfer": true,
+      "id": "4"
     },
     {
       "title": {
@@ -181,7 +128,7 @@
         "en": "First graph drawn",
         "zh": "第一张图已画出"
       },
-      "id": "7"
+      "id": "5"
     },
     {
       "title": {
@@ -203,52 +150,7 @@
         "en": "You changed your graph",
         "zh": "你改变了自己的图像"
       },
-      "id": "8"
-    },
-    {
-      "title": {
-        "en": "What made the graph change?",
-        "zh": "什么改变了图像？"
-      },
-      "text": {
-        "en": "Choose the value you changed.",
-        "zh": "选择你改变的数值。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "graph-change",
-        "label": {
-          "en": "The middle height changed to…",
-          "zh": "中间高度变成了……"
-        },
-        "type": "choice",
-        "answer": "8",
-        "options": [
-          {
-            "value": "8",
-            "label": {
-              "en": "8",
-              "zh": "8"
-            }
-          },
-          {
-            "value": "4",
-            "label": {
-              "en": "4",
-              "zh": "4"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "Your code controls the graph.",
-        "zh": "你的代码控制图像。"
-      },
-      "id": "9",
-      "hint": {
-        "en": "Compare the two plot commands. Look at the middle number in the second bracket.",
-        "zh": "比较两条 plot 命令。查看第二组方括号中间的数字。"
-      }
+      "id": "6"
     },
     {
       "title": {
@@ -265,7 +167,7 @@
         "en": "First commands complete",
         "zh": "第一条命令已完成"
       },
-      "id": "10"
+      "id": "7"
     }
   ],
   "bootcamp:variables": [
@@ -364,32 +266,35 @@
       "id": "4"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Store a new speed. Increase it, then read the stored value.",
+        "zh": "保存一个新速度。增加它，再读出保存的数值。"
       },
-      "phase": "check",
+      "code": "speed = 37;\nspeed = speed + 18;\nspeed",
       "question": {
-        "id": "result",
+        "id": "transfer-v2",
         "label": {
-          "en": "What value is now stored in speed?",
-          "zh": "现在 speed 中保存的数值是多少？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 25,
-        "placeholder": {
-          "en": "New value of speed",
-          "zh": "speed 的新数值"
-        }
+        "answer": 55,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "5"
     },
     {
@@ -506,32 +411,39 @@
       "id": "4"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "A vector can hold calculations too. Run both lines. Read the three results in order.",
+        "zh": "向量也能包含计算。运行这两行，按顺序读出三个结果。"
       },
-      "phase": "check",
+      "code": "scores = [37+18 64+29 83+46];\nscores",
       "question": {
-        "id": "count",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many values are in [3 6 9 12 15]?",
-          "zh": "[3 6 9 12 15] 中有几个数值？"
+          "en": "What are the three values?",
+          "zh": "三个数值分别是多少？"
         },
-        "type": "number",
-        "answer": 5,
-        "placeholder": {
-          "en": "Number of values",
-          "zh": "数值的个数"
-        }
+        "type": "vector",
+        "answer": [
+          55,
+          93,
+          129
+        ],
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "5"
     },
     {
@@ -648,38 +560,42 @@
       "id": "4"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try a new start, step and end. Run both lines.",
+        "zh": "试试新的起点、步长和终点。运行这两行。"
       },
-      "phase": "check",
+      "code": "t = 1.5:0.7:5;\nt",
       "question": {
-        "id": "values",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter all the values in 0:2:8, in order.",
-          "zh": "按顺序输入 0:2:8 中的所有数值。"
+          "en": "Enter all the values in order.",
+          "zh": "按顺序输入所有数值。"
         },
         "type": "vector",
         "answer": [
-          0,
-          2,
-          4,
-          6,
-          8
+          1.5,
+          2.2,
+          2.9,
+          3.6,
+          4.3,
+          5
         ],
-        "placeholder": {
-          "en": "Separate values with spaces",
-          "zh": "用空格分隔数值"
-        }
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "5"
     },
     {
@@ -796,32 +712,35 @@
       "id": "4"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use positions to select two values. MATLAB adds them for you.",
+        "zh": "用位置选出两个数值，让 MATLAB 把它们相加。"
       },
-      "phase": "check",
+      "code": "values = [17 28 43 59];\nvalues(3) + values(4)",
       "question": {
-        "id": "result",
+        "id": "transfer-v2",
         "label": {
-          "en": "What does values(2) return?",
-          "zh": "values(2) 返回什么数值？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 20,
-        "placeholder": {
-          "en": "Value at position 2",
-          "zh": "第 2 个位置的数值"
-        }
+        "answer": 102,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "5"
     },
     {
@@ -938,37 +857,40 @@
       "id": "4"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use new values. Square each value, then add 5.",
+        "zh": "换一组数值。每项平方后，再加 5。"
       },
-      "phase": "check",
+      "code": "x = [3 7 11 14];\ny = x.^2 + 5;\ny",
       "question": {
-        "id": "values",
+        "id": "transfer-v2",
         "label": {
-          "en": "With x = [1 2 3 4], what is x + 2?",
-          "zh": "当 x = [1 2 3 4] 时，x + 2 是多少？"
+          "en": "Enter the four values of y.",
+          "zh": "输入 y 的四个数值。"
         },
         "type": "vector",
         "answer": [
-          3,
-          4,
-          5,
-          6
+          14,
+          54,
+          126,
+          201
         ],
-        "placeholder": {
-          "en": "Enter the four values",
-          "zh": "输入四个数值"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "5"
     },
     {
@@ -1104,81 +1026,36 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Plot a new curve. The last line prints its height at x = 3.",
+        "zh": "画一条新曲线。最后一行显示 x = 3 时的高度。"
       },
-      "phase": "check",
+      "code": "x = 0:1:4;\ny = x.^2 + 3*x;\nplot(x,y,'-o');\ngrid on;\ny(4)",
       "question": {
-        "id": "result",
+        "id": "transfer-v2",
         "label": {
-          "en": "On your graph, what is y when x is 3?",
-          "zh": "在你的图中，当 x 为 3 时，y 是多少？"
+          "en": "What is y at x = 3?",
+          "zh": "x = 3 时，y 是多少？"
         },
         "type": "number",
-        "answer": 9,
-        "placeholder": {
-          "en": "Read the y value",
-          "zh": "读出 y 的值"
-        }
+        "answer": 18,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "axis",
-        "label": {
-          "en": "Which command labels the horizontal axis?",
-          "zh": "哪条命令给横轴添加标签？"
-        },
-        "type": "choice",
-        "options": [
-          {
-            "value": "xlabel",
-            "label": {
-              "en": "xlabel",
-              "zh": "xlabel"
-            }
-          },
-          {
-            "value": "ylabel",
-            "label": {
-              "en": "ylabel",
-              "zh": "ylabel"
-            }
-          },
-          {
-            "value": "title",
-            "label": {
-              "en": "title",
-              "zh": "title"
-            }
-          }
-        ],
-        "answer": "xlabel"
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "7"
     },
     {
       "title": {
@@ -1195,7 +1072,7 @@
         "en": "Your first plot complete",
         "zh": "第一张图已完成"
       },
-      "id": "8"
+      "id": "7"
     }
   ],
   "bootcamp:mini-challenge": [
@@ -1352,68 +1229,43 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try a different arc. Read its six heights from MATLAB.",
+        "zh": "试试另一条弧线。从 MATLAB 读出六个高度。"
       },
-      "phase": "check",
+      "code": "t = 0:1:5;\nh = 5*t - t.^2;\nplot(t,h,'-o');\ngrid on;\nh",
       "question": {
-        "id": "heights",
+        "id": "transfer-v2",
         "label": {
-          "en": "Run h. Enter its five height values in order.",
-          "zh": "运行 h，按顺序输入它的五个高度值。"
+          "en": "Enter the six values of h.",
+          "zh": "输入 h 的六个数值。"
         },
         "type": "vector",
         "answer": [
           0,
-          3,
           4,
-          3,
+          6,
+          6,
+          4,
           0
         ],
-        "placeholder": {
-          "en": "Five values, separated by spaces",
-          "zh": "五个数值，用空格分隔"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "peak",
-        "label": {
-          "en": "At what time t is the height greatest? (seconds)",
-          "zh": "在什么时间 t，高度最大？（秒）"
-        },
-        "type": "number",
-        "answer": 2,
-        "placeholder": {
-          "en": "Time in seconds",
-          "zh": "时间，单位：秒"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "9"
     },
     {
       "title": {
@@ -1430,7 +1282,7 @@
         "en": "Mini challenge complete",
         "zh": "小挑战已完成"
       },
-      "id": "10"
+      "id": "9"
     }
   ],
   "projectile-motion:launch-setup": [
@@ -1567,82 +1419,36 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try speed 27. Divide by gravity to find a time scale in seconds.",
+        "zh": "试试速度 27。用速度除以重力加速度，得到以秒为单位的时间尺度。"
       },
-      "phase": "check",
+      "code": "speed = 27;\nangle = 38;\ngravity = 9.81;\nspeed/gravity",
       "question": {
-        "id": "units",
+        "id": "transfer-v2",
         "label": {
-          "en": "What unit does speed use?",
-          "zh": "speed 使用什么单位？"
-        },
-        "type": "choice",
-        "answer": "m/s",
-        "options": [
-          {
-            "value": "m",
-            "label": {
-              "en": "Metres (m)",
-              "zh": "米（m）"
-            }
-          },
-          {
-            "value": "m/s",
-            "label": {
-              "en": "Metres per second (m/s)",
-              "zh": "米/秒（m/s）"
-            }
-          },
-          {
-            "value": "degrees",
-            "label": {
-              "en": "Degrees (°)",
-              "zh": "度（°）"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "gravity",
-        "label": {
-          "en": "What value is stored in gravity?",
-          "zh": "gravity 中保存的数值是多少？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 9.81,
-        "tolerance": 0.001,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 2.7522935779816513,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
-      "id": "8"
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
+      "id": "7"
     },
     {
       "title": {
@@ -1659,7 +1465,7 @@
         "en": "Set the launch complete",
         "zh": "设定发射已完成"
       },
-      "id": "9"
+      "id": "8"
     }
   ],
   "projectile-motion:speed-components": [
@@ -1800,75 +1606,36 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Find the horizontal speed for a new launch.",
+        "zh": "求一次新发射的水平速度。"
       },
-      "phase": "check",
+      "code": "speed = 27;\nangle = 38;\nvx = speed*cosd(angle);\nvx",
       "question": {
-        "id": "vx",
+        "id": "transfer-v2",
         "label": {
-          "en": "What is vx at 45°? (m/s)",
-          "zh": "45° 时 vx 是多少？（m/s）"
+          "en": "What is vx (m/s)?",
+          "zh": "vx 是多少（m/s）？"
         },
         "type": "number",
-        "answer": 14.142135623730951,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 21.27629034738149,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "degrees",
-        "label": {
-          "en": "Which function accepts an angle in degrees?",
-          "zh": "哪个函数接收以“度”为单位的角度？"
-        },
-        "type": "choice",
-        "answer": "sind",
-        "options": [
-          {
-            "value": "sind",
-            "label": {
-              "en": "sind",
-              "zh": "sind"
-            }
-          },
-          {
-            "value": "sin",
-            "label": {
-              "en": "sin",
-              "zh": "sin"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "8"
     },
     {
       "title": {
@@ -1885,7 +1652,7 @@
         "en": "Split the speed complete",
         "zh": "分解速度已完成"
       },
-      "id": "9"
+      "id": "8"
     }
   ],
   "projectile-motion:flight-time": [
@@ -2049,64 +1816,36 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Change the speed and angle. Find the new flight time.",
+        "zh": "改变速度和角度，求新的飞行时间。"
       },
-      "phase": "check",
+      "code": "speed = 24;\nangle = 52;\ngravity = 9.81;\nvy = speed*sind(angle);\nflightTime = 2*vy/gravity;\nflightTime",
       "question": {
-        "id": "time",
+        "id": "transfer-v2",
         "label": {
-          "en": "What is the total flight time? (s)",
-          "zh": "飞行总时间是多少？（秒）"
+          "en": "What is flightTime (s)?",
+          "zh": "flightTime 是多少（秒）？"
         },
         "type": "number",
-        "answer": 2.8832080782326095,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 3.8557101093906887,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "count",
-        "label": {
-          "en": "How many values are in t?",
-          "zh": "t 中有多少个数值？"
-        },
-        "type": "number",
-        "answer": 101,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "9"
     },
     {
       "title": {
@@ -2123,7 +1862,7 @@
         "en": "Flight time complete",
         "zh": "飞行时间已完成"
       },
-      "id": "10"
+      "id": "9"
     }
   ],
   "projectile-motion:trajectory-values": [
@@ -2306,75 +2045,36 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Find the height 0.8 seconds into a new launch.",
+        "zh": "求一次新发射在 0.8 秒时的高度。"
       },
-      "phase": "check",
+      "code": "speed = 23; angle = 41; gravity = 9.81;\nvy = speed*sind(angle);\nt = 0.8;\ny = vy*t - 0.5*gravity*t.^2;\ny",
       "question": {
-        "id": "height",
+        "id": "transfer-v2",
         "label": {
-          "en": "What is y(51), the height halfway through the flight? (m)",
-          "zh": "y(51)，即飞行到一半时的高度，是多少？（米）"
+          "en": "What is y (m)?",
+          "zh": "y 是多少（米）？"
         },
         "type": "number",
-        "answer": 10.19367991845056,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 8.932286133425334,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "gravity-sign",
-        "label": {
-          "en": "Why do we subtract 0.5*gravity*t.^2?",
-          "zh": "为什么减去 0.5*gravity*t.^2？"
-        },
-        "type": "choice",
-        "answer": "down",
-        "options": [
-          {
-            "value": "down",
-            "label": {
-              "en": "Gravity acts downward",
-              "zh": "重力向下作用"
-            }
-          },
-          {
-            "value": "right",
-            "label": {
-              "en": "Gravity pushes the ball right",
-              "zh": "重力把小球推向右边"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -2391,7 +2091,7 @@
         "en": "Build the trajectory complete",
         "zh": "建立轨迹已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "projectile-motion:flight-plot": [
@@ -2612,75 +2312,36 @@
       "id": "10"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use your example flight. Read the horizontal distance at point 76, before landing.",
+        "zh": "使用刚才的飞行示例。读出落地前第 76 个点的水平距离。"
       },
-      "phase": "check",
+      "code": "x(76)",
       "question": {
-        "id": "horizontal",
+        "id": "transfer-v2",
         "label": {
-          "en": "What does the horizontal axis show here?",
-          "zh": "这张图的横轴表示什么？"
-        },
-        "type": "choice",
-        "answer": "distance",
-        "options": [
-          {
-            "value": "distance",
-            "label": {
-              "en": "Distance in metres",
-              "zh": "距离，单位：米"
-            }
-          },
-          {
-            "value": "time",
-            "label": {
-              "en": "Time in seconds",
-              "zh": "时间，单位：秒"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "11"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "landing",
-        "label": {
-          "en": "Run x(end). Where does the ball land? (m)",
-          "zh": "运行 x(end)。小球落在多远处？（米）"
+          "en": "What is x(76) (m)?",
+          "zh": "x(76) 是多少（米）？"
         },
         "type": "number",
-        "answer": 40.77471967380224,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 30.58103975535168,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
-      "id": "12"
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
+      "id": "11"
     },
     {
       "title": {
@@ -2697,7 +2358,7 @@
         "en": "Plot the flight complete",
         "zh": "绘制轨迹已完成"
       },
-      "id": "13"
+      "id": "12"
     }
   ],
   "projectile-motion:flight-measures": [
@@ -2884,64 +2545,36 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use the example flight. How far below the peak is point 26?",
+        "zh": "使用飞行示例。第 26 个点比峰值低多少？"
       },
-      "phase": "check",
+      "code": "max(y) - y(26)",
       "question": {
-        "id": "range",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the range. (m)",
-          "zh": "输入射程。（米）"
+          "en": "Enter the height difference (m).",
+          "zh": "输入高度差（米）。"
         },
         "type": "number",
-        "answer": 40.77471967380224,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
+        "answer": 2.54841997961264,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "height",
-        "label": {
-          "en": "Enter the maximum height. (m)",
-          "zh": "输入最大高度。（米）"
-        },
-        "type": "number",
-        "answer": 10.19367991845056,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -2958,7 +2591,7 @@
         "en": "Range and height complete",
         "zh": "射程与高度已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "projectile-motion:angle-investigation": [
@@ -3137,68 +2770,40 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Test three new angles at the same speed.",
+        "zh": "用相同速度测试三个新角度。"
       },
-      "phase": "check",
+      "code": "speed = 23; gravity = 9.81;\nangles = [25 40 55];\nranges = speed^2*sind(2*angles)/gravity;\nranges",
       "question": {
-        "id": "ranges",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the ranges for 30°, 45°, 60°, in order. (m)",
-          "zh": "按顺序输入 30°、45°、60° 的射程。（米）"
+          "en": "Enter the three ranges (m).",
+          "zh": "输入三个射程（米）。"
         },
         "type": "vector",
         "answer": [
-          35.311943069701876,
-          40.77471967380224,
-          35.311943069701876
+          41.30861472068699,
+          53.10533143154516,
+          50.67251747153369
         ],
-        "tolerance": 0.03,
-        "placeholder": {
-          "en": "Three numbers, rounded to 2 decimals",
-          "zh": "三个数值，保留两位小数"
-        }
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "best",
-        "label": {
-          "en": "Which tested angle gives the greatest range? (degrees)",
-          "zh": "测试的哪个角度射程最大？（度）"
-        },
-        "type": "number",
-        "answer": 45,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -3215,7 +2820,7 @@
         "en": "Compare angles complete",
         "zh": "比较角度已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "projectile-motion:target-challenge": [
@@ -3440,113 +3045,36 @@
       "id": "10"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "A new target is 51–53 metres away. Test this launch. Use its landing distance to decide whether it hits.",
+        "zh": "新目标在 51–53 米处。测试这次发射，用落地距离判断能否命中。"
       },
-      "phase": "check",
+      "code": "speed = 23; angle = 37; gravity = 9.81;\nvx = speed*cosd(angle); vy = speed*sind(angle);\nt = linspace(0,2*vy/gravity,101);\nx = vx*t; y = vy*t - 0.5*gravity*t.^2;\nplot(x,y); grid on;\nx(end)",
       "question": {
-        "id": "angle",
+        "id": "transfer-v2",
         "label": {
-          "en": "Which angle did you use?",
-          "zh": "你使用了哪个角度？"
+          "en": "Where does it land (m)?",
+          "zh": "落地距离是多少（米）？"
         },
-        "type": "choice",
-        "answers": [
-          "30",
-          "60"
-        ],
-        "options": [
-          {
-            "value": "30",
-            "label": {
-              "en": "30° · lower path",
-              "zh": "30° · 较低轨迹"
-            }
-          },
-          {
-            "value": "60",
-            "label": {
-              "en": "60° · higher path",
-              "zh": "60° · 较高轨迹"
-            }
-          }
-        ]
+        "type": "number",
+        "answer": 51.835620504726876,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "11"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "range",
-        "label": {
-          "en": "Enter your landing distance. (m)",
-          "zh": "输入你的落地距离。（米）"
-        },
-        "type": "number",
-        "answer": 35.311943069701876,
-        "tolerance": 0.03,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "12"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "height",
-        "label": {
-          "en": "Enter your maximum height. (m)",
-          "zh": "输入你的最大高度。（米）"
-        },
-        "type": "number",
-        "answer": 0,
-        "tolerance": 0.03,
-        "placeholder": {
-          "en": "Enter a number (2 decimal places is enough)",
-          "zh": "输入数字（保留两位小数即可）"
-        },
-        "dependsOn": "angle",
-        "answersByValue": {
-          "30": 5.09683995922528,
-          "60": 15.290519877675841
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "13"
     },
     {
       "title": {
@@ -3563,7 +3091,7 @@
         "en": "Target challenge complete",
         "zh": "目标挑战已完成"
       },
-      "id": "14"
+      "id": "12"
     }
   ],
   "probability:game-rules": [
@@ -3700,36 +3228,38 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try a game costing 3 tokens, with payouts of 11 or 2.",
+        "zh": "试试花费 3 枚代币、返还 11 或 2 枚的新游戏。"
       },
-      "phase": "check",
+      "code": "cost = 3;\npayout = [11 2];\nnet = payout - cost;\nnet",
       "question": {
-        "id": "net",
+        "id": "transfer-v2",
         "label": {
           "en": "Enter both net gains.",
           "zh": "输入两种净收益。"
         },
         "type": "vector",
         "answer": [
-          3,
+          8,
           -1
         ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
     },
     {
@@ -3865,75 +3395,36 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Generate two batches. Join them with [u v], then count all the draws.",
+        "zh": "生成两组随机数。用 [u v] 合并，再统计总个数。"
       },
-      "phase": "check",
+      "code": "u = rand(1,137);\nv = rand(1,286);\nnumel([u v])",
       "question": {
-        "id": "count",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many random values were generated?",
-          "zh": "生成了多少个随机数？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 5,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 423,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "seed",
-        "label": {
-          "en": "Why set a seed?",
-          "zh": "为什么设定种子？"
-        },
-        "type": "choice",
-        "answer": "repeat",
-        "options": [
-          {
-            "value": "repeat",
-            "label": {
-              "en": "To repeat an experiment",
-              "zh": "重复实验"
-            }
-          },
-          {
-            "value": "win",
-            "label": {
-              "en": "To guarantee wins",
-              "zh": "保证获胜"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "7"
     },
     {
       "title": {
@@ -3950,7 +3441,7 @@
         "en": "Create random trials complete",
         "zh": "创建随机试验已完成"
       },
-      "id": "8"
+      "id": "7"
     }
   ],
   "probability:logical-test": [
@@ -4068,39 +3559,41 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try new draws and a new winning threshold.",
+        "zh": "试试新的随机数与获胜阈值。"
       },
-      "phase": "check",
+      "code": "u = [0.31 0.08 0.45 0.29 0.30];\nwin = u < 0.3;\ndouble(win)",
       "question": {
-        "id": "mask",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the five results, using 1 and 0.",
-          "zh": "用 1 和 0 输入五个判断结果。"
+          "en": "Enter the five 0/1 results.",
+          "zh": "输入五个 0/1 结果。"
         },
         "type": "vector",
         "answer": [
-          1,
           0,
           1,
           0,
+          1,
           0
         ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
     },
     {
@@ -4236,64 +3729,36 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Estimate the winning fraction for these seven new draws.",
+        "zh": "估计这七次新抽样的获胜比例。"
       },
-      "phase": "check",
+      "code": "u = [0.31 0.08 0.45 0.29 0.30 0.12 0.91];\nwin = u < 0.3;\nmean(win)",
       "question": {
-        "id": "wins",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many wins?",
-          "zh": "获胜几次？"
+          "en": "What fraction won? Use four decimals.",
+          "zh": "获胜比例是多少？保留四位小数。"
         },
         "type": "number",
-        "answer": 2,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 0.42857142857142855,
+        "tolerance": 0.0001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "fraction",
-        "label": {
-          "en": "What fraction won?",
-          "zh": "获胜比例是多少？"
-        },
-        "type": "number",
-        "answer": 0.4,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "7"
     },
     {
       "title": {
@@ -4310,7 +3775,7 @@
         "en": "Count and estimate complete",
         "zh": "统计与估计已完成"
       },
-      "id": "8"
+      "id": "7"
     }
   ],
   "probability:running-balance": [
@@ -4489,39 +3954,41 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Track a new game: each play costs 2; each win returns 5.",
+        "zh": "追踪一个新游戏：每次花费 2 枚，获胜返还 5 枚。"
       },
-      "phase": "check",
+      "code": "u = [0.31 0.08 0.45 0.29 0.30];\nwin = u < 0.3;\nnet = 5*win - 2;\nbalance = cumsum(net);\nbalance",
       "question": {
-        "id": "balance",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the running totals.",
-          "zh": "输入累计总额。"
+          "en": "Enter the five running balances.",
+          "zh": "输入五个累计余额。"
         },
         "type": "vector",
         "answer": [
-          3,
+          -2,
+          1,
+          -1,
           2,
-          5,
-          4,
-          3
+          0
         ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
     },
     {
@@ -4657,33 +4124,35 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try probability 0.17, payout 7 and cost 1.5.",
+        "zh": "试试获胜概率 0.17、返还 7、花费 1.5。"
       },
-      "phase": "check",
+      "code": "p = 0.17;\nexpectedNet = 7*p - 1.5;\nexpectedNet",
       "question": {
-        "id": "expected",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the expected net gain per play.",
-          "zh": "输入每次净收益的期望值。"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": -0.2,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": -0.31,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
     },
     {
@@ -4861,75 +4330,36 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use a short fixed sample to inspect the same average-net calculation. Each entry is one draw.",
+        "zh": "用一组固定的短样本检查同样的平均净收益计算。每一项代表一次抽样。"
       },
-      "phase": "check",
+      "code": "u = [0.04 0.28 0.18 0.81 0.33 0.07 0.20];\nwin = u < 0.2;\nnet = 4*win - 1;\nmean(net)",
       "question": {
-        "id": "count",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many trials?",
-          "zh": "进行了多少次试验？"
+          "en": "What is the average net gain? Use four decimals.",
+          "zh": "平均净收益是多少？保留四位小数。"
         },
         "type": "number",
-        "answer": 10000,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 0.7142857142857143,
+        "tolerance": 0.0001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "claim",
-        "label": {
-          "en": "Which conclusion is supported?",
-          "zh": "哪个结论有依据？"
-        },
-        "type": "choice",
-        "answer": "approx",
-        "options": [
-          {
-            "value": "approx",
-            "label": {
-              "en": "A sample estimates the probability",
-              "zh": "样本估计概率"
-            }
-          },
-          {
-            "value": "exact",
-            "label": {
-              "en": "A sample proves the exact probability",
-              "zh": "样本证明精确概率"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "9"
     },
     {
       "title": {
@@ -4946,7 +4376,7 @@
         "en": "Scale the experiment complete",
         "zh": "扩大实验规模已完成"
       },
-      "id": "10"
+      "id": "9"
     }
   ],
   "probability:fair-game-challenge": [
@@ -5087,64 +4517,36 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Design the fair payout for a new probability and cost.",
+        "zh": "为新的获胜概率和花费设计公平返还额。"
       },
-      "phase": "check",
+      "code": "p = 0.16; cost = 1.2;\nwinPayout = cost/p;\nwinPayout",
       "question": {
-        "id": "payout",
+        "id": "transfer-v2",
         "label": {
-          "en": "What total win payout is fair?",
-          "zh": "公平的获胜总返还额是多少？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 5,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 7.5,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "net",
-        "label": {
-          "en": "What is its expected net gain?",
-          "zh": "其期望净收益是多少？"
-        },
-        "type": "number",
-        "answer": 0,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "8"
     },
     {
       "title": {
@@ -5164,7 +4566,7 @@
         "en": "I saved my work",
         "zh": "我已保存作品"
       },
-      "id": "9"
+      "id": "8"
     },
     {
       "title": {
@@ -5181,7 +4583,7 @@
         "en": "Design a fair game complete",
         "zh": "设计公平游戏已完成"
       },
-      "id": "10"
+      "id": "9"
     }
   ],
   "fractals:pattern-matrix": [
@@ -5299,17 +4701,18 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Try a rectangular pattern. Ask MATLAB for its dimensions.",
+        "zh": "试试一个长方形图案，用 MATLAB 查询它的尺寸。"
       },
-      "phase": "check",
+      "code": "mask = [1 0 1 0; 0 1 0 1; 1 1 0 0];\nsize(mask)",
       "question": {
-        "id": "size",
+        "id": "transfer-v2",
         "label": {
           "en": "Enter [rows columns].",
           "zh": "输入 [行数 列数]。"
@@ -5317,18 +4720,19 @@
         "type": "vector",
         "answer": [
           3,
-          3
+          4
         ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
     },
     {
@@ -5464,36 +4868,39 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Read three positions from a new mask.",
+        "zh": "从新模板中读取三个位置。"
       },
-      "phase": "check",
+      "code": "mask = [1 0 1; 0 1 0; 1 1 0];\n[mask(2,2) mask(3,3) mask(3,2)]",
       "question": {
-        "id": "entries",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter center and top-right values.",
-          "zh": "输入中心和右上角的数值。"
+          "en": "Enter the three values.",
+          "zh": "输入三个数值。"
         },
         "type": "vector",
         "answer": [
+          1,
           0,
           1
         ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "6"
     },
     {
@@ -5648,33 +5055,35 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Draw a new mask. nnz counts the nonzero entries: the black cells here.",
+        "zh": "画一个新模板。nnz 统计非零项，也就是这里的黑格。"
       },
-      "phase": "check",
+      "code": "mask = [1 0 1; 0 1 0; 1 0 1];\nimagesc(1-mask,[0 1]);\ncolormap(gray); axis image; axis off;\nnnz(mask)",
       "question": {
-        "id": "kept",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many black cells are kept?",
-          "zh": "保留了多少个黑格？"
+          "en": "How many black cells did MATLAB count?",
+          "zh": "MATLAB 统计出多少个黑格？"
         },
         "type": "number",
-        "answer": 8,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 5,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
     },
     {
@@ -5810,64 +5219,36 @@
       "id": "5"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Apply the same replacement rule to a new mask.",
+        "zh": "把相同的替换规则应用到新模板。"
       },
-      "phase": "check",
+      "code": "mask = [1 0 1; 0 1 0; 1 0 1];\nA = kron(mask,mask);\nnnz(A)",
       "question": {
-        "id": "side",
-        "label": {
-          "en": "What is the new side length in cells?",
-          "zh": "新图案每边有多少格？"
-        },
-        "type": "number",
-        "answer": 9,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "6"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "kept",
+        "id": "transfer-v2",
         "label": {
           "en": "How many cells are kept?",
           "zh": "保留了多少格？"
         },
         "type": "number",
-        "answer": 64,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 25,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
-      "id": "7"
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
+      "id": "6"
     },
     {
       "title": {
@@ -5884,7 +5265,7 @@
         "en": "Replace every square complete",
         "zh": "替换每个方格已完成"
       },
-      "id": "8"
+      "id": "7"
     }
   ],
   "fractals:repeat-loop": [
@@ -6044,64 +5425,36 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Run level 4. Read the last result.",
+        "zh": "运行第 4 层。读出最后的结果。"
       },
-      "phase": "check",
+      "code": "mask = [1 1 1; 1 0 1; 1 1 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nnnz(A)",
       "question": {
-        "id": "side",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many cells along one side?",
-          "zh": "每边有多少格？"
+          "en": "Enter the final result.",
+          "zh": "输入最后的结果。"
         },
         "type": "number",
-        "answer": 27,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 4096,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "count",
-        "label": {
-          "en": "How many kept cells?",
-          "zh": "保留了多少格？"
-        },
-        "type": "number",
-        "answer": 512,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "9"
     },
     {
       "title": {
@@ -6118,7 +5471,7 @@
         "en": "Repeat with a loop complete",
         "zh": "用循环重复已完成"
       },
-      "id": "10"
+      "id": "9"
     }
   ],
   "fractals:carpet-plot": [
@@ -6278,33 +5631,35 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Run level 4. Read the last result.",
+        "zh": "运行第 4 层。读出最后的结果。"
       },
-      "phase": "check",
+      "code": "mask = [1 1 1; 1 0 1; 1 1 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nimagesc(1-A,[0 1]);\ncolormap(gray); axis image; axis off;\nnumel(A)",
       "question": {
-        "id": "all",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many cells are in the complete grid?",
-          "zh": "完整网格共有多少格？"
+          "en": "Enter the final result.",
+          "zh": "输入最后的结果。"
         },
         "type": "number",
-        "answer": 729,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 6561,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
     },
     {
@@ -6486,33 +5841,35 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Run level 4. Read the last result.",
+        "zh": "运行第 4 层。读出最后的结果。"
       },
-      "phase": "check",
+      "code": "mask = [1 1 1; 1 0 1; 1 1 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nnnz(A)/numel(A)",
       "question": {
-        "id": "fraction",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the kept fraction at level 3 (four decimals).",
-          "zh": "输入第 3 层保留比例（四位小数）。"
+          "en": "Enter the final result (four decimals).",
+          "zh": "输入最后的结果（四位小数）。"
         },
         "type": "number",
-        "answer": 0.7023319615912208,
-        "tolerance": 0.0001,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 0.624295076969974,
+        "tolerance": 0.0001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
     },
     {
@@ -6690,64 +6047,36 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Run level 4 with a five-cell mask. Read the last result.",
+        "zh": "运行第 4 层，使用五格模板。读出最后的结果。"
       },
-      "phase": "check",
+      "code": "mask = [1 0 1; 0 1 0; 1 0 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nnnz(A)",
       "question": {
-        "id": "side",
+        "id": "transfer-v2",
         "label": {
-          "en": "Predicted side at level 4?",
-          "zh": "第 4 层预测边长是多少？"
+          "en": "Enter the final result.",
+          "zh": "输入最后的结果。"
         },
         "type": "number",
-        "answer": 81,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 625,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "count",
-        "label": {
-          "en": "Predicted kept count?",
-          "zh": "预测保留格数是多少？"
-        },
-        "type": "number",
-        "answer": 4096,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "9"
     },
     {
       "title": {
@@ -6767,7 +6096,7 @@
         "en": "I saved my work",
         "zh": "我已保存作品"
       },
-      "id": "10"
+      "id": "9"
     },
     {
       "title": {
@@ -6784,7 +6113,7 @@
         "en": "Predict the next level complete",
         "zh": "预测下一层已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "image-compression:pixel-values": [
@@ -6921,64 +6250,40 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Keep the example image A. Inspect three different pixels.",
+        "zh": "保留示例图像 A。查看三个不同的像素。"
       },
-      "phase": "check",
+      "code": "[A(2,3) A(5,3) A(6,6)]",
       "question": {
-        "id": "pixels",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many pixels are in A?",
-          "zh": "A 共有多少像素？"
+          "en": "Enter the three pixel values.",
+          "zh": "输入三个像素值。"
         },
-        "type": "number",
-        "answer": 64,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "type": "vector",
+        "answer": [
+          160,
+          0,
+          240
+        ],
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "value",
-        "label": {
-          "en": "What is A(3,4)?",
-          "zh": "A(3,4) 是多少？"
-        },
-        "type": "number",
-        "answer": 0,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "8"
     },
     {
       "title": {
@@ -6995,7 +6300,7 @@
         "en": "Read a tiny image complete",
         "zh": "读取微型图像已完成"
       },
-      "id": "9"
+      "id": "8"
     }
   ],
   "image-compression:show-image": [
@@ -7132,44 +6437,35 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Brighten the image by 35. min limits each pixel to 255.",
+        "zh": "把图像调亮 35。min 把每个像素限制在 255 以内。"
       },
-      "phase": "check",
+      "code": "lighter = min(A + 35,255);\nimagesc(lighter,[0 255]);\ncolormap(gray); axis image;\nlighter(3,3)",
       "question": {
-        "id": "limits",
+        "id": "transfer-v2",
         "label": {
-          "en": "Which limits make a fair visual comparison?",
-          "zh": "哪组设置能公平比较图像？"
+          "en": "What is lighter(3,3)?",
+          "zh": "lighter(3,3) 是多少？"
         },
-        "type": "choice",
-        "answer": "fixed",
-        "options": [
-          {
-            "value": "fixed",
-            "label": {
-              "en": "Use [0 255] for every image",
-              "zh": "每张图都用 [0 255]"
-            }
-          },
-          {
-            "value": "auto",
-            "label": {
-              "en": "Rescale every image independently",
-              "zh": "每张图单独重新缩放"
-            }
-          }
-        ]
+        "type": "number",
+        "answer": 255,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
     },
     {
@@ -7328,33 +6624,35 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Average a different block: rows 3–4, columns 3–4.",
+        "zh": "计算另一个方块的平均值：第 3–4 行、第 3–4 列。"
       },
-      "phase": "check",
+      "code": "block = A(3:4,3:4);\nsmallPixel = mean(block(:));\nsmallPixel",
       "question": {
-        "id": "mean",
+        "id": "transfer-v2",
         "label": {
-          "en": "What value represents the first block?",
-          "zh": "哪个数值代表第一个方块？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 20,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 180,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
     },
     {
@@ -7555,64 +6853,39 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Keep your loop result B. Inspect two blocks away from the corner.",
+        "zh": "保留循环结果 B。查看两个不在角落的方块。"
       },
-      "phase": "check",
+      "code": "[B(2,2) B(3,3)]",
       "question": {
-        "id": "stored",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many values are stored in B?",
-          "zh": "B 保存了多少个数值？"
+          "en": "Enter both block means.",
+          "zh": "输入两个方块的平均值。"
         },
-        "type": "number",
-        "answer": 16,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "type": "vector",
+        "answer": [
+          180.0,
+          120.0
+        ],
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "first",
-        "label": {
-          "en": "What is B(1,1)?",
-          "zh": "B(1,1) 是多少？"
-        },
-        "type": "number",
-        "answer": 20,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -7629,7 +6902,7 @@
         "en": "Visit every block complete",
         "zh": "遍历每个方块已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "image-compression:reconstruct-image": [
@@ -7835,75 +7108,36 @@
       "id": "9"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Compare one reconstructed pixel with its original value.",
+        "zh": "比较一个重建像素与它的原始值。"
       },
-      "phase": "check",
+      "code": "reconstructed(3,4) - A(3,4)",
       "question": {
-        "id": "side",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many columns does reconstructed have?",
-          "zh": "reconstructed 有多少列？"
+          "en": "What is the pixel difference?",
+          "zh": "像素差是多少？"
         },
         "type": "number",
-        "answer": 8,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 180,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "10"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "detail",
-        "label": {
-          "en": "Does repeating averages restore every original pixel?",
-          "zh": "重复平均值能恢复每个原始像素吗？"
-        },
-        "type": "choice",
-        "answer": "no",
-        "options": [
-          {
-            "value": "no",
-            "label": {
-              "en": "No, detail was lost",
-              "zh": "不能，细节已丢失"
-            }
-          },
-          {
-            "value": "yes",
-            "label": {
-              "en": "Yes, exactly",
-              "zh": "能，完全恢复"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "11"
     },
     {
       "title": {
@@ -7920,7 +7154,7 @@
         "en": "Rebuild a larger picture complete",
         "zh": "重建大图像已完成"
       },
-      "id": "12"
+      "id": "11"
     }
   ],
   "image-compression:storage-ratio": [
@@ -8107,33 +7341,35 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "A different method stores eight block means in a 2-by-4 matrix C. Compare its value count with A.",
+        "zh": "另一种方法把八个方块均值保存在 2×4 矩阵 C 中。比较它与 A 的数值个数。"
       },
-      "phase": "check",
+      "code": "C = zeros(2,4);\nnumel(A)/numel(C)",
       "question": {
-        "id": "ratio",
+        "id": "transfer-v2",
         "label": {
-          "en": "What is the value-count ratio?",
-          "zh": "数值个数之比是多少？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 4,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 8,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
     },
     {
@@ -8357,33 +7593,35 @@
       "id": "9"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Halve both images before comparing them. Find the new MSE.",
+        "zh": "先把两幅图像的数值都减半，再求新的 MSE。"
       },
-      "phase": "check",
+      "code": "difference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
       "question": {
-        "id": "mse",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the MSE for 2 × 2 averaging.",
-          "zh": "输入 2 × 2 平均压缩的 MSE。"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 4250,
-        "tolerance": 0.01,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 1062.5,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "10"
     },
     {
@@ -8611,64 +7849,36 @@
       "id": "9"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use your 4-by-4 block reconstruction. Halve both images and measure the new MSE.",
+        "zh": "使用你的 4×4 方块重建结果。两幅图像数值都减半，再测量新的 MSE。"
       },
-      "phase": "check",
+      "code": "difference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
       "question": {
-        "id": "ratio",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the 4 × 4-block ratio.",
-          "zh": "输入 4 × 4 方块版本的压缩比。"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 16,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 1709.375,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "10"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "mse",
-        "label": {
-          "en": "Enter its MSE.",
-          "zh": "输入其 MSE。"
-        },
-        "type": "number",
-        "answer": 6837.5,
-        "tolerance": 0.01,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "11"
     },
     {
       "title": {
@@ -8688,7 +7898,7 @@
         "en": "I saved my work",
         "zh": "我已保存作品"
       },
-      "id": "12"
+      "id": "11"
     },
     {
       "title": {
@@ -8705,7 +7915,7 @@
         "en": "Choose a trade-off complete",
         "zh": "选择取舍已完成"
       },
-      "id": "13"
+      "id": "12"
     }
   ],
   "epidemics:population-groups": [
@@ -8846,75 +8056,36 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Count a different closed population.",
+        "zh": "统计另一个封闭人群的总人数。"
       },
-      "phase": "check",
+      "code": "S = 847; I = 23; R = 76;\nN = S + I + R;\nN",
       "question": {
-        "id": "total",
+        "id": "transfer-v2",
         "label": {
-          "en": "What is N?",
-          "zh": "N 是多少？"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
         "type": "number",
-        "answer": 1000,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 946,
+        "tolerance": 0
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "assumption",
-        "label": {
-          "en": "Which assumption belongs to this model?",
-          "zh": "哪项是本模型的假设？"
-        },
-        "type": "choice",
-        "answer": "closed",
-        "options": [
-          {
-            "value": "closed",
-            "label": {
-              "en": "No one enters or leaves",
-              "zh": "没有人进入或离开"
-            }
-          },
-          {
-            "value": "real",
-            "label": {
-              "en": "It predicts every real outbreak",
-              "zh": "它能预测所有真实疫情"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "8"
     },
     {
       "title": {
@@ -8931,7 +8102,7 @@
         "en": "Meet three groups complete",
         "zh": "认识三个群体已完成"
       },
-      "id": "9"
+      "id": "8"
     }
   ],
   "epidemics:transfer-rates": [
@@ -9072,64 +8243,36 @@
       "id": "6"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use new starting groups and a half-day step. Find the S-to-I transfer.",
+        "zh": "用新的初始人数和半天步长，求从 S 到 I 的转移量。"
       },
-      "phase": "check",
+      "code": "S = 975; I = 25; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nnew",
       "question": {
-        "id": "new",
+        "id": "transfer-v2",
         "label": {
           "en": "How many model people move from S to I?",
-          "zh": "有多少模型人数从 S 转到 I？"
+          "zh": "多少模型人数从 S 转到 I？"
         },
         "type": "number",
-        "answer": 2.97,
-        "tolerance": 0.001,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 2.925,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "7"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "recover",
-        "label": {
-          "en": "How many move from I to R?",
-          "zh": "有多少从 I 转到 R？"
-        },
-        "type": "number",
-        "answer": 1,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "8"
     },
     {
       "title": {
@@ -9146,7 +8289,7 @@
         "en": "Calculate transfers complete",
         "zh": "计算转移量已完成"
       },
-      "id": "9"
+      "id": "8"
     }
   ],
   "epidemics:one-update": [
@@ -9310,37 +8453,39 @@
       "id": "7"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Calculate the next groups for a different starting population and time step.",
+        "zh": "计算另一组初始人数和步长下的下一步人数。"
       },
-      "phase": "check",
+      "code": "S = 975; I = 25; R = 0; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nrecovered = dt*gamma*I;\n[S-new I+new-recovered R+recovered]",
       "question": {
-        "id": "next",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter [nextS nextI nextR].",
-          "zh": "输入 [nextS nextI nextR]。"
+          "en": "Enter the three new group sizes.",
+          "zh": "输入三个新的组人数。"
         },
         "type": "vector",
         "answer": [
-          987.03,
-          11.97,
-          1
+          972.075,
+          26.675,
+          1.25
         ],
-        "tolerance": 0.001,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "8"
     },
     {
@@ -9537,64 +8682,36 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Keep your example simulation. Read position 101, which is day 10.",
+        "zh": "保留示例模拟。读取第 101 项，它对应第 10 天。"
       },
-      "phase": "check",
+      "code": "I(101)",
       "question": {
-        "id": "count",
+        "id": "transfer-v2",
         "label": {
-          "en": "How many times are stored?",
-          "zh": "保存了多少个时刻？"
+          "en": "What is I(101)? Use two decimals.",
+          "zh": "I(101) 是多少？保留两位小数。"
         },
         "type": "number",
-        "answer": 601,
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 64.43502767847014,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "first",
-        "label": {
-          "en": "What is I(2)?",
-          "zh": "I(2) 是多少？"
-        },
-        "type": "number",
-        "answer": 10.197,
-        "tolerance": 0.001,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -9611,7 +8728,7 @@
         "en": "Follow sixty days complete",
         "zh": "跟踪六十天已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "epidemics:plot-groups": [
@@ -9809,64 +8926,36 @@
       "id": "9"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use the plotted simulation. Read the recovered group on day 20.",
+        "zh": "使用刚绘制的模拟，读出第 20 天的康复人数。"
       },
-      "phase": "check",
+      "code": "R(201)",
       "question": {
-        "id": "peak",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter the peak infectious population (2 decimals).",
-          "zh": "输入传染性人数峰值（两位小数）。"
+          "en": "What is R(201)? Use two decimals.",
+          "zh": "R(201) 是多少？保留两位小数。"
         },
         "type": "number",
-        "answer": 304.9876502188908,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 172.34820781786553,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "10"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "day",
-        "label": {
-          "en": "On which day does the sampled peak occur?",
-          "zh": "采样峰值发生在第几天？"
-        },
-        "type": "number",
-        "answer": 26.8,
-        "tolerance": 0.01,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "11"
     },
     {
       "title": {
@@ -9883,7 +8972,7 @@
         "en": "Read three curves complete",
         "zh": "读取三条曲线已完成"
       },
-      "id": "12"
+      "id": "11"
     }
   ],
   "epidemics:conservation-check": [
@@ -10066,78 +9155,36 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Introduce a missing-population error in a copy of S. Measure the largest total-population error.",
+        "zh": "在 S 的副本中加入人数丢失错误。测量总人数的最大误差。"
       },
-      "phase": "check",
+      "code": "testS = S;\ntestS(101) = testS(101) - 7;\nmax(abs(testS+I+R-N))",
       "question": {
-        "id": "checks",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter [totalOK nonnegative].",
-          "zh": "输入 [totalOK nonnegative]。"
+          "en": "What result did MATLAB give?",
+          "zh": "MATLAB 得到了什么结果？"
         },
-        "type": "vector",
-        "answer": [
-          1,
-          1
-        ],
-        "tolerance": 1e-08,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "type": "number",
+        "answer": 7,
+        "tolerance": 0.001
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "meaning",
-        "label": {
-          "en": "What have these checks tested?",
-          "zh": "这些检查检验了什么？"
-        },
-        "type": "choice",
-        "answer": "internal",
-        "options": [
-          {
-            "value": "internal",
-            "label": {
-              "en": "Internal consistency",
-              "zh": "内部一致性"
-            }
-          },
-          {
-            "value": "forecast",
-            "label": {
-              "en": "Real-world predictive accuracy",
-              "zh": "真实预测准确性"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -10154,7 +9201,7 @@
         "en": "Test your model complete",
         "zh": "检验模型已完成"
       },
-      "id": "11"
+      "id": "10"
     }
   ],
   "epidemics:compare-rates": [
@@ -10402,36 +9449,35 @@
       "id": "11"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "Use both runs. Measure how much the peak increased when beta changed.",
+        "zh": "使用两次运行结果，测量 beta 改变后峰值增加了多少。"
       },
-      "phase": "check",
+      "code": "peaks(2) - peaks(1)",
       "question": {
-        "id": "peaks",
+        "id": "transfer-v2",
         "label": {
-          "en": "Enter peaks for beta 0.15 and 0.30 (2 decimals).",
-          "zh": "输入 beta 为 0.15 与 0.30 时的峰值（两位小数）。"
+          "en": "Enter the peak increase. Use two decimals.",
+          "zh": "输入峰值增量。保留两位小数。"
         },
-        "type": "vector",
-        "answer": [
-          68.81166691925895,
-          304.9876502188908
-        ],
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Example: 1 2 3",
-          "zh": "例如：1 2 3"
-        }
+        "type": "number",
+        "answer": 236.17598329963184,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "12"
     },
     {
@@ -10628,75 +9674,36 @@
       "id": "8"
     },
     {
+      "phase": "check",
       "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
+        "en": "Your turn",
+        "zh": "轮到你了"
       },
       "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
+        "en": "With dt = 0.05, day 10 is position 201. Read that result for comparison with the earlier run.",
+        "zh": "当 dt = 0.05 时，第 10 天是第 201 项。读取结果，与前面的运行比较。"
       },
-      "phase": "check",
+      "code": "I(201)",
       "question": {
-        "id": "peak",
+        "id": "transfer-v2",
         "label": {
-          "en": "Peak I with dt = 0.05 (2 decimals)?",
-          "zh": "dt = 0.05 时 I 的峰值（两位小数）？"
+          "en": "What is I(201)? Use two decimals.",
+          "zh": "I(201) 是多少？保留两位小数。"
         },
         "type": "number",
-        "answer": 304.39966415534434,
-        "tolerance": 0.02,
-        "placeholder": {
-          "en": "Enter a number",
-          "zh": "输入数字"
-        }
+        "answer": 64.9102617587605,
+        "tolerance": 0.02
       },
       "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
+        "en": "You used MATLAB to find a new result.",
+        "zh": "你用 MATLAB 求出了一个新结果。"
       },
+      "hint": {
+        "en": "Run the lines above in order. Read the last output. Keep decimals; check every value if there is a list.",
+        "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
+      },
+      "transfer": true,
       "id": "9"
-    },
-    {
-      "title": {
-        "en": "Check one result",
-        "zh": "检查一个结果"
-      },
-      "text": {
-        "en": "Use the result from your MATLAB run.",
-        "zh": "使用你在 MATLAB 运行得到的结果。"
-      },
-      "phase": "check",
-      "question": {
-        "id": "change",
-        "label": {
-          "en": "Which change tests numerical resolution?",
-          "zh": "哪项更改检验数值分辨率？"
-        },
-        "type": "choice",
-        "answer": "dt",
-        "options": [
-          {
-            "value": "dt",
-            "label": {
-              "en": "Halve dt only",
-              "zh": "只把 dt 减半"
-            }
-          },
-          {
-            "value": "beta",
-            "label": {
-              "en": "Halve beta only",
-              "zh": "只把 beta 减半"
-            }
-          }
-        ]
-      },
-      "win": {
-        "en": "You checked this result.",
-        "zh": "你检查了这个结果。"
-      },
-      "id": "10"
     },
     {
       "title": {
@@ -10716,7 +9723,7 @@
         "en": "I saved my work",
         "zh": "我已保存作品"
       },
-      "id": "11"
+      "id": "10"
     },
     {
       "title": {
@@ -10733,8 +9740,7 @@
         "en": "Check the time step complete",
         "zh": "检查时间步长已完成"
       },
-      "id": "12"
+      "id": "11"
     }
   ]
-};
-})(typeof window!=="undefined"?window:globalThis);
+};})(typeof window!=='undefined'?window:globalThis);

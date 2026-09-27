@@ -1,9 +1,9 @@
 /* Guided-step state and rendering. All student entries are data, never executed. */
 (function(root){
  'use strict';
- function blank(){return {version:1,active:'',lessons:{}};}
+ function blank(){return {version:2,active:'',lessons:{}};}
  function clean(raw,guides,core){
-  const out=blank();if(raw?.version!==1)return out;
+  const out=blank();if(raw?.version!==2)return out;
   for(const [key,steps] of Object.entries(guides)){
    const old=raw.lessons?.[key];if(!old)continue;
    const answers={},solved=[];

@@ -1,0 +1,37 @@
+/* Decorative, bounded overlays never intercept typing or the Continue button. */
+.celebration{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1000;contain:strict}
+.celebration-particle{position:absolute;left:var(--origin-x);top:var(--origin-y);display:block;width:var(--size);height:var(--size);background:var(--color);opacity:0;animation-duration:1.9s;animation-delay:var(--delay);animation-timing-function:cubic-bezier(.16,.65,.35,1);animation-fill-mode:both}
+.celebration--confetti i{height:calc(var(--size)*.55);animation-name:reward-confetti}
+.celebration--fireworks i{width:5px;height:5px;border-radius:50%;box-shadow:0 0 7px var(--color);animation-name:reward-fireworks}
+.celebration--stars i,.celebration--sparkles i{clip-path:polygon(50% 0,61% 35%,100% 50%,61% 62%,50% 100%,38% 62%,0 50%,38% 35%);width:calc(var(--size)*2);height:calc(var(--size)*2)}
+.celebration--stars i{animation-name:reward-stars}
+.celebration--bubbles i{border:2px solid var(--color);background:transparent;border-radius:50%;animation-name:reward-bubbles}
+.celebration--ribbons i{width:5px;height:28px;border-radius:3px;animation-name:reward-ribbons}
+.celebration--sparkles i{animation-name:reward-sparkles}
+.celebration--petals i{border-radius:80% 0 80% 0;animation-name:reward-petals}
+.celebration--comets i{width:35px;height:4px;border-radius:100%;background:linear-gradient(90deg,transparent,var(--color));animation-name:reward-comets}
+.celebration--rings i{border:2px solid var(--color);border-radius:50%;background:transparent;animation-name:reward-rings}
+.celebration--diamonds i{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);animation-name:reward-diamonds}
+.celebration--sprinkles i{width:4px;height:15px;border-radius:5px;left:var(--lane);top:-25px;animation-name:reward-sprinkles}
+.celebration--pinwheels i{clip-path:polygon(0 0,50% 30%,100% 0,70% 50%,100% 100%,50% 70%,0 100%,30% 50%);animation-name:reward-pinwheels}
+.celebration--rockets i{clip-path:polygon(50% 0,100% 100%,50% 75%,0 100%);width:12px;height:22px;animation-name:reward-rockets}
+.celebration--fountains i{border-radius:50%;animation-name:reward-fountains}
+.celebration--hearts i{clip-path:polygon(50% 22%,65% 5%,85% 5%,100% 25%,100% 45%,50% 100%,0 45%,0 25%,15% 5%,35% 5%);animation-name:reward-hearts}
+.celebration--pixels i{animation-name:reward-pixels;animation-timing-function:steps(8,end)}
+@keyframes reward-confetti{0%{opacity:0;transform:translate(0,0) scale(.2)}12%{opacity:1}65%{opacity:1;transform:translate(var(--dx),var(--dy)) rotate(var(--spin))}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + 140px)) rotate(calc(var(--spin)*2))}}
+@keyframes reward-fireworks{0%{opacity:1;transform:scale(.1)}45%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1.5)}100%{opacity:0;transform:translate(calc(var(--dx)*1.2),calc(var(--dy)*1.2 + 30px)) scale(.2)}}
+@keyframes reward-stars{0%{opacity:0;transform:scale(0) rotate(0deg)}20%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) - 100px)) rotate(var(--spin)) scale(1.2)}}
+@keyframes reward-bubbles{0%{opacity:0;transform:translate(var(--dx),80px) scale(.2)}25%{opacity:.9}80%{opacity:.7}100%{opacity:0;transform:translate(calc(var(--dx)*.6),-250px) scale(2.3)}}
+@keyframes reward-ribbons{0%{opacity:0;transform:scale(0)}15%{opacity:1}55%{transform:translate(var(--dx),var(--dy)) rotate(180deg)}100%{opacity:0;transform:translate(calc(var(--dx)*.7),var(--fall)) rotate(var(--spin))}}
+@keyframes reward-sparkles{0%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}35%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(45deg)}100%{opacity:0;transform:translate(calc(var(--dx)*1.3),calc(var(--dy)*1.3)) scale(0) rotate(90deg)}}
+@keyframes reward-petals{0%{opacity:0;transform:translate(0,-60px) rotate(0deg)}15%{opacity:1}55%{transform:translate(var(--dx),-80px) rotate(120deg)}100%{opacity:0;transform:translate(calc(var(--dx)*.6),var(--fall)) rotate(290deg)}}
+@keyframes reward-comets{0%{opacity:0;transform:translate(calc(var(--dx)*-1),calc(var(--dy)*-1)) rotate(-35deg) scaleX(.3)}25%{opacity:1}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) - 120px)) rotate(-35deg) scaleX(1.7)}}
+@keyframes reward-rings{0%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(4)}}
+@keyframes reward-diamonds{0%{opacity:0;transform:translate(0,40px) scale(.1)}20%{opacity:1}65%{transform:translate(var(--dx),calc(var(--dy) - 60px)) scale(1.6)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
+@keyframes reward-sprinkles{0%{opacity:0;transform:translateY(0) rotate(0deg)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateY(85vh) rotate(var(--spin))}}
+@keyframes reward-pinwheels{0%{opacity:0;transform:scale(0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(1080deg) scale(2)}}
+@keyframes reward-rockets{0%{opacity:0;transform:translate(var(--dx),140px) scale(.4)}20%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(calc(var(--dx)*1.2),-350px) scale(1.4)}}
+@keyframes reward-fountains{0%{opacity:0;transform:translate(0,90px) scale(.3)}15%{opacity:1}50%{transform:translate(calc(var(--dx)*.5),-180px)}100%{opacity:0;transform:translate(var(--dx),110px) scale(.7)}}
+@keyframes reward-hearts{0%{opacity:0;transform:translate(var(--dx),50px) scale(0)}30%{opacity:1;transform:translate(var(--dx),-20px) scale(1.7)}100%{opacity:0;transform:translate(calc(var(--dx)*.75),-210px) scale(.8)}}
+@keyframes reward-pixels{0%{opacity:0;transform:scale(0)}20%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(180deg) scale(1.4)}}
+@media(prefers-reduced-motion:reduce){.celebration{display:none}.celebration-particle{animation:none}}
