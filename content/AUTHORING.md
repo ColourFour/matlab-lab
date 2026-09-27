@@ -40,3 +40,13 @@ Before publication, run the MATLAB examples in your teaching environment; verify
 Self-review marks are independent, so completing section 8 does not mark sections 1–7. Old worked-investigation IDs do not carry over as new self-review. Notes use the separate `matlab-lab:capstone:v1` key and are bounded to known prompts and 6,000 characters per field. Input autosaves; explicit Save gives status. Markdown export preserves student text and bilingual prompts. The site does not upload or grade it. Teacher preview keeps edits in memory and disables self-review persistence. Resetting progress preserves notes; clearing site data removes both.
 
 Use paired `fmt({en,zh})` text in capstone panels so both languages reserve the same space. Keep a realistic scope and concrete evidence requirements while leaving the topic, mathematics and model to the student.
+
+## Student steps (September 27 revision)
+
+`content/guided.js` supplies `LAB_GUIDES[courseId + ":" + lessonId]`. Each ordered step has bilingual `title` and `text`, and a `phase` (see, understand, do, compare, check, continue). Limit the main instruction to 35 English words / 110 Chinese characters. Use one action per screen. Keep matrices and loops intact; displayed code blocks are at most eight lines. `append: true` means add the block to this lesson’s new script, save, then run the assembled script. Command Window steps use `typed: true`.
+
+Optional fields: `code`, `output`, `plot`, `diagram`, `visual`, `filename`, `observe`, `ack`, `win`, `hint`, `question`, `assignment`, `revealCode`, `done`. `question` uses the existing numeric/vector/choice schema; show one at a time. `hint` must refer to this exact question, especially when the lesson changes an input. Do not hide required code changes in the old `note`. The last step has `done: true`; all checks must pass before it records a new completion. Manual confirmations do not inspect MATLAB or grade the student.
+
+The original content files remain the detailed reference and course metadata. Keep both sources and downloadable examples consistent when changing math or answer keys. `LabGuide.clean` restores known, bounded fields, revalidates solved answers and prevents resuming past an unanswered checkpoint. `matlab-lab:guided:v1` stores the current lesson/step and answers separately from existing course completions. Teacher preview uses memory only.
+
+Test the student route through every revised lesson, not just correct values in isolated functions. Test an incorrect result, return/back, resume, language switching, copy, export, help and mobile layout. Use identical geometry in both languages through `fmt`. Build version query strings in index.html ensure updated JS/CSS replace browser caches.

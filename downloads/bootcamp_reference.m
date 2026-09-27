@@ -4,7 +4,7 @@
 
 %% 1. First commands / 第一条命令
 2 + 2
-8 / 2 + 3
+2 + 5
 
 %% 2. Variables / 变量
 speed = 20;

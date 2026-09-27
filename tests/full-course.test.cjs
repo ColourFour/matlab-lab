@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');const path=require('node:path');const vm=require('node:vm');
 const root=path.join(__dirname,'..');
 const context={};context.window=context;context.globalThis=context;vm.createContext(context);
-const scripts=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<script defer src="([^"]+)"/g)].map(x=>x[1]);
+const scripts=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<script defer src="([^"]+)"/g)].map(x=>x[1].split("?")[0]);
 for(const s of scripts.filter(s=>s!=='assets/app.js'))vm.runInContext(fs.readFileSync(path.join(root,s),'utf8'),context,{filename:s});
 const courses=context.LAB_COURSES,core=context.LabCore;
 const close=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t,`${a} ≈ ${b}`);
