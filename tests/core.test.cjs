@@ -5,8 +5,8 @@ const {parseNumber,parseVector,validate,cleanState}=require('../assets/core.js')
 const {lessons}=require('../content/bootcamp.js');
 
 test('Numeric entries accept decimals and scientific notation, never expressions',()=>{
-  for(const [raw,want] of [[' 7 ',7],['7.0',7],['7e0',7],['-2.5',-2.5],['.5',.5]]) assert.equal(parseNumber(raw),want);
-  for(const raw of ['', ' ', '7junk', 'NaN','Infinity','1e999','2+5','ans = 7','[7]','0x7']) assert.equal(parseNumber(raw),null,raw);
+  for(const [raw,want] of [[' 7 ',7],['7.0',7],['7e0',7],['-2.5',-2.5],['.5',.5],['ans = 7',7],['[7]',7],['７',7],['x = −2.5',-2.5]]) assert.equal(parseNumber(raw),want);
+  for(const raw of ['', ' ', '7junk', 'NaN','Infinity','1e999','2+5','0x7']) assert.equal(parseNumber(raw),null,raw);
 });
 test('Vector entries accept spaces, commas or optional brackets; reject missing and extra values',()=>{
   for(const raw of ['0 2 4 6 8','[0 2 4 6 8]','0,2,4,6,8',' [0, 2, 4, 6, 8] ']) assert.deepEqual(parseVector(raw),[0,2,4,6,8]);

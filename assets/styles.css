@@ -55,3 +55,5 @@ body{line-height:1.5}
 .guide-code .code-block{min-height:0}.guide-context .step-count>.translated{display:inline-grid}.student-mode .button{max-width:100%}.student-mode .button>.translated{min-width:0}
 .observe-result{display:flex;gap:8px;font-size:14px;line-height:1.6;color:#315f52}.observe-result .icon{width:17px;margin-top:3px}
 .cap-disclosure>summary{font-size:19px;font-weight:650;cursor:pointer;line-height:1.5}.cap-disclosure[open]>summary{margin-bottom:18px}.cap-columns:has(>.cap-disclosure){align-items:start}.code-reveal{margin:18px 0}.student-mode dialog .guide-help{margin-top:12px}
+
+.preserved-note{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;padding:1rem;background:#f5f8f7;border:1px solid #d7e4e2;border-radius:10px}

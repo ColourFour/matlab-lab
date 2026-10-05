@@ -1,28 +1,43 @@
 (function (root) {
   'use strict';
   const numeric = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
-  function parseNumber(raw) {
-    const value = String(raw ?? '').trim();
-    return numeric.test(value) && Number.isFinite(Number(value)) ? Number(value) : null;
+  function normalize(raw) {
+    return String(raw ?? '').normalize('NFKC').replace(/[−–]/g,'-').replace(/，/g,',').trim()
+      .replace(/^[A-Za-z]\w*\s*=\s*/, '');
   }
-  function parseVector(raw) {
-    let value = String(raw ?? '').trim();
-    if (value.startsWith('[') && value.endsWith(']')) value = value.slice(1,-1).trim();
-    if (!value || /[\[\];]/.test(value) || /^,|,$|,\s*,/.test(value)) return null;
-    const parts = value.split(/[\s,]+/).map(parseNumber);
-    return parts.every(x => x !== null) ? parts : null;
+  function tokens(raw) {
+    let value=normalize(raw), scale=1, scaled=false;
+    const factor=value.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+)e[+-]?\d+)\s*\*\s*/i);
+    if(factor){scale=Number(factor[1]);value=value.slice(factor[0].length).trim();scaled=true;}
+    if(value.startsWith('[')&&value.endsWith(']'))value=value.slice(1,-1).trim();
+    if(!value||/[\[\];=]/.test(value)||/^,|,$|,\s*,/.test(value)||!Number.isFinite(scale))return null;
+    const parts=value.split(/[\s,]+/);
+    if(!parts.every(p=>numeric.test(p)&&Number.isFinite(Number(p)*scale)))return null;
+    return parts.map(p=>({value:Number(p)*scale,token:p,scale,scaled}));
   }
-  const near = (a,b,tolerance=1e-8) => a !== null && Number.isFinite(b) && Math.abs(a-b) <= tolerance;
-  function validate(question, raw, answers={}) {
-    const expected = question.dependsOn ? question.answersByValue[answers[question.dependsOn]] : question.answer;
-    const tolerance = question.tolerance ?? 1e-8;
-    if (question.type === 'number') return near(parseNumber(raw), expected, tolerance);
-    if (question.type === 'vector') {
-      const actual = parseVector(raw);
-      return actual !== null && actual.length === expected.length && actual.every((v,i) => near(v,expected[i],tolerance));
+  function parseNumber(raw) {const xs=tokens(raw);return xs?.length===1?xs[0].value:null;}
+  function parseVector(raw) {const xs=tokens(raw);return xs?xs.map(x=>x.value):null;}
+  function matches(x,expected,q) {
+    if(!x||!Number.isFinite(expected))return false;
+    if(Math.abs(x.value-expected)<=(q.tolerance??1e-8))return true;
+    if(!q.matlabDisplay)return false;
+    // Only documented four-decimal MATLAB mantissas get a rounding allowance.
+    const scientific=x.token.match(/^[+-]?\d\.(\d{4})e([+-]?\d+)$/i);
+    const unit=scientific?10**(Number(scientific[2])-4)*Math.abs(x.scale):x.scaled&&/^[+-]?\d+\.\d{4}$/.test(x.token)?Math.abs(x.scale)*1e-4:0;
+    return unit>0&&Math.abs(x.value-expected)<=unit/2+Number.EPSILON*Math.max(1,Math.abs(expected))*4;
+  }
+  function assess(question,raw,answers={}) {
+    const expected=question.dependsOn?question.answersByValue[answers[question.dependsOn]]:question.answer;
+    if(!String(raw??'').trim())return {ok:false,reason:'blank'};
+    if(question.type==='number'||question.type==='vector'){
+      const xs=tokens(raw);if(!xs)return {ok:false,reason:'format'};
+      const wanted=question.type==='number'?[expected]:expected;
+      if(!Array.isArray(wanted)||xs.length!==wanted.length)return {ok:false,reason:'count',count:wanted?.length??1};
+      const ok=xs.every((x,i)=>matches(x,wanted[i],question));return {ok,reason:ok?'correct':'value'};
     }
-    return (question.answers || [expected]).includes(String(raw ?? ''));
+    const ok=(question.answers||[expected]).includes(String(raw??''));return {ok,reason:ok?'correct':'value'};
   }
+  function validate(question,raw,answers={}) {return assess(question,raw,answers).ok;}
   function cleanState(raw, lessons) {
     const candidate = raw && raw.version === 1 ? raw : {};
     const supplied = Array.isArray(candidate.completed) ? candidate.completed : [];
@@ -41,7 +56,7 @@
     const lang=candidate.lang ?? legacy?.lang;
     return {version:2,lang:lang==='zh'?'zh':'en',progress};
   }
-  const api = { parseNumber, parseVector, validate, cleanState, cleanAppState };
+  const api = { normalize, parseNumber, parseVector, assess, validate, cleanState, cleanAppState };
   root.LabCore = api;
   if (typeof module !== 'undefined') module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

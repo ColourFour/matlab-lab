@@ -10,8 +10,10 @@
    for(const s of steps){if(!s.question)continue;const q=s.question;answers[q.id]=typeof old.answers?.[q.id]==='string'?old.answers[q.id].slice(0,250):'';if(Array.isArray(old.solved)&&old.solved.includes(q.id)&&core.validate(q,answers[q.id],answers))solved.push(q.id);}
    const gate=steps.findIndex(s=>s.question&&!solved.includes(s.question.id));
    const limit=gate<0?steps.length-1:gate;
-   const reached=Math.max(0,Math.min(Number.isInteger(old.reached)?old.reached:0,limit));
-   out.lessons[key]={cursor:Math.max(0,Math.min(Number.isInteger(old.cursor)?old.cursor:0,reached)),reached,answers,solved};
+   // Stable step IDs keep an existing cursor aligned when teaching steps are added.
+   const position=(id,index)=>{const found=steps.findIndex(s=>s.id===(id??String(index)));return found>=0?found:id===undefined&&Number.isInteger(index)?index:0;};
+   const reached=Math.max(0,Math.min(position(old.reachedId,Number.isInteger(old.reached)?old.reached:0),limit));
+   out.lessons[key]={cursor:Math.max(0,Math.min(position(old.cursorId,Number.isInteger(old.cursor)?old.cursor:0),reached)),reached,answers,solved};
   }
   if(typeof raw.active==='string'&&guides[raw.active])out.active=raw.active;
   return out;

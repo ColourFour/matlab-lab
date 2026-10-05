@@ -60,3 +60,13 @@ The original course question sets remain reference examples; `content/guided.js`
 Guide records now have payload `version: 2` under the existing storage key. Old step records restart; separate completed-course records and notebooks are untouched. Revise the payload version again if reordered steps or changed answers make old positions unsafe.
 
 `LabCelebrate.play` runs only after a newly correct form submission. Never call it from render, resume, language switching, or manual acknowledgements. Keep the overlay outside the rerendered app, decorative and pointer-transparent, bounded to 36 particles and one live cleanup timer. Respect reduced motion and clear overlays on navigation. All sixteen CSS variants should appear once per shuffled batch.
+
+## Saved scripts and revised results
+
+Keep each step's `id` stable when inserting new teaching steps. Cursor/reached IDs align existing saves to that step; numeric positions migrate from the prior sequence. Do not reuse a removed step ID for a different task.
+
+For lessons with a `filename`, every code step (including `transfer`) uses `append: true`. Put fresh inputs after the worked example so Run reproduces the new result. Reset loop accumulators inside a complete runnable block before repeating a model. When new values change a figure, draw/label it again. Final evidence tasks must supply drawing, a matching Compare visual and `saveas(gcf,'name.png')` instructions. Keep each displayed block at eight lines or fewer.
+
+Decimal transfer gates use `format longG`; set `question.matlabDisplay: true` only for entered MATLAB results. The validator allows four-decimal scientific mantissa rounding and scaled four-decimal vectors without loosening plain-decimal tolerances. Integer checks stay exact. Never execute student input. Test malformed input separately from wrong numeric values.
+
+App persistence uses `LabStorage` channels. Save only changed leaf fields; do not restore whole-record overwrites. Capstone conflicts keep the current text plus separate preserved versions, including full-length notes; exports include both. Reset affects progress channels through a shared generation, not notes or language. Teacher preview reads saved state but never writes.

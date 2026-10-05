@@ -1,4 +1,4 @@
-/* Short bilingual learning steps. Worked examples precede fresh MATLAB transfer checks. */
+/* Short bilingual steps. Keep step IDs stable when adding teaching steps. */
 (function(root){root.LAB_GUIDES={
   "bootcamp:first-command": [
     {
@@ -95,7 +95,8 @@
         },
         "type": "number",
         "answer": 423,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -284,7 +285,8 @@
         },
         "type": "number",
         "answer": 55,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -433,7 +435,8 @@
           93,
           129
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -569,7 +572,7 @@
         "en": "Try a new start, step and end. Run both lines.",
         "zh": "试试新的起点、步长和终点。运行这两行。"
       },
-      "code": "t = 1.5:0.7:5;\nt",
+      "code": "format longG\nt = 1.5:0.7:5;\nt",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -585,7 +588,8 @@
           4.3,
           5
         ],
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -730,7 +734,8 @@
         },
         "type": "number",
         "answer": 102,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -880,7 +885,8 @@
           126,
           201
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1044,7 +1050,8 @@
         },
         "type": "number",
         "answer": 18,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1254,7 +1261,8 @@
           4,
           0
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1265,7 +1273,26 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
+    },
+    {
+      "id": "draw-new",
+      "phase": "do",
+      "title": {
+        "en": "Draw your new result",
+        "zh": "画出你的新结果"
+      },
+      "text": {
+        "en": "Add these lines to keep the figure aligned with your new values.",
+        "zh": "添加这些代码，让图像对应你的新数值。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "code": "xlabel('Time (s)'); ylabel('Height (m)');\ntitle('Five-second model'); grid on;",
+      "append": true
     },
     {
       "title": {
@@ -1428,7 +1455,7 @@
         "en": "Try speed 27. Divide by gravity to find a time scale in seconds.",
         "zh": "试试速度 27。用速度除以重力加速度，得到以秒为单位的时间尺度。"
       },
-      "code": "speed = 27;\nangle = 38;\ngravity = 9.81;\nspeed/gravity",
+      "code": "format longG\nspeed = 27;\nangle = 38;\ngravity = 9.81;\nspeed/gravity",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -1437,7 +1464,8 @@
         },
         "type": "number",
         "answer": 2.7522935779816513,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1448,7 +1476,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -1615,7 +1644,7 @@
         "en": "Find the horizontal speed for a new launch.",
         "zh": "求一次新发射的水平速度。"
       },
-      "code": "speed = 27;\nangle = 38;\nvx = speed*cosd(angle);\nvx",
+      "code": "format longG\nspeed = 27;\nangle = 38;\nvx = speed*cosd(angle);\nvx",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -1624,7 +1653,8 @@
         },
         "type": "number",
         "answer": 21.27629034738149,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1635,7 +1665,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -1825,7 +1856,7 @@
         "en": "Change the speed and angle. Find the new flight time.",
         "zh": "改变速度和角度，求新的飞行时间。"
       },
-      "code": "speed = 24;\nangle = 52;\ngravity = 9.81;\nvy = speed*sind(angle);\nflightTime = 2*vy/gravity;\nflightTime",
+      "code": "format longG\nspeed = 24;\nangle = 52;\ngravity = 9.81;\nvy = speed*sind(angle);\nflightTime = 2*vy/gravity;\nflightTime",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -1834,7 +1865,8 @@
         },
         "type": "number",
         "answer": 3.8557101093906887,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -1845,7 +1877,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -2054,7 +2087,7 @@
         "en": "Find the height 0.8 seconds into a new launch.",
         "zh": "求一次新发射在 0.8 秒时的高度。"
       },
-      "code": "speed = 23; angle = 41; gravity = 9.81;\nvy = speed*sind(angle);\nt = 0.8;\ny = vy*t - 0.5*gravity*t.^2;\ny",
+      "code": "format longG\nspeed = 23; angle = 41; gravity = 9.81;\nvy = speed*sind(angle);\nt = 0.8;\ny = vy*t - 0.5*gravity*t.^2;\ny",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -2063,7 +2096,8 @@
         },
         "type": "number",
         "answer": 8.932286133425334,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -2074,7 +2108,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -2309,7 +2344,8 @@
         "en": "I see the new result",
         "zh": "我看到了新结果"
       },
-      "id": "10"
+      "id": "10",
+      "append": true
     },
     {
       "phase": "check",
@@ -2321,7 +2357,7 @@
         "en": "Use your example flight. Read the horizontal distance at point 76, before landing.",
         "zh": "使用刚才的飞行示例。读出落地前第 76 个点的水平距离。"
       },
-      "code": "x(76)",
+      "code": "format longG\nx(76)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -2330,7 +2366,8 @@
         },
         "type": "number",
         "answer": 30.58103975535168,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -2341,7 +2378,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "11"
+      "id": "11",
+      "append": true
     },
     {
       "title": {
@@ -2554,7 +2592,7 @@
         "en": "Use the example flight. How far below the peak is point 26?",
         "zh": "使用飞行示例。第 26 个点比峰值低多少？"
       },
-      "code": "max(y) - y(26)",
+      "code": "format longG\nmax(y) - y(26)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -2563,7 +2601,8 @@
         },
         "type": "number",
         "answer": 2.54841997961264,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -2574,7 +2613,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -2779,7 +2819,7 @@
         "en": "Test three new angles at the same speed.",
         "zh": "用相同速度测试三个新角度。"
       },
-      "code": "speed = 23; gravity = 9.81;\nangles = [25 40 55];\nranges = speed^2*sind(2*angles)/gravity;\nranges",
+      "code": "format longG\nspeed = 23; gravity = 9.81;\nangles = [25 40 55];\nranges = speed^2*sind(2*angles)/gravity;\nranges",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -2792,7 +2832,8 @@
           53.10533143154516,
           50.67251747153369
         ],
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -2803,7 +2844,26 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
+    },
+    {
+      "id": "draw-new",
+      "phase": "do",
+      "title": {
+        "en": "Draw your new result",
+        "zh": "画出你的新结果"
+      },
+      "text": {
+        "en": "Add these lines to keep the figure aligned with your new values.",
+        "zh": "添加这些代码，让图像对应你的新数值。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "code": "plot(angles,ranges,'-o');\nxlabel('Angle (deg)'); ylabel('Range (m)'); grid on;",
+      "append": true
     },
     {
       "title": {
@@ -3054,7 +3114,7 @@
         "en": "A new target is 51–53 metres away. Test this launch. Use its landing distance to decide whether it hits.",
         "zh": "新目标在 51–53 米处。测试这次发射，用落地距离判断能否命中。"
       },
-      "code": "speed = 23; angle = 37; gravity = 9.81;\nvx = speed*cosd(angle); vy = speed*sind(angle);\nt = linspace(0,2*vy/gravity,101);\nx = vx*t; y = vy*t - 0.5*gravity*t.^2;\nplot(x,y); grid on;\nx(end)",
+      "code": "format longG\nspeed = 23; angle = 37; gravity = 9.81;\nvx = speed*cosd(angle); vy = speed*sind(angle);\nflightTime = 2*vy/gravity; t = linspace(0,flightTime,101);\nx = vx*t; y = vy*t - 0.5*gravity*t.^2;\nplot(x,y); grid on;\nx(end)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -3063,7 +3123,8 @@
         },
         "type": "number",
         "answer": 51.835620504726876,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3074,7 +3135,26 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "11"
+      "id": "11",
+      "append": true
+    },
+    {
+      "id": "draw-new",
+      "phase": "do",
+      "title": {
+        "en": "Draw your new result",
+        "zh": "画出你的新结果"
+      },
+      "text": {
+        "en": "Add these lines to keep the figure aligned with your new values.",
+        "zh": "添加这些代码，让图像对应你的新数值。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "code": "range = x(end); maxHeight = max(y);\nxlabel('Distance (m)'); ylabel('Height (m)');\ntitle('23 m/s, 37 degrees'); axis equal; grid on;",
+      "append": true
     },
     {
       "title": {
@@ -3082,8 +3162,8 @@
         "zh": "本课完成"
       },
       "text": {
-        "en": "Choose 30° or 60°. Both can reach the target, but their peak heights differ.",
-        "zh": "选择 30° 或 60°。两者都能到达目标，但最高点不同。"
+        "en": "The 23 m/s, 37° launch lands inside the new 51–53 m zone. Your saved script now reproduces this launch.",
+        "zh": "23 m/s、37° 发射落在新的 51–53 米目标区内。你的脚本现在可以重现这次发射。"
       },
       "phase": "continue",
       "done": true,
@@ -3249,7 +3329,8 @@
           8,
           -1
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3260,7 +3341,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -3413,7 +3495,8 @@
         },
         "type": "number",
         "answer": 423,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3424,7 +3507,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -3583,7 +3667,8 @@
           1,
           0
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3594,7 +3679,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -3738,7 +3824,7 @@
         "en": "Estimate the winning fraction for these seven new draws.",
         "zh": "估计这七次新抽样的获胜比例。"
       },
-      "code": "u = [0.31 0.08 0.45 0.29 0.30 0.12 0.91];\nwin = u < 0.3;\nmean(win)",
+      "code": "format longG\nu = [0.31 0.08 0.45 0.29 0.30 0.12 0.91];\nwin = u < 0.3;\nmean(win)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -3747,7 +3833,8 @@
         },
         "type": "number",
         "answer": 0.42857142857142855,
-        "tolerance": 0.0001
+        "tolerance": 0.0001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3758,7 +3845,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -3951,7 +4039,8 @@
         "en": "I see the new result",
         "zh": "我看到了新结果"
       },
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "phase": "check",
@@ -3978,7 +4067,8 @@
           2,
           0
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -3989,7 +4079,26 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
+    },
+    {
+      "id": "draw-new",
+      "phase": "do",
+      "title": {
+        "en": "Draw your new result",
+        "zh": "画出你的新结果"
+      },
+      "text": {
+        "en": "Add these lines to keep the figure aligned with your new values.",
+        "zh": "添加这些代码，让图像对应你的新数值。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "code": "plot(1:numel(balance),balance,'-o');\nxlabel('Play'); ylabel('Net tokens'); grid on;",
+      "append": true
     },
     {
       "title": {
@@ -4133,7 +4242,7 @@
         "en": "Try probability 0.17, payout 7 and cost 1.5.",
         "zh": "试试获胜概率 0.17、返还 7、花费 1.5。"
       },
-      "code": "p = 0.17;\nexpectedNet = 7*p - 1.5;\nexpectedNet",
+      "code": "format longG\np = 0.17;\nexpectedNet = 7*p - 1.5;\nexpectedNet",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -4142,7 +4251,8 @@
         },
         "type": "number",
         "answer": -0.31,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -4153,7 +4263,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -4339,7 +4450,7 @@
         "en": "Use a short fixed sample to inspect the same average-net calculation. Each entry is one draw.",
         "zh": "用一组固定的短样本检查同样的平均净收益计算。每一项代表一次抽样。"
       },
-      "code": "u = [0.04 0.28 0.18 0.81 0.33 0.07 0.20];\nwin = u < 0.2;\nnet = 4*win - 1;\nmean(net)",
+      "code": "format longG\nu = [0.04 0.28 0.18 0.81 0.33 0.07 0.20];\nwin = u < 0.2;\nnet = 4*win - 1;\nmean(net)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -4348,7 +4459,8 @@
         },
         "type": "number",
         "answer": 0.7142857142857143,
-        "tolerance": 0.0001
+        "tolerance": 0.0001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -4359,7 +4471,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -4526,7 +4639,7 @@
         "en": "Design the fair payout for a new probability and cost.",
         "zh": "为新的获胜概率和花费设计公平返还额。"
       },
-      "code": "p = 0.16; cost = 1.2;\nwinPayout = cost/p;\nwinPayout",
+      "code": "format longG\np = 0.16; cost = 1.2;\nwinPayout = cost/p;\nwinPayout",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -4535,7 +4648,8 @@
         },
         "type": "number",
         "answer": 7.5,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -4546,7 +4660,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -4722,7 +4837,8 @@
           3,
           4
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -4733,7 +4849,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -4890,7 +5007,8 @@
           0,
           1
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -4901,7 +5019,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -5073,7 +5192,8 @@
         },
         "type": "number",
         "answer": 5,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -5084,7 +5204,26 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
+    },
+    {
+      "id": "draw-new",
+      "phase": "do",
+      "title": {
+        "en": "Draw your new result",
+        "zh": "画出你的新结果"
+      },
+      "text": {
+        "en": "Add these lines to keep the figure aligned with your new values.",
+        "zh": "添加这些代码，让图像对应你的新数值。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "code": "imagesc(1-mask,[0 1]);\ncolormap(gray); axis image; axis off;",
+      "append": true
     },
     {
       "title": {
@@ -5237,7 +5376,8 @@
         },
         "type": "number",
         "answer": 25,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -5248,7 +5388,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "6"
+      "id": "6",
+      "append": true
     },
     {
       "title": {
@@ -5443,7 +5584,8 @@
         },
         "type": "number",
         "answer": 4096,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -5454,7 +5596,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -5462,8 +5605,8 @@
         "zh": "本课完成"
       },
       "text": {
-        "en": "A `for` loop repeats the lines before its matching `end`. Here it makes three levels.",
-        "zh": "`for` 循环重复执行到对应 `end` 之间的代码。这里生成三层图案。"
+        "en": "Your new loop makes four levels. Each level repeats the complete replacement rule.",
+        "zh": "你的新循环生成四层。每一层都重复完整的替换规则。"
       },
       "phase": "continue",
       "done": true,
@@ -5649,7 +5792,8 @@
         },
         "type": "number",
         "answer": 6561,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -5660,7 +5804,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -5668,8 +5813,8 @@
         "zh": "本课完成"
       },
       "text": {
-        "en": "Small pieces repeat the same shape. The grid has 27 rows and 27 columns.",
-        "zh": "小部分重复同样的形状。网格有 27 行、27 列。"
+        "en": "Your four-level grid has 81 rows and 81 columns. Each level triples the side length.",
+        "zh": "你的四层网格有 81 行、81 列。每一层的边长都乘 3。"
       },
       "phase": "continue",
       "done": true,
@@ -5850,7 +5995,7 @@
         "en": "Run level 4. Read the last result.",
         "zh": "运行第 4 层。读出最后的结果。"
       },
-      "code": "mask = [1 1 1; 1 0 1; 1 1 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nnnz(A)/numel(A)",
+      "code": "format longG\nmask = [1 1 1; 1 0 1; 1 1 1];\nA = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nnnz(A)/numel(A)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -5859,7 +6004,8 @@
         },
         "type": "number",
         "answer": 0.624295076969974,
-        "tolerance": 0.0001
+        "tolerance": 0.0001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -5870,7 +6016,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -6065,7 +6212,8 @@
         },
         "type": "number",
         "answer": 625,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -6076,7 +6224,167 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
+    },
+    {
+      "id": "draw-level-2",
+      "phase": "do",
+      "title": {
+        "en": "Draw level 2",
+        "zh": "画出第 2 层"
+      },
+      "text": {
+        "en": "Keep the five-cell mask. Reset A before this complete loop.",
+        "zh": "保留五格模板。完整循环前先重置 A。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "A = 1;\nfor level = 1:2\n    A = kron(A,mask);\nend\nfigure(2); imagesc(1-A,[0 1]);\ncolormap(gray); axis image; axis off;"
+    },
+    {
+      "id": "compare-level-2",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the pattern",
+        "zh": "对比图案"
+      },
+      "text": {
+        "en": "Your image should match this pattern.",
+        "zh": "你的图像应与此图案一致。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "five-level-2"
+    },
+    {
+      "id": "save-level-2",
+      "phase": "continue",
+      "title": {
+        "en": "Save this figure",
+        "zh": "保存这张图像"
+      },
+      "text": {
+        "en": "Add this line. The PNG is saved in MATLAB’s current folder.",
+        "zh": "添加这行代码。PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'five_level_2.png');"
+    },
+    {
+      "id": "draw-level-3",
+      "phase": "do",
+      "title": {
+        "en": "Draw level 3",
+        "zh": "画出第 3 层"
+      },
+      "text": {
+        "en": "Keep the five-cell mask. Reset A before this complete loop.",
+        "zh": "保留五格模板。完整循环前先重置 A。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "A = 1;\nfor level = 1:3\n    A = kron(A,mask);\nend\nfigure(3); imagesc(1-A,[0 1]);\ncolormap(gray); axis image; axis off;"
+    },
+    {
+      "id": "compare-level-3",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the pattern",
+        "zh": "对比图案"
+      },
+      "text": {
+        "en": "Your image should match this pattern.",
+        "zh": "你的图像应与此图案一致。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "five-level-3"
+    },
+    {
+      "id": "save-level-3",
+      "phase": "continue",
+      "title": {
+        "en": "Save this figure",
+        "zh": "保存这张图像"
+      },
+      "text": {
+        "en": "Add this line. The PNG is saved in MATLAB’s current folder.",
+        "zh": "添加这行代码。PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'five_level_3.png');"
+    },
+    {
+      "id": "draw-level-4",
+      "phase": "do",
+      "title": {
+        "en": "Draw level 4",
+        "zh": "画出第 4 层"
+      },
+      "text": {
+        "en": "Keep the five-cell mask. Reset A before this complete loop.",
+        "zh": "保留五格模板。完整循环前先重置 A。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "A = 1;\nfor level = 1:4\n    A = kron(A,mask);\nend\nfigure(4); imagesc(1-A,[0 1]);\ncolormap(gray); axis image; axis off;"
+    },
+    {
+      "id": "compare-level-4",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the pattern",
+        "zh": "对比图案"
+      },
+      "text": {
+        "en": "Your image should match this pattern.",
+        "zh": "你的图像应与此图案一致。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "five-level-4"
+    },
+    {
+      "id": "save-level-4",
+      "phase": "continue",
+      "title": {
+        "en": "Save this figure",
+        "zh": "保存这张图像"
+      },
+      "text": {
+        "en": "Add this line. The PNG is saved in MATLAB’s current folder.",
+        "zh": "添加这行代码。PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'five_level_4.png');"
     },
     {
       "title": {
@@ -6089,8 +6397,8 @@
       },
       "phase": "continue",
       "assignment": {
-        "en": "Final task: save levels 2, 3 and 4 as figures. Explain self-similarity and why finite screens cannot show infinite detail. Keep levels at 4 or below for this exercise.",
-        "zh": "最终任务：保存第 2、3、4 层图像。解释自相似以及有限屏幕为何无法显示无限细节。本练习保持层数不超过 4。"
+        "en": "Submit the three five-cell figures and your script. Explain the repeated shape and why a screen cannot show infinite detail.",
+        "zh": "提交三张五格模板图像和脚本。解释重复形状，以及屏幕为何无法显示无限细节。"
       },
       "ack": {
         "en": "I saved my work",
@@ -6104,8 +6412,8 @@
         "zh": "本课完成"
       },
       "text": {
-        "en": "Each level multiplies side length by 3 and kept cells by 8. Predict before running.",
-        "zh": "每增加一层，边长乘 3，保留格数乘 8。先预测，再运行。"
+        "en": "Your new mask keeps five cells. Each level triples the side length and multiplies kept cells by 5: level 4 has 625.",
+        "zh": "你的新模板保留五格。每层边长乘 3，保留格数乘 5：第 4 层有 625 格。"
       },
       "phase": "continue",
       "done": true,
@@ -6113,7 +6421,8 @@
         "en": "Predict the next level complete",
         "zh": "预测下一层已完成"
       },
-      "id": "10"
+      "id": "10",
+      "diagram": "five-growth"
     }
   ],
   "image-compression:pixel-values": [
@@ -6272,7 +6581,8 @@
           0,
           240
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -6283,7 +6593,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -6455,7 +6766,8 @@
         },
         "type": "number",
         "answer": 255,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -6466,7 +6778,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -6642,7 +6955,8 @@
         },
         "type": "number",
         "answer": 180,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -6653,7 +6967,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -6874,7 +7189,8 @@
           180.0,
           120.0
         ],
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -6885,7 +7201,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -7126,7 +7443,8 @@
         },
         "type": "number",
         "answer": 180,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -7137,7 +7455,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "10"
+      "id": "10",
+      "append": true
     },
     {
       "title": {
@@ -7359,7 +7678,8 @@
         },
         "type": "number",
         "answer": 8,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -7370,7 +7690,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -7602,7 +7923,7 @@
         "en": "Halve both images before comparing them. Find the new MSE.",
         "zh": "先把两幅图像的数值都减半，再求新的 MSE。"
       },
-      "code": "difference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
+      "code": "format longG\ndifference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -7611,7 +7932,8 @@
         },
         "type": "number",
         "answer": 1062.5,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -7622,7 +7944,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "10"
+      "id": "10",
+      "append": true
     },
     {
       "title": {
@@ -7649,8 +7972,8 @@
         "zh": "选择取舍"
       },
       "text": {
-        "en": "Larger blocks save more values but lose more detail. The best choice depends on the use.",
-        "zh": "更大的方块更节省数值，但损失更多细节。最佳选择取决于用途。"
+        "en": "Compare 2-by-2 and 4-by-4 blocks. Keep both reconstructions to judge storage and detail.",
+        "zh": "比较 2×2 与 4×4 方块。保留两种重建结果，判断存储与细节的取舍。"
       },
       "phase": "see",
       "diagram": "image-four",
@@ -7858,7 +8181,7 @@
         "en": "Use your 4-by-4 block reconstruction. Halve both images and measure the new MSE.",
         "zh": "使用你的 4×4 方块重建结果。两幅图像数值都减半，再测量新的 MSE。"
       },
-      "code": "difference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
+      "code": "format longG\ndifference = A/2 - reconstructed/2;\nmean(difference(:).^2)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -7867,7 +8190,8 @@
         },
         "type": "number",
         "answer": 1709.375,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -7878,7 +8202,220 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "10"
+      "id": "10",
+      "append": true
+    },
+    {
+      "id": "draw-original",
+      "phase": "do",
+      "title": {
+        "en": "Draw Original",
+        "zh": "画出原图"
+      },
+      "text": {
+        "en": "Add these lines to display the image with a fixed brightness scale.",
+        "zh": "添加这些代码，以固定亮度范围显示图像。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "figure(1); imagesc(A,[0 255]);\ncolormap(gray); axis image;\nxlabel('Column'); ylabel('Row'); title('Original');"
+    },
+    {
+      "id": "compare-original",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the image",
+        "zh": "对比图像"
+      },
+      "text": {
+        "en": "Match the pattern and brightness.",
+        "zh": "对比图案与亮度。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "image-original"
+    },
+    {
+      "id": "save-original",
+      "phase": "continue",
+      "title": {
+        "en": "Save this image",
+        "zh": "保存这张图像"
+      },
+      "text": {
+        "en": "This PNG is saved in MATLAB’s current folder.",
+        "zh": "PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'image_original.png');"
+    },
+    {
+      "id": "draw-four",
+      "phase": "do",
+      "title": {
+        "en": "Draw 4-by-4 blocks",
+        "zh": "画出4×4 重建图"
+      },
+      "text": {
+        "en": "Add these lines to display the image with a fixed brightness scale.",
+        "zh": "添加这些代码，以固定亮度范围显示图像。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "figure(2); imagesc(reconstructed,[0 255]);\ncolormap(gray); axis image;\nxlabel('Column'); ylabel('Row'); title('4-by-4 blocks');"
+    },
+    {
+      "id": "compare-four",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the image",
+        "zh": "对比图像"
+      },
+      "text": {
+        "en": "Match the pattern and brightness.",
+        "zh": "对比图案与亮度。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "image-four"
+    },
+    {
+      "id": "save-four",
+      "phase": "continue",
+      "title": {
+        "en": "Save this image",
+        "zh": "保存这张图像"
+      },
+      "text": {
+        "en": "This PNG is saved in MATLAB’s current folder.",
+        "zh": "PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'image_four.png');"
+    },
+    {
+      "id": "make-two",
+      "phase": "do",
+      "title": {
+        "en": "Average smaller blocks",
+        "zh": "求较小方块的平均值"
+      },
+      "text": {
+        "en": "Keep the complete loops. Store this second version in B2.",
+        "zh": "保留完整循环，把第二个版本存入 B2。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "B2 = zeros(4,4);\nfor r = 1:4\n    for c = 1:4\n        block = A(2*r-1:2*r,2*c-1:2*c);\n        B2(r,c) = mean(block(:));\n    end\nend"
+    },
+    {
+      "id": "draw-two",
+      "phase": "do",
+      "title": {
+        "en": "Draw the second version",
+        "zh": "画出第二个版本"
+      },
+      "text": {
+        "en": "Reconstruct the smaller blocks, then draw and label the image.",
+        "zh": "重建较小方块，再画出并标注图像。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "reconstructed2 = kron(B2,ones(2));\nfigure(3); imagesc(reconstructed2,[0 255]);\ncolormap(gray); axis image;\nxlabel('Column'); ylabel('Row'); title('2-by-2 blocks');"
+    },
+    {
+      "id": "compare-two",
+      "phase": "compare",
+      "title": {
+        "en": "Compare smaller blocks",
+        "zh": "对比较小方块"
+      },
+      "text": {
+        "en": "Look for more detail than in the 4-by-4 version.",
+        "zh": "查看是否比 4×4 版本保留更多细节。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "image-two"
+    },
+    {
+      "id": "save-two",
+      "phase": "continue",
+      "title": {
+        "en": "Save the second image",
+        "zh": "保存第二张重建图"
+      },
+      "text": {
+        "en": "Keep this PNG beside your other two images.",
+        "zh": "把此 PNG 与另外两张图像一起保留。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'image_two.png');"
+    },
+    {
+      "id": "measure-both",
+      "phase": "do",
+      "title": {
+        "en": "Measure both versions",
+        "zh": "测量两个版本"
+      },
+      "text": {
+        "en": "Use the original brightness for this comparison. Each row shows storage ratio, then MSE.",
+        "zh": "此次比较使用原始亮度。每行先显示存储比，再显示 MSE。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "difference2 = A-reconstructed2;\ndifference4 = A-reconstructed;\n[numel(A)/numel(B2) mean(difference2(:).^2);\n numel(A)/numel(B) mean(difference4(:).^2)]"
+    },
+    {
+      "id": "compare-measures",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the two rows",
+        "zh": "对比两行结果"
+      },
+      "text": {
+        "en": "Use these values with your three saved images.",
+        "zh": "结合这些数值与三张已保存图像进行判断。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "output": "ans =\n    4    4250\n   16    6837.5"
     },
     {
       "title": {
@@ -8074,7 +8611,8 @@
         },
         "type": "number",
         "answer": 946,
-        "tolerance": 0
+        "tolerance": 0,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -8085,7 +8623,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -8252,7 +8791,7 @@
         "en": "Use new starting groups and a half-day step. Find the S-to-I transfer.",
         "zh": "用新的初始人数和半天步长，求从 S 到 I 的转移量。"
       },
-      "code": "S = 975; I = 25; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nnew",
+      "code": "format longG\nS = 975; I = 25; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nnew",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -8261,7 +8800,8 @@
         },
         "type": "number",
         "answer": 2.925,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -8272,7 +8812,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "7"
+      "id": "7",
+      "append": true
     },
     {
       "title": {
@@ -8462,7 +9003,7 @@
         "en": "Calculate the next groups for a different starting population and time step.",
         "zh": "计算另一组初始人数和步长下的下一步人数。"
       },
-      "code": "S = 975; I = 25; R = 0; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nrecovered = dt*gamma*I;\n[S-new I+new-recovered R+recovered]",
+      "code": "format longG\nS = 975; I = 25; R = 0; N = 1000;\nbeta = 0.24; gamma = 0.1; dt = 0.5;\nnew = dt*beta*S*I/N;\nrecovered = dt*gamma*I;\n[S-new I+new-recovered R+recovered]",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -8475,7 +9016,8 @@
           26.675,
           1.25
         ],
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -8486,7 +9028,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "8"
+      "id": "8",
+      "append": true
     },
     {
       "title": {
@@ -8691,7 +9234,7 @@
         "en": "Keep your example simulation. Read position 101, which is day 10.",
         "zh": "保留示例模拟。读取第 101 项，它对应第 10 天。"
       },
-      "code": "I(101)",
+      "code": "format longG\nI(101)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -8700,7 +9243,8 @@
         },
         "type": "number",
         "answer": 64.43502767847014,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -8711,7 +9255,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -8935,7 +9480,7 @@
         "en": "Use the plotted simulation. Read the recovered group on day 20.",
         "zh": "使用刚绘制的模拟，读出第 20 天的康复人数。"
       },
-      "code": "R(201)",
+      "code": "format longG\nR(201)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -8944,7 +9489,8 @@
         },
         "type": "number",
         "answer": 172.34820781786553,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -8955,7 +9501,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "10"
+      "id": "10",
+      "append": true
     },
     {
       "title": {
@@ -9164,7 +9711,7 @@
         "en": "Introduce a missing-population error in a copy of S. Measure the largest total-population error.",
         "zh": "在 S 的副本中加入人数丢失错误。测量总人数的最大误差。"
       },
-      "code": "testS = S;\ntestS(101) = testS(101) - 7;\nmax(abs(testS+I+R-N))",
+      "code": "format longG\ntestS = S;\ntestS(101) = testS(101) - 7;\nmax(abs(testS+I+R-N))",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -9173,7 +9720,8 @@
         },
         "type": "number",
         "answer": 7,
-        "tolerance": 0.001
+        "tolerance": 0.001,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -9184,7 +9732,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
     },
     {
       "title": {
@@ -9458,7 +10007,7 @@
         "en": "Use both runs. Measure how much the peak increased when beta changed.",
         "zh": "使用两次运行结果，测量 beta 改变后峰值增加了多少。"
       },
-      "code": "peaks(2) - peaks(1)",
+      "code": "format longG\npeaks(2) - peaks(1)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -9467,7 +10016,8 @@
         },
         "type": "number",
         "answer": 236.17598329963184,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -9478,7 +10028,8 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "12"
+      "id": "12",
+      "append": true
     },
     {
       "title": {
@@ -9683,7 +10234,7 @@
         "en": "With dt = 0.05, day 10 is position 201. Read that result for comparison with the earlier run.",
         "zh": "当 dt = 0.05 时，第 10 天是第 201 项。读取结果，与前面的运行比较。"
       },
-      "code": "I(201)",
+      "code": "format longG\nI(201)",
       "question": {
         "id": "transfer-v2",
         "label": {
@@ -9692,7 +10243,8 @@
         },
         "type": "number",
         "answer": 64.9102617587605,
-        "tolerance": 0.02
+        "tolerance": 0.02,
+        "matlabDisplay": true
       },
       "win": {
         "en": "You used MATLAB to find a new result.",
@@ -9703,7 +10255,132 @@
         "zh": "按顺序运行上面的代码。读取最后的输出。保留小数；如果是数列，检查每一项。"
       },
       "transfer": true,
-      "id": "9"
+      "id": "9",
+      "append": true
+    },
+    {
+      "id": "draw-fine",
+      "phase": "do",
+      "title": {
+        "en": "Draw the three groups",
+        "zh": "画出三组人数"
+      },
+      "text": {
+        "en": "Add a labelled graph for your 0.05-day simulation.",
+        "zh": "为你的 0.05 天步长模拟添加标注图像。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "figure(1); plot(t,S,t,I,t,R);\nxlabel('Time (days)'); ylabel('People');\nlegend('S','I','R'); title('dt = 0.05 days'); grid on;"
+    },
+    {
+      "id": "compare-fine",
+      "phase": "compare",
+      "title": {
+        "en": "Compare the curves",
+        "zh": "对比曲线"
+      },
+      "text": {
+        "en": "Match the three group shapes. S falls, I rises then falls, and R rises.",
+        "zh": "对比三组曲线形状。S 下降，I 先升后降，R 上升。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "plot": "sir-fine"
+    },
+    {
+      "id": "save-fine",
+      "phase": "continue",
+      "title": {
+        "en": "Save the graph",
+        "zh": "保存图像"
+      },
+      "text": {
+        "en": "This PNG is saved in MATLAB’s current folder.",
+        "zh": "PNG 图像保存在 MATLAB 当前文件夹。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "saveas(gcf,'sir_dt_005.png');"
+    },
+    {
+      "id": "prepare-coarse",
+      "phase": "do",
+      "title": {
+        "en": "Prepare the other time step",
+        "zh": "准备另一种步长"
+      },
+      "text": {
+        "en": "Keep the fine results. Use new names for the 0.1-day simulation.",
+        "zh": "保留较细步长的结果。用新名称保存 0.1 天步长的模拟。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "tc = 0:0.1:60;\nSc = zeros(size(tc)); Ic = Sc; Rc = Sc;\nSc(1) = 990; Ic(1) = 10;"
+    },
+    {
+      "id": "run-coarse",
+      "phase": "do",
+      "title": {
+        "en": "Run the second simulation",
+        "zh": "运行第二次模拟"
+      },
+      "text": {
+        "en": "Copy this complete loop. Only the time step changes.",
+        "zh": "复制完整循环。只改变时间步长。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "for k = 1:numel(tc)-1\n    new = 0.1*beta*Sc(k)*Ic(k)/N;\n    recovered = 0.1*gamma*Ic(k);\n    Sc(k+1) = Sc(k)-new;\n    Ic(k+1) = Ic(k)+new-recovered;\n    Rc(k+1) = Rc(k)+recovered;\nend"
+    },
+    {
+      "id": "measure-steps",
+      "phase": "do",
+      "title": {
+        "en": "Check both simulations",
+        "zh": "检查两次模拟"
+      },
+      "text": {
+        "en": "Each row shows the peak and a population check. 1 means the total stays at N.",
+        "zh": "每行显示峰值及人数检查。1 表示总人数保持为 N。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "append": true,
+      "code": "[max(Ic) max(abs(Sc+Ic+Rc-N)) < 1e-8;\n max(I) max(abs(S+I+R-N)) < 1e-8]"
+    },
+    {
+      "id": "compare-steps",
+      "phase": "compare",
+      "title": {
+        "en": "Compare both rows",
+        "zh": "对比两行结果"
+      },
+      "text": {
+        "en": "The smaller time step changes the peak slightly. Both population checks should pass.",
+        "zh": "较小步长使峰值略有变化。两个人数检查都应通过。"
+      },
+      "ack": {
+        "en": "Continue",
+        "zh": "继续"
+      },
+      "output": "ans =\n   304.987650    1\n   304.399664    1"
     },
     {
       "title": {
@@ -9743,4 +10420,4 @@
       "id": "11"
     }
   ]
-};})(typeof window!=='undefined'?window:globalThis);
+};})(typeof window!=="undefined"?window:globalThis);
