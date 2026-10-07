@@ -1,0 +1,14 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.join(__dirname, '..');
+const read = p => fs.readFileSync(path.join(root,p),'utf8');
+const manifest = JSON.parse(read('assets/intro/manifest.json'));
+test('Intro metadata describes the thirty-second cut',()=>{assert.equal(manifest.durationSeconds,30);assert.equal(manifest.fps,30);assert.equal(manifest.welcomeStartsAt,25);});
+test('Intro captions contain six contiguous five-second cues in each language',()=>{for(const lang of ['en','zh']){const cues=[...read(`assets/intro/intro-${lang}.vtt`).matchAll(/00:00:(\d+)\.000 --> 00:00:(\d+)\.000/g)];assert.equal(cues.length,6);cues.forEach((c,i)=>{assert.equal(+c[1],i*5);assert.equal(+c[2],(i+1)*5);});}});
+test('Intro ends with the requested classroom welcome',()=>{assert.match(read('assets/intro/intro-en.vtt'),/Welcome to MATLAB Lab Classroom\s*$/);assert.match(read('assets/intro/intro-zh.vtt'),/欢迎来到 MATLAB 实验课堂\s*$/);});
+test('Home and player describe the thirty-second intro consistently',()=>{assert.match(read('assets/app.js'),/Watch the 30-second introduction/);assert.match(read('assets/intro.js'),/A 30-second visual introduction/);assert.doesNotMatch(read('assets/intro.js')+read('assets/app.js'),/four-minute|4-minute|四分钟/);});
+test('Intro video preserves native playback controls and close-to-pause',()=>{const s=read('assets/intro.js');assert.match(s,/<video controls playsinline preload="metadata"/);assert.doesNotMatch(s,/autoplay/);assert.match(s,/video\.pause\(\)/);});
+test('Intro assets and bilingual accessible transcript are present',()=>{for(const f of ['matlab-intro.mp4','poster.jpg','intro-en.vtt','intro-zh.vtt','transcript.md'])assert.ok(fs.statSync(path.join(root,'assets/intro',f)).size>0);assert.match(read('assets/intro/transcript.md'),/30-second/);assert.match(read('assets/intro/transcript.md'),/这就是 MATLAB/);});
+test('Intro provenance identifies original illustrations accurately',()=>{assert.match(manifest.provenance,/not captured from MATLAB/);assert.match(read('assets/intro.js'),/not recordings of MATLAB/);assert.equal(manifest.narration,false);});

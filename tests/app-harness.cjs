@@ -3,7 +3,7 @@ const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const root=path.join(__dirname,'..');
 const scripts=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<script defer src="([^"]+)"/g)].map(x=>x[1].split('?')[0]);
 const unescape=s=>s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
-function client(shared=new Map(),hash='#/bootcamp/first-command',search=''){
+function client(shared=new Map(),hash='#/bootcamp/first-command',search='',options={}){
  const events={},winEvents={},app={innerHTML:'',addEventListener(k,fn){events[k]=fn;}},status={textContent:''},skip={addEventListener(){}};let overrides=null;
  const loc={hash,search,pathname:'/matlab-lab/'};
  const doc={documentElement:{lang:''},body:{classList:{add(){}},appendChild(){}},querySelector:s=>s==='.skip-link'?skip:s.startsWith('[data-lang=')?{focus(){}}:null,getElementById(id){
@@ -13,7 +13,7 @@ function client(shared=new Map(),hash='#/bootcamp/first-command',search=''){
   return null;
  }};
  const ctx={matchMedia:()=>({matches:true,addEventListener(){}}),location:loc,history:{replaceState(a,b,url){loc.hash=url.slice(url.indexOf('#'));}},scrollY:0,localStorage:{getItem:k=>shared.get(k)??null,setItem:(k,v)=>shared.set(k,v)},setTimeout:()=>1,clearTimeout(){},URL,URLSearchParams,Blob,navigator:{clipboard:{writeText:async()=>{}}},FormData:class{constructor(f){this.fields=f.fields;}get(k){return this.fields[k]??null;}*[Symbol.iterator](){yield*Object.entries(this.fields);}},document:doc,addEventListener(k,fn){winEvents[k]=fn;},scrollTo(){}};
- ctx.window=ctx;ctx.globalThis=ctx;vm.createContext(ctx);for(const s of scripts)vm.runInContext(fs.readFileSync(path.join(root,s),'utf8'),ctx,{filename:s});
+ ctx.CustomEvent=class{constructor(type){this.type=type;}};ctx.dispatchEvent=e=>winEvents[e.type]?.(e);Object.assign(ctx,options.context||{});ctx.window=ctx;ctx.globalThis=ctx;vm.createContext(ctx);for(const s of scripts){if(s==='assets/classroom-config.js'&&options.context?.LAB_CLASSROOM_CONFIG)continue;const source=fs.readFileSync(path.join(root,s),'utf8');vm.runInContext(options.transform?options.transform(s,source):source,ctx,{filename:s});}
  function click(action,extras={}){return events.click({target:{closest(sel){return sel==='[data-action]'?{dataset:{action,...extras}}:null;}}});}
  function language(lang){return events.click({target:{closest(sel){return sel==='[data-lang]'?{dataset:{lang},focus(){}}:null;}}});}
  function submit(value){overrides={answer:value};events.submit({target:{id:'guided-check',dataset:{question:'transfer-v2'}},preventDefault(){}});overrides=null;}

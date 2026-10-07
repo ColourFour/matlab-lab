@@ -1,0 +1,20 @@
+{
+  "title": "Welcome to MATLAB Lab Classroom",
+  "durationSeconds": 30,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "video": "matlab-intro.mp4",
+  "poster": "poster.jpg",
+  "captions": {
+    "en": "intro-en.vtt",
+    "zh": "intro-zh.vtt"
+  },
+  "transcript": "transcript.md",
+  "showcaseStartsAt": 5,
+  "welcomeStartsAt": 25,
+  "narration": false,
+  "audio": "Original quiet synthesized ambient music",
+  "provenance": "Original procedural illustrative animation rendered with Python; not captured from MATLAB.",
+  "playbackRecommendation": "Click to play, controls, playsinline, skip and replay. Never autoplay with sound."
+}

@@ -1,0 +1,6 @@
+# Draft configuration: merge into a CLI-generated local config before deployment.
+[functions.classroom-auth]
+verify_jwt = false
+[functions.classroom-data]
+# Both functions authenticate explicitly against Auth; never trust decoded JWT alone.
+verify_jwt = false

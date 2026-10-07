@@ -2,7 +2,9 @@
 
 **[Live course](https://colourfour.github.io/matlab-lab/)** · **[Teacher preview](https://colourfour.github.io/matlab-lab/?review=1)**
 
-A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. No build step, backend, external fonts, libraries or package installation is needed.
+**Classroom integration branch: review only. These restored features have not been published to the live course.**
+
+A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts are an undeployed, disabled Supabase draft.
 
 | Project | Students build | New ideas |
 |---|---|---|
@@ -42,17 +44,17 @@ The course reference scripts remain available after completion. The per-lesson *
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8000`, or `http://127.0.0.1:8000/?review=1` for teacher preview. Stop with Ctrl+C. Directly opening `index.html` also works, but a local server gives more reliable browser storage and clipboard behavior.
+Open `http://127.0.0.1:8000`, or `http://127.0.0.1:8000/?review=1` for teacher preview. Stop with Ctrl+C. Directly opening `index.html` also works, but use a local server for reliable storage, clipboard, video and caption loading.
 
 ## GitHub Pages deployment
 
-This repository publishes from **main / (root)**. Pushing an update to `main` automatically republishes it.
+This repository publishes from **main / (root)**. Pushing an update to `main` automatically republishes it. Do not merge this integration branch, change the Pages source, or deploy it before review.
 
 For a fresh repository, upload this folder's contents, including `.nojekyll`. In **Settings → Pages**, select **Deploy from a branch → main → / (root)** and save. Wait for deployment to complete, then share the Pages URL. All assets use relative paths and lesson navigation uses hashes, so refreshing a lesson works under a repository subpath. See [GitHub's publishing-source instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Classroom use and model boundaries
 
-Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The site checks numbers and choices entered on the page; it does **not** execute MATLAB, inspect scripts, upload work or send progress to a teacher. Arrange school MATLAB access and your usual submission method.
+Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The site checks numbers and choices entered on the page; it does **not** execute MATLAB or inspect scripts. With the shipped classroom configuration disabled, it does not upload work or send progress to a teacher. Arrange school MATLAB access and your usual submission method.
 
 - Project 1 assumes no drag, constant gravity and equal launch/landing height.
 - Project 2 uses fictional tokens. Random trials estimate probabilities; checkpoints use deterministic results or exact identities instead of requiring particular random digits. A fair expected value does not guarantee a winning run.
@@ -61,7 +63,17 @@ Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The s
 - Project 5 uses invented SIR parameters and a closed, uniformly mixed population with lasting immunity. It is a mathematical exercise, not a calibrated forecast. Conservation and step-size checks test the implementation, not real-world predictive validity.
 - Project 6 asks students to recommend a change to a system they choose. They define an objective and constraint, compare a baseline with at least two substantive alternatives, test at least three operating conditions including a held-out case, and investigate failure and sensitivity. A well-supported negative finding can earn full marks. Submit reproducible code/data, a comparison table, at least two purposeful figures, a two-page decision memo and a five-minute demonstration. Teachers assess these using the 20-mark rubric.
 
-Progress is stored in this browser on this device, separately for each project. Each changed field is saved independently, so a stale tab cannot replace another section’s notes or erase unrelated completed lessons. Tabs synchronize changes; a reset starts a new progress generation and keeps notes/language. If two tabs edit the same note, the other version is preserved separately, shown below the notes, and included in the export. Existing whole-record saves migrate once; new field records then take precedence. Existing Boot Camp and Projectile Motion progress is preserved when the new courses load. Localhost and the public address have separate storage. Guided step position, answer drafts and successful checks survive reload on the same browser. The September 28 checkpoint revision restarts in-progress lesson steps once, so old answers cannot bypass new tasks; completed lessons, language preferences and Project 6 notes are preserved. Project 6 notes autosave separately and survive reload; export them to keep a backup or move devices. Self-review can be recorded in any order after entering notes or file references. **Reset all project progress** removes completion/self-review marks but keeps Project 6 notes. Shared computers share these records: export needed work, then clear this site’s browser data between students to remove notes as well. Private browsing or clearing site data can remove records. When storage is unavailable, the app warns and continues in memory.
+For anonymous use, progress is stored in this browser on this device, separately for each project. Each changed field is saved independently, so a stale tab cannot replace another section’s notes or erase unrelated completed lessons. Tabs synchronize changes; a reset starts a new progress generation and keeps notes/language. If two tabs edit the same note, the other version is preserved separately, shown below the notes, and included in the export. Existing whole-record saves migrate once; new field records then take precedence. Existing Boot Camp and Projectile Motion progress is preserved when the new courses load. Localhost and the public address have separate storage. Guided step position, answer drafts and successful checks survive reload on the same browser. The September 28 checkpoint revision restarts in-progress lesson steps once, so old answers cannot bypass new tasks; completed lessons, language preferences and Project 6 notes are preserved. Project 6 notes autosave separately and survive reload; export them to keep a backup or move devices. Self-review can be recorded in any order after entering notes or file references. **Reset all project progress** removes completion/self-review marks but keeps Project 6 notes. Shared computers share these records: export needed work, then clear this site’s browser data between students to remove notes as well. Private browsing or clearing site data can remove records. When storage is unavailable, the app warns and continues in memory.
+
+## Restored classroom features (disabled draft)
+
+The home page offers the original 30-second video on a first visit. It starts only when the student presses Play; it never blocks Start. Help offers replay. Native controls provide pause, sound and captions; EN/中文 chooses the initial caption language. Closing stops playback, and replay starts at the beginning. Both captions and the transcript are local assets.
+
+Classroom sign-in, student submissions and teacher feedback screens are restored from the October 3 ZIP. They remain unavailable in the shipped configuration. Lessons still work without an account. The backend includes class-scoped permissions, student-only drafts, teacher summaries, append-only file revisions and short-lived downloads.
+
+Signed-in drafts use separate in-memory field storage and version-checked cloud snapshots. They never overwrite anonymous device work or another account's draft. Conflicts stop further saves and retain the local draft; Export a backup downloads the whole account snapshot. Explicit device import reads the current save format, including stable lesson IDs and preserved note conflicts. Account reload requires sign-in again; unsaved account work can be lost on close, so export it first. Teacher preview never syncs lesson practice.
+
+Keep `enabled` and `securityReviewed` **false**, and the URL/key blank, in `assets/classroom-config.js`. Configuring a publishable key alone cannot enable accounts. Edge functions also require `CLASSROOM_ACCOUNTS_ENABLED=true`, which must remain unset until review and staging checks pass. No secrets belong in browser code. See [integration report](docs/CLASSROOM_INTEGRATION.md) and [backend configuration and security gates](docs/CLASSROOM_BACKEND.md).
 
 ## Source structure
 
@@ -72,7 +84,11 @@ Progress is stored in this browser on this device, separately for each project. 
 - `assets/app.js`, `core.js`, `guided.js`, `capstone.js`, `styles.css`: rendering, validation, persistence, routing, setup diagrams and responsive layout.
 - `content/guided.js`: the authored short-step sequences and active transfer answer keys for all 48 guided lessons. Original course files and reference downloads retain the worked examples.
 - `assets/celebrations.js` and `celebrations.css`: the shuffled reward selection, bounded overlay lifecycle and 16 CSS animations.
-- `assets/*diagrams.js`: accessible inline SVGs. No generated bitmap assets or external image dependencies.
+- `assets/*diagrams.js`: accessible inline SVGs. Lesson visuals have no external image dependencies; the separate intro includes its original local video/poster.
+- `assets/classroom*`: optional classroom client, disabled public configuration and imported interface styling.
+- `assets/intro.js` and `assets/intro/`: player, original 30-second MP4, poster, captions and transcript.
+- `supabase/`: unapplied schema, Edge function drafts and local tests; no deployed backend.
+- `docs/`: integration provenance, conflict decisions and account release gates.
 - `downloads/`: MATLAB starters/references and bilingual investigation guide.
 - `tests/`: validation, independent numeric checks, migration tests and browser QA record.
 - `content/AUTHORING.md`: lesson schema and extension notes.
@@ -80,6 +96,18 @@ Progress is stored in this browser on this device, separately for each project. 
 ## Verification and remaining audit
 
 Run `node --test tests/*.test.cjs` with Node 18+. Tests cover all guided checkpoint sets and short-step sequences, bounded instructions, intact MATLAB blocks, resume state, dependency invalidation, open capstone navigation/state, notebook sanitation/export/escaping, bilingual completeness, malformed input, numerical tolerance, dependencies, progress migration, fractal geometry, compression error, projectile physics and SIR updates. See [QA record](tests/QA.md) for browser results.
+
+For the additional classroom checks, use Node 22.14+ and install only the pinned test dependencies (the site itself needs none):
+
+```sh
+npm ci --ignore-scripts --prefix tests/runtime
+node --test tests/*.test.cjs
+node --experimental-transform-types --test supabase/tests/backend.test.mjs
+node tests/classroom-dom.mjs
+node tests/classroom-sql.mjs
+```
+
+DOM tests use a simulated page and mocked backend. SQL tests use local PostgreSQL WASM with minimal Auth/Storage stubs. Neither proves a real Supabase deployment works. All live security checks remain required before enabling accounts.
 
 **MATLAB itself is not installed in the build environment.** Numerical outputs were independently checked in JavaScript/Python, and the site was tested in a browser. Run the supplied `.m` sections in your school MATLAB version during your audit, and review the Chinese teaching language and pacing with your class context in mind.
 
