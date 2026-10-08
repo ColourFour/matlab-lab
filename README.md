@@ -1,10 +1,10 @@
 # MATLAB Lab
 
-**[Live course](https://colourfour.github.io/matlab-lab/)** · **[Teacher preview](https://colourfour.github.io/matlab-lab/?review=1)**
+**[Live course](https://colourfour.github.io/matlab-lab/)** · **[Teacher page](https://colourfour.github.io/matlab-lab/?teacher=1)** · **[Teacher preview](https://colourfour.github.io/matlab-lab/?review=1)**
 
-**Classroom integration branch: review only. These restored features have not been published to the live course.**
+**October 8 release: classroom layout and the original 30-second introduction are included. Account access stays disabled until its separate Supabase project is configured and live security checks pass.**
 
-A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts are an undeployed, disabled Supabase draft.
+A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts include class-code student self-registration and a separate teacher page. The account backend remains disabled pending configuration.
 
 | Project | Students build | New ideas |
 |---|---|---|

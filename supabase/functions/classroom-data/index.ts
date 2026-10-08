@@ -1,4 +1,4 @@
-import {boundedBody,api,caller,Failure,headers,limit,membership,rpc,serve,str,url,uuid} from '../_shared/backend.ts';
+import {boundedBody,api,caller,digest,Failure,headers,limit,membership,rpc,serve,str,url,uuid} from '../_shared/backend.ts';
 serve(async req=>{
  const {token,user}=await caller(req);
  await limit('data:'+user.id,180,60);
@@ -30,6 +30,12 @@ serve(async req=>{
   catch(e){await api('/storage/v1/object/classroom-submissions',{method:'DELETE',body:JSON.stringify({prefixes:[path]})},undefined,true);throw e;}
  }
  const raw=new TextDecoder().decode(await boundedBody(req,600000));const b=JSON.parse(raw);
+ if(b.action==='registration-code'||b.action==='close-registration') {
+  const classroom=uuid(b.classroomId);await membership(token,user.id,classroom,'teacher');await limit('invite:'+user.id,10,3600);
+  const code=b.action==='registration-code'?crypto.randomUUID().replaceAll('-','') : null;
+  await rpc('configure_classroom_signup',{p_classroom:classroom,p_hash:code?await digest(code):null,p_enabled:!!code},token);
+  return code?{code}:{ok:true};
+ }
  if(b.action==='progress'||b.action==='heartbeat'||b.action==='load-progress') {
   const classroom=uuid(b.classroomId);await membership(token,user.id,classroom,'student');
   if(b.action==='load-progress') {

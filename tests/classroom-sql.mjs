@@ -12,6 +12,7 @@ await db.exec(`create function auth.jwt() returns jsonb language sql stable as $
 grant usage on schema auth to public;grant execute on all functions in schema auth to public;
 create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);`);
 try{await db.exec(fs.readFileSync('supabase/schema/classroom.sql','utf8'));}catch(e){console.error('SQL schema failed:',e.message);process.exit(1);}
+await db.exec(fs.readFileSync('supabase/schema/enrollment.sql','utf8'));
 const c1='10000000-0000-0000-0000-000000000001',c2='10000000-0000-0000-0000-000000000002';
 const a='20000000-0000-0000-0000-000000000001',b='20000000-0000-0000-0000-000000000002',t='20000000-0000-0000-0000-000000000003',x='20000000-0000-0000-0000-000000000004';
 const session=u=>u.replace('20000000','30000000');for(const u of [a,b,t,x])await db.exec(`insert into auth.users values('${u}');insert into auth.sessions(id,user_id) values('${session(u)}','${u}');`);
@@ -44,4 +45,22 @@ await as(b);assert.equal(await count('submissions'),0);assert.equal(await count(
 await as(a);assert.equal(await count('submissions'),1);assert.equal(await count('comments'),1);await assert.rejects(db.query(`delete from public.submissions`));
 await db.exec('reset role');await db.query('select public.classroom_revoke_sessions($1)',[a]);await as(a);assert.equal(await count('progress'),0);assert.equal(await count('submissions'),0);assert.equal(await count('comments'),0);
 await db.exec('reset role;set role anon');await assert.rejects(db.query('select * from public.memberships'));await assert.rejects(db.query(`select public.classroom_resolve('anything')`));
-await db.close();console.log('PASS: SQL executed on local PostgreSQL WASM; student isolation, teacher scoped summaries/private drafts, cross-class denial, role escalation denial, optimistic conflict, immutable rows, comment scope, revoked-session denial, anonymous denial. Supabase integration still unverified.');
+await assert.rejects(db.query("select public.enroll_classroom_student('hash',null,'mail','name','user')"));
+await db.exec('reset role');
+const hash='a'.repeat(64),invite='b'.repeat(64),newStudent='20000000-0000-0000-0000-000000000005',newTeacher='20000000-0000-0000-0000-000000000006';
+await db.query('insert into classroom_private.class_codes(classroom_id,code_hash,signup_enabled,max_students) values($1,$2,true,3)',[c1,hash]);
+await db.query('insert into auth.users values($1),($2)',[newStudent,newTeacher]);
+await as(b);await assert.rejects(db.query('select public.configure_classroom_signup($1,null,false)',[c1]));
+await assert.rejects(db.query('select public.enroll_classroom_student($1,$2,$3,$4,$5)',[hash,newStudent,'new@test.invalid','New student','new_user']));
+await db.exec('reset role;set role service_role');
+assert.equal((await db.query('select public.enroll_classroom_student($1,$2,$3,$4,$5) c',[hash,newStudent,'new@test.invalid','A','new_user'])).rows[0].c,c1);
+await assert.rejects(db.query('select public.enroll_classroom_student($1,$2,$3,$4,$5)',[hash,newTeacher,'teacher@test.invalid','Duplicate','new_user']));
+await db.exec('reset role');assert.equal((await db.query('select role from public.memberships where user_id=$1',[newStudent])).rows[0].role,'student');
+assert.equal((await db.query('select count(*)::int n from public.memberships where user_id=$1',[newTeacher])).rows[0].n,0);
+await db.query("insert into classroom_private.teacher_invites values($1,$2,clock_timestamp()+interval '1 hour',null)",[invite,c1]);
+await db.query('select public.enroll_classroom_teacher($1,$2,$3,$4)',[invite,newTeacher,'teacher@test.invalid','New teacher']);
+await assert.rejects(db.query('select public.enroll_classroom_teacher($1,$2,$3,$4)',[invite,x,'replay@test.invalid','Replay']));
+await as(t);await db.query('select public.configure_classroom_signup($1,null,false)',[c1]);
+await db.exec('reset role');assert.equal((await db.query('select public.classroom_signup_info($1) v',[hash])).rows[0].v,null);
+assert.equal((await db.query('select public.classroom_username($1,$2) v',[hash,'new_user'])).rows[0].v,'new@test.invalid','closing registration keeps existing login');
+await db.close();console.log('PASS: SQL account isolation, optimistic saves, revocation, student-only enrollment, username uniqueness, bounded class capacity, closed registration, teacher-only invitation controls and single-use teacher invitations. Live Supabase integration still requires verification.');
