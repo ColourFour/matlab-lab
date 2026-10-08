@@ -16,7 +16,7 @@ A static English / Simplified Chinese MATLAB course for high-school beginners. S
 | 5 · Simulate an Epidemic | A fictional SIR system | Simultaneous updates, Euler steps, conservation, sensitivity, numerical resolution |
 | 6 · Independent Project | A defended recommendation for a system students choose | Model design, competing alternatives, held-out tests, failure analysis, reproducibility |
 
-The student view shows **one short action at a time**, with one primary next action and one checkpoint question per screen. Explanations and the course map are available when needed. New visitors start in Simplified Chinese; a saved language preference is preserved. English and Chinese share code, diagrams and reserved layout space.
+The student view shows **one short action at a time**, with one primary next action and one checkpoint question per screen. Explanations and the course map are available when needed. New visitors and empty accounts start in English; a saved language preference is preserved. English and Chinese share code, diagrams and reserved layout space.
 
 The first lesson teaches desktop setup on Windows or Mac, demonstrates `2 + 2 → 4`, then asks students to run a fresh calculation before drawing and changing a graph. Every guided lesson has one **Your turn / 轮到你了** checkpoint: new inputs or a new measurement, runnable MATLAB code, and one result to enter. Worked examples keep their expected outputs; the new checkpoint does not display its answer. Later lessons build scripts in complete runnable pieces, at most eight lines per displayed block.
 

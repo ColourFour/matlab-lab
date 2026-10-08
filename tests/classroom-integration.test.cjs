@@ -10,6 +10,15 @@ function fixture(shared=new Map(),search='',fetch=async()=>({ok:true,json:async(
  }});return {...a,account:a.ctx.LabClassroom.test};
 }
 function finish(a,key){for(const step of a.ctx.LAB_GUIDES[key].slice(0,-1)){if(step.question){a.submit(Array.isArray(step.question.answer)?step.question.answer.join(' '):String(step.question.answer));assert.match(a.app.innerHTML,/step-feedback is-correct/);}a.click('next-step');}}
+test('Fresh visits, device imports and empty accounts default to English; saved Chinese persists',async()=>{
+ const shared=new Map(),a=fixture(shared);
+ assert.equal(a.ctx.document.documentElement.lang,'en');
+ assert.equal(a.ctx.LabClassroom.deviceSnapshot().app.lang,'en');
+ a.language('zh');assert.equal(fixture(shared).ctx.document.documentElement.lang,'zh-Hans');
+ a.account.seed();assert.equal(a.ctx.document.documentElement.lang,'en');
+ a.account.seed({app:{version:2,lang:'zh'}},'student','Chinese');assert.equal(a.ctx.document.documentElement.lang,'zh-Hans');
+ await a.account.signout();assert.equal(a.ctx.document.documentElement.lang,'zh-Hans');
+});
 test('Activation requires both explicit gates; keys alone never enable accounts',()=>{
  for(const gates of [{},{enabled:true},{securityReviewed:true},{enabled:'true',securityReviewed:true}]){
   const a=client(new Map(),'#/','',{context:{LAB_CLASSROOM_CONFIG:{...config,enabled:false,securityReviewed:false,...gates}}});assert.equal(a.ctx.LabClassroom.configured,false);

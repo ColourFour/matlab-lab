@@ -6,7 +6,7 @@
  const diskStorage=window.LabClassroom||localStorage;
  const read=k=>{try{return JSON.parse(diskStorage.getItem(k));}catch(_){return null;}};
  const saved=read(KEY),legacy=read('matlab-lab:bootcamp:v1');
- let store=LabCore.cleanAppState(saved,courses,legacy);if(!saved&&!legacy)store.lang='zh';
+ let store=LabCore.cleanAppState(saved,courses,legacy);
  let book=LabGuide.clean(read(GUIDE_KEY),guides,LabCore),notebook=LabCapstone.cleanNotebook(read(NOTEBOOK_KEY),courses.investigation);
  // Canonical field shapes make every tab compare edits against the same baseline.
  const progressFields=s=>Object.fromEntries(Object.entries(s.progress).map(([id,p])=>[id,{lastLesson:p.lastLesson,completed:Object.fromEntries(courses[id].lessons.map(l=>[l.id,p.completed.includes(l.id)]))}]));
@@ -18,7 +18,7 @@
   guideDisk=LabStorage.channel(diskStorage,'guides',fullBook(book),{resettable:true,defaults:fullBook(LabGuide.blank()),readonly:review,merge:(path,v,other)=>{if(path.at(-1)==='reached')return Math.max(v,Number(other)||0);if(path.at(-1)==='reachedId'){const steps=guides[path[1]];return steps&&steps.findIndex(s=>s.id===other)>steps.findIndex(s=>s.id===v)?other:v;}return v;}});
   noteDisk=LabStorage.channel(diskStorage,'notes',notebook,{notes:true,readonly:review});
   langDisk=LabStorage.channel(diskStorage,'language',{lang:store.lang},{readonly:review});
-  store=restoreProgress(progressDisk.sync());store.lang=langDisk.sync().lang==='en'?'en':'zh';book=LabGuide.clean(guideDisk.sync(),guides,LabCore);notebook=LabCapstone.cleanNotebook(noteDisk.sync(),courses.investigation);
+  store=restoreProgress(progressDisk.sync());store.lang=langDisk.sync().lang==='zh'?'zh':'en';book=LabGuide.clean(guideDisk.sync(),guides,LabCore);notebook=LabCapstone.cleanNotebook(noteDisk.sync(),courses.investigation);
  storageOK=true;guideOK=true;}catch(_){storageOK=false;guideOK=false;}}
  initialiseDisks();
  function syncAccount(){if(!review)window.LabClassroom?.updateSnapshot({app:store,guide:fullBook(JSON.parse(JSON.stringify(book))),notebook});}
@@ -47,7 +47,7 @@
  const unlocked=c=>review||!c.requires||store.progress[c.requires].completed.length===courses[c.requires].lessons.length;
  const overview=c=>c.id==='bootcamp'?'#/':'#/'+c.id;
  const link=(c,i)=>'#/'+c.id+'/'+c.lessons[i].id;
- function persist(){if(review)return;try{const lang=langDisk.save({lang:store.lang}).value.lang;store=restoreProgress(progressDisk.save(progressFields(store)).value);store.lang=lang==='en'?'en':'zh';if(course)state=store.progress[course.id];storageOK=true;syncAccount();}catch(_){storageOK=false;}}
+ function persist(){if(review)return;try{const lang=langDisk.save({lang:store.lang}).value.lang;store=restoreProgress(progressDisk.save(progressFields(store)).value);store.lang=lang==='zh'?'zh':'en';if(course)state=store.progress[course.id];storageOK=true;syncAccount();}catch(_){storageOK=false;}}
  function saveGuide(){if(review)return;try{book=LabGuide.clean(guideDisk.save(fullBook(book)).value,guides,LabCore);guideOK=true;syncAccount();}catch(_){guideOK=false;}}
  function select(id){course=courses[id];state=store.progress[id];}
  function route(){
@@ -148,25 +148,25 @@
   }
  });
  app.addEventListener('submit',e=>{if(e.target.id!=='guided-check')return;e.preventDefault();capture();const st=LabGuide.entry(book,key()),qid=e.target.dataset.question,alreadySolved=st.solved.includes(qid);problems[key()]=LabCore.assess(guides[key()].find(s=>s.question?.id===qid).question,st.answers[qid]||'',st.answers);feedback[key()]=LabGuide.check(guides[key()],st,qid,st.answers[qid]||'',LabCore);saveGuide();render();document.getElementById('step-feedback')?.focus({preventScroll:true});document.getElementById('step-feedback')?.scrollIntoView({block:'nearest'});if(feedback[key()]&&!alreadySolved)LabCelebrate.play(document.getElementById('step-feedback'));});
- window.addEventListener('storage',e=>{if(review||window.LabClassroom?.signedIn()||!e.key?.startsWith(LabStorage.PREFIX))return;const field=document.activeElement,id=field?.id,start=field?.selectionStart,end=field?.selectionEnd,y=scrollY;capture();try{const lang=langDisk.sync().lang;store=restoreProgress(progressDisk.sync());store.lang=lang==='en'?'en':'zh';book=LabGuide.clean(guideDisk.sync(),guides,LabCore);notebook=LabCapstone.cleanNotebook(noteDisk.sync(),courses.investigation);feedback={};problems={};render(false,true);const target=id&&document.getElementById(id);target?.focus({preventScroll:true});if(target?.setSelectionRange&&start!==null)target.setSelectionRange(start,end);window.scrollTo(0,y);if(notebookConflict)saveNotebook();}catch(_){storageOK=false;}});
+ window.addEventListener('storage',e=>{if(review||window.LabClassroom?.signedIn()||!e.key?.startsWith(LabStorage.PREFIX))return;const field=document.activeElement,id=field?.id,start=field?.selectionStart,end=field?.selectionEnd,y=scrollY;capture();try{const lang=langDisk.sync().lang;store=restoreProgress(progressDisk.sync());store.lang=lang==='zh'?'zh':'en';book=LabGuide.clean(guideDisk.sync(),guides,LabCore);notebook=LabCapstone.cleanNotebook(noteDisk.sync(),courses.investigation);feedback={};problems={};render(false,true);const target=id&&document.getElementById(id);target?.focus({preventScroll:true});if(target?.setSelectionRange&&start!==null)target.setSelectionRange(start,end);window.scrollTo(0,y);if(notebookConflict)saveNotebook();}catch(_){storageOK=false;}});
 
  // Explicit import reads the current changed-field format, without writing or
  // falling back from an account to another pupil's device work.
  if(window.LabClassroom)window.LabClassroom.deviceSnapshot=()=>{
   const nativeRead=k=>{try{return JSON.parse(localStorage.getItem(k));}catch(_){return null;}};
   const old=nativeRead(KEY),legacy=nativeRead('matlab-lab:bootcamp:v1');
-  let a=LabCore.cleanAppState(old,courses,legacy);if(!old&&!legacy)a.lang='zh';
+  let a=LabCore.cleanAppState(old,courses,legacy);
   const p=LabStorage.channel(localStorage,'progress',progressFields(a),{resettable:true,defaults:progressFields(LabCore.cleanAppState(null,courses)),readonly:true});
   const g=LabStorage.channel(localStorage,'guides',fullBook(LabGuide.clean(nativeRead(GUIDE_KEY),guides,LabCore)),{resettable:true,defaults:fullBook(LabGuide.blank()),readonly:true});
   const n=LabStorage.channel(localStorage,'notes',LabCapstone.cleanNotebook(nativeRead(NOTEBOOK_KEY),courses.investigation),{notes:true,readonly:true});
   const l=LabStorage.channel(localStorage,'language',{lang:a.lang},{readonly:true});
-  a=restoreProgress(p.sync());a.lang=l.sync().lang==='en'?'en':'zh';
+  a=restoreProgress(p.sync());a.lang=l.sync().lang==='zh'?'zh':'en';
   return {app:a,guide:fullBook(LabGuide.clean(g.sync(),guides,LabCore)),notebook:LabCapstone.cleanNotebook(n.sync(),courses.investigation)};
  };
  window.addEventListener('lab-account-change',()=>{
   releaseExport();document.getElementById('lab-dialog')?.close();
   const saved=read(KEY),legacy=read('matlab-lab:bootcamp:v1');
-  store=LabCore.cleanAppState(saved,courses,legacy);if(!saved&&!legacy)store.lang='zh';
+  store=LabCore.cleanAppState(saved,courses,legacy);
   book=LabGuide.clean(read(GUIDE_KEY),guides,LabCore);notebook=LabCapstone.cleanNotebook(read(NOTEBOOK_KEY),courses.investigation);
   notebookConflict=false;feedback={};problems={};initialiseDisks();
   history.replaceState(null,'','#/');persist();render(true);
