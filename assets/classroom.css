@@ -5,3 +5,5 @@
 @media(max-width:600px){.student-mode .header-actions{justify-content:flex-end;gap:8px;flex-wrap:nowrap}.classroom-open{max-width:110px;font-size:12px}.intro-dialog{padding:16px}.intro-dialog h2{font-size:22px}}
 
 .classroom-name{min-width:0;overflow:hidden;text-overflow:ellipsis}.intro-dialog video{max-height:calc(95vh - 255px);object-fit:contain}
+
+@media(max-width:600px){.classroom-dialog h2{font-size:22px;line-height:1.25}.classroom-dialog form{margin:12px 0;gap:10px}.classroom-dialog label{font-size:16px;gap:4px}.classroom-dialog input{min-height:44px;padding:10px}.classroom-dialog #student-register .guide-small,.classroom-dialog #teacher-register .guide-small{margin:0;line-height:1.4}.classroom-dialog #student-register button,.classroom-dialog #teacher-register button{position:sticky;bottom:0;z-index:1;margin-bottom:0;box-shadow:0 0 0 4px #f7faf6}}
