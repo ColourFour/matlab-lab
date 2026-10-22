@@ -35,8 +35,10 @@ serve(async req=>{
    try{await api('/auth/v1/admin/users/'+userId,{method:'DELETE'},undefined,true);}catch(_){}
    throw e;
   }
-  const data=await api('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email,password})});
-  return session(data);
+  // Enrollment is committed and the invitation consumed. A later sign-in
+  // failure must not tell the user to register again or delete their account.
+  try{const data=await api('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email,password})});return session(data);}
+  catch(_){return {accountCreated:true,session:null};}
  }
  if(body.action==='username-login') {
   const username=str(body.username,24).trim().toLowerCase();if(!/^[a-z0-9_]{3,24}$/.test(username))throw new Failure(401,'Classroom or credentials unavailable. / 班级或登录信息有误。');

@@ -1,6 +1,6 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 const env={SUPABASE_URL:'https://classroom-test.supabase.co',SUPABASE_SERVICE_ROLE_KEY:'server-only-test',SUPABASE_ANON_KEY:'public-test',CLASSROOM_ACCOUNTS_ENABLED:'true',CLASSROOM_ALLOWED_ORIGINS:'https://colourfour.github.io',CLASSROOM_TRUSTED_IP_HEADER:'x-tested-client-ip',CLASSROOM_RATE_PEPPER:'test-pepper'};
-let handler,closed=false,failEnrollment=false,teacherInvite=false,calls=[];
+let handler,closed=false,failEnrollment=false,failLogin=false,teacherInvite=false,calls=[];
 globalThis.Deno={env:{get:k=>env[k]},serve:f=>handler=f};
 await import('../functions/classroom-auth/index.ts');
 const uid='20000000-0000-0000-0000-000000000099';
@@ -12,11 +12,11 @@ globalThis.fetch=async(url,init={})=>{
  if(url.endsWith('/classroom_username'))out=body.p_username==='taken'?'existing@test.invalid':null;
  if(url.endsWith('/admin/users'))out={id:uid};
  if(url.includes('/enroll_classroom_')){if(failEnrollment)return Response.json({error:'duplicate'},{status:400});out='class-a';}
- if(url.endsWith('/token?grant_type=password'))out={access_token:'session-test',refresh_token:'must-not-return',expires_in:3600,user:{id:uid,email:'private@test.invalid'}};
+ if(url.endsWith('/token?grant_type=password')){if(failLogin)return Response.json({error:'Unavailable'},{status:503});out={access_token:'session-test',refresh_token:'must-not-return',expires_in:3600,user:{id:uid,email:'private@test.invalid'}};}
  return Response.json(out);
 };
 const req=body=>new Request(env.SUPABASE_URL+'/functions/v1/classroom-auth',{method:'POST',headers:{Origin:env.CLASSROOM_ALLOWED_ORIGINS,'x-tested-client-ip':'test-ip','Content-Type':'application/json'},body:JSON.stringify({action:'register',code:'abcdefghijklmnopqrstuvwx',name:'Student',username:'alice_1',password:'a-long-test-password',...body})});
-function reset(){calls=[];closed=false;failEnrollment=false;teacherInvite=false;}
+function reset(){calls=[];closed=false;failEnrollment=false;failLogin=false;teacherInvite=false;}
 test('Self-registration is a new student, even with injected role/ID metadata',async()=>{
  reset();const r=await handler(req({role:'teacher',userId:'victim',user_metadata:{role:'teacher'}}));assert.equal(r.status,200);
  const out=await r.json();assert.deepEqual(Object.keys(out),['session']);assert.equal(out.session.access_token,'session-test');assert.equal(out.session.refresh_token,undefined);assert.equal(out.session.user.email,undefined);
@@ -33,6 +33,9 @@ test('Losing an enrollment race deletes only the newly created Auth user',async(
 test('Teacher registration requires a separate valid single-use invitation',async()=>{
  reset();assert.equal((await handler(req({action:'teacher-register',email:'teacher@example.test'}))).status,403);assert(!calls.some(c=>c.url.endsWith('/admin/users')));
  reset();teacherInvite=true;assert.equal((await handler(req({action:'teacher-register',email:'teacher@example.test'}))).status,200);assert(calls.some(c=>c.url.endsWith('/enroll_classroom_teacher')));
+});
+test('A sign-in failure after enrollment reports an existing account and never deletes it or reuses its invitation',async()=>{
+ for(const action of ['register','teacher-register']){reset();teacherInvite=true;failLogin=true;const r=await handler(req({action,email:'teacher@example.test'}));assert.equal(r.status,200);assert.deepEqual(await r.json(),{accountCreated:true,session:null});assert.equal(calls.filter(c=>c.url.includes('/enroll_classroom_')).length,1);assert(!calls.some(c=>c.init.method==='DELETE'));assert.equal(calls.filter(c=>c.url.includes('/token?')).length,1);}
 });
 test('Missing tested client-IP header fails closed before any Auth calls',async()=>{
  reset();const r=req({});r.headers.delete('x-tested-client-ip');assert.equal((await handler(r)).status,503);assert(!calls.some(c=>c.url.includes('/auth/v1/')));

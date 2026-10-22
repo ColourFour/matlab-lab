@@ -4,7 +4,7 @@
 
 **October 22 update: a dedicated MATLAB Lab backend is configured for classroom accounts. Existing device saves and MATLAB reference files are preserved. See the [rollout record](docs/PROGRESS_ROLLOUT.md) for deployment verification.**
 
-A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts include class-code student self-registration and a separate teacher page. Teacher summaries and student account saves use a separate Supabase project; anonymous lessons continue to work locally.
+A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts include class-code student self-registration and a separate teacher page. First-time teachers choose **Set up teacher account** and paste their private invitation link; opening that private link goes straight to setup. Teacher summaries and student account saves use a separate Supabase project; anonymous lessons continue to work locally.
 
 | Project | Students build | New ideas |
 |---|---|---|
