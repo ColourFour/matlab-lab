@@ -17,11 +17,11 @@ The separate **MATLAB Lab** Supabase project is in C4 Projects, Singapore. Other
 - Explicit sign-out clears that account/class recovery copies after saving or confirming discard. Expiry preserves unsaved work for re-sign-in. Closing a tab or unavailable/full storage can still lose unsaved work: export a backup before leaving. This is ordinary unencrypted browser storage; sign out on shared computers.
 - Normal logout ends only the current session. Password reset retains the independent account-wide revocation mechanism.
 - Teachers see their assigned roster, current lesson, completed count, last saved time, estimated activity and submitted revisions. Private draft notes remain student-only. Website progress and activity are self-reported, not evidence of MATLAB execution or attention.
-- The course layout, English default, Chinese preference and first-visit video are shared across entry points. Teacher/signup/direct-lesson links are not covered by the welcome video. Help keeps replay access.
+- The course layout, English default, Chinese preference and first-visit video are shared across entry points. Teacher/direct-lesson links are not covered by the welcome video. Student signup/sign-in shows the account screen first, then the first-visit video when that panel closes. Help keeps replay access.
 
 ## Verification
 
-The local checks include 97 site tests, 7 welcome DOM tests, 15 backend tests, the account DOM workflow and the SQL access/concurrency suite. They cover old saves, explicit import, account switching, complete notes, refresh recovery, conflicts, logout, input parsing and all 48 guided lessons.
+The local checks include 97 site tests, 9 welcome DOM tests, 15 backend tests, the account DOM workflow and the SQL access/concurrency suite. They cover old saves, explicit import, account switching, complete notes, refresh recovery, conflicts, logout, input parsing and all 48 guided lessons.
 
 The teacher sign-in and progress dashboard were also exercised in a real browser using the identical local release and the live backend, with synthetic test students. This verified readable lesson names, saved completion counts, timestamps, submissions and sign-out. The temporary loopback test origin was removed afterward. The public GitHub Pages deployment and its served index/configuration/player assets were checked separately; direct public-page browser navigation timed out in the test browser. The teacher's own first setup and real classroom use remain manual checks.
 

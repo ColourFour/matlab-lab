@@ -27,9 +27,11 @@
   }
  }
  root.LabIntro={open,ready:false};
- function firstVisit(){
+ function firstVisit(afterAccount=false){
   const params=new URLSearchParams(root.location.search);
-  if(['teacher','signup','classroom','review'].some(key=>params.get(key)==='1'))return false;
+  if(['teacher','review'].some(key=>params.get(key)==='1'))return false;
+  if(!afterAccount&&['signup','classroom'].some(key=>params.get(key)==='1'))return false;
+  if(root.LabClassroom?.signedIn()&&!root.LabClassroom?.isStudent())return false;
   if(!['','#','#/','#/bootcamp'].includes(root.location.hash))return false;
   if(document.querySelector('dialog[open]'))return false;
   try{return root.localStorage.getItem(SEEN_KEY)!=='seen';}catch(_){return true;}
@@ -47,7 +49,8 @@
   dialog.addEventListener('close',()=>{
    video.pause();
    try{root.localStorage.setItem(SEEN_KEY,'seen');}catch(_){}
-   const target=returnFocus?.isConnected&&returnFocus!==document.body?returnFocus:document.querySelector('.start-button')||document.querySelector('.help-button');
+   const hiddenDialog=returnFocus?.closest?.('dialog');
+   const target=returnFocus?.isConnected&&returnFocus!==document.body&&(!hiddenDialog||hiddenDialog.open)?returnFocus:document.querySelector('.start-button')||document.querySelector('.help-button');
    target?.focus({preventScroll:true});
   });
   dialog.addEventListener('click',event=>{
@@ -56,6 +59,7 @@
    updateLanguage();button.focus({preventScroll:true});
   });
   document.addEventListener('click',event=>{if(event.target.closest('[data-intro-open]'))open();});
+  document.addEventListener('close',event=>{if(event.target.id==='classroom-dialog'&&firstVisit(true))open();},true);
   video.addEventListener('loadedmetadata',updateLanguage);
   new root.MutationObserver(updateLanguage).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   updateLanguage();if(firstVisit())open();

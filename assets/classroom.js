@@ -21,7 +21,8 @@
   updateSnapshot(snapshot){if(!identity||JSON.stringify(values)===JSON.stringify(snapshot))return;values=JSON.parse(JSON.stringify(snapshot));if(identity.role==='student'){dirty=true;keepDraft();note(recoveryOK?'Saving… / 正在保存…':'Saving… This tab cannot keep a refresh backup. Export unsaved work before leaving. / 正在保存，无法保留刷新备份，请离开前导出未保存记录。');schedule();}},
   open(mode){if(mode)entryMode=mode;if(dialog){dialog.showModal();render();}},
   label(){return identity?identity.display_name:'Classroom / 班级登录';},
-  signedIn(){return !!identity;}
+  signedIn(){return !!identity;},
+  isStudent(){return identity?.role==='student';}
  };
  root.LabClassroom=api;if(typeof module!=='undefined')module.exports=api;
  function changed(){root.dispatchEvent(new CustomEvent('lab-account-change'));}

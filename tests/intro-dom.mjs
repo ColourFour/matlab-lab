@@ -70,6 +70,22 @@ test('Reduced motion and browser playback restrictions leave a usable welcome an
  const blocked=page(t,{blockedPlayback:true});await tick();assert(blocked.dialog.open);assert.equal(blocked.media.plays,1);
  blocked.dialog.querySelector('[data-intro-close]').click();assert.equal(blocked.dialog.open,false);
 });
+test('First-time signup and student sign-in lead to the video when the account panel closes',t=>{
+ for(const entry of ['signup','classroom']){
+  const {w,dialog,media}=page(t,{url:'http://localhost/?'+entry+'=1'});
+  w.LabClassroom.signedIn=()=>true;w.LabClassroom.isStudent=()=>true;
+  const account=w.document.querySelector('#classroom-dialog');account.querySelector('[data-act=close]').focus();account.close();
+  assert(dialog.open,entry);assert.equal(media.plays,1);
+  dialog.querySelector('[data-intro-close]').click();assert.ok(w.document.activeElement===w.document.querySelector('.start-button'),'Continue returns focus to the lesson start');
+ }
+});
+test('Returning students and teachers do not get a welcome overlay after account sign-in',t=>{
+ for(const options of [{seen:true,student:true},{seen:false,student:false}]){
+  const {w,dialog}=page(t,{url:'http://localhost/?classroom=1',seen:options.seen});
+  w.LabClassroom.signedIn=()=>true;w.LabClassroom.isStudent=()=>options.student;
+  w.document.querySelector('#classroom-dialog').close();assert.equal(dialog.open,false);
+ }
+});
 test('Blocked browser storage does not prevent watching, closing or replaying the video',t=>{
  const {w,dialog}=page(t,{blockedStorage:true});assert(dialog.open);
  assert.doesNotThrow(()=>dialog.querySelector('[data-intro-close]').click());assert.equal(dialog.open,false);
