@@ -77,6 +77,12 @@ Signed-in work uses separate account/class fields and version-checked cloud snap
 
 For a new backend, keep `enabled` and `securityReviewed` **false**, with a blank URL/key, until live access checks pass. A publishable key alone cannot enable accounts; Edge also requires `CLASSROOM_ACCOUNTS_ENABLED=true`. No server secrets or teacher invitation codes belong in browser code or this repository. See [integration report](docs/CLASSROOM_INTEGRATION.md) and [backend configuration and security gates](docs/CLASSROOM_BACKEND.md).
 
+## Explore the code
+
+Every guided Command Window and Editor example supports short English/Chinese explanations. Hover or tap a variable, function, number or symbol. Keyboard users Tab into the code and use Left/Right arrows; Home/End jump within the block and Escape closes the explanation. Click or tap a highlighted piece again to dismiss a pinned explanation.
+
+Explanations describe the role in the current project, including indexing, matrix rows, dotted arithmetic and loop syntax. They do not execute MATLAB, inspect a student’s workspace or reveal a calculated checkpoint answer. Copy and manual text selection preserve the original code. Exploration does not mark a checkpoint or change progress. See [authoring and verification notes](docs/CODE_EXPLANATIONS.md).
+
 ## Source structure
 
 - `index.html`: entry point and ordered, deferred scripts.
