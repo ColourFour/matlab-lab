@@ -7,8 +7,13 @@ serve(async req=>{
   const max=5*1024*1024+16384; const reader=req.body!.getReader(); const parts:Uint8Array[]=[];let size=0;
   while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new Failure(413,'Maximum file size is 5 MB.');}parts.push(value);}
   const form=await new Response(new Blob(parts),{headers:{'Content-Type':req.headers.get('Content-Type')!}}).formData();
-  if(form.get('action')!=='upload')throw new Failure(400,'Invalid upload.');
-  const classroom=uuid(form.get('classroomId')),lesson=str(form.get('lessonId'));
+  const final=form.get('action')==='final-upload';
+  if(!final&&form.get('action')!=='upload')throw new Failure(400,'Invalid upload.');
+  const classroom=uuid(form.get('classroomId')),lesson=final?'investigation:final':str(form.get('lessonId'));
+  const expected=Number(form.get('expectedVersion'));
+  const requestId=final?uuid(form.get('requestId')):null;
+  if(final&&(form.get('assessment')!=='yes'||form.get('rubricVersion')!=='project6-20-v1'||!Number.isSafeInteger(expected)||expected<1))throw new Failure(400,'Read the assessment and save your notes before submitting.');
+  if(!final&&lesson==='investigation:final')throw new Failure(400,'Use the Project 6 final submission form.');
   await membership(token,user.id,classroom,'student');await limit('upload:'+user.id,20,3600);
   const file=form.get('file'); if(!(file instanceof File)||file.size<1||file.size>5242880)throw new Failure(400,'File must be 1 byte to 5 MB.');
   const filename=str(file.name,160); if(/[\\/\x00-\x1f]/.test(filename))throw new Failure(400,'Invalid filename.');
@@ -20,14 +25,15 @@ serve(async req=>{
   if(['m','txt','csv','json'].includes(ext||'')) {
    try {const txt=new TextDecoder('utf-8',{fatal:true}).decode(bytes);if(txt.includes('\0'))throw Error();if(ext==='json')JSON.parse(txt);mime='text/plain';} catch {throw new Failure(400,'Text files must contain valid UTF-8 text.');}
   }
+  if(final&&ext==='zip'&&bytes[0]===80&&bytes[1]===75&&bytes[2]===3&&bytes[3]===4)mime='application/zip';
   if(!mime)throw new Failure(400,'Allowed files: .m, .txt, .csv, .json, .pdf, .png, .jpg.');
-  const accepted= mime==='text/plain'?['','text/plain','text/csv','application/json','application/octet-stream','text/x-matlab']:['',mime,'application/octet-stream'];
+  const accepted= mime==='text/plain'?['','text/plain','text/csv','application/json','application/octet-stream','text/x-matlab']:['',mime,'application/octet-stream',...(mime==='application/zip'?['application/x-zip-compressed']:[])];
   if(!accepted.includes(file.type))throw new Failure(400,'File type does not match its extension.');
   const path=`${classroom}/${user.id}/${crypto.randomUUID()}.${ext}`;
   const upload=await fetch(url+'/storage/v1/object/classroom-submissions/'+path,{method:'POST',headers:{...headers(undefined,true),'Content-Type':mime,'x-upsert':'false'},body:bytes});
   if(!upload.ok)throw new Failure(503,'Upload failed. Try again.');
-  try {const submission=await rpc('append_classroom_submission',{p_classroom:classroom,p_user:user.id,p_lesson:lesson,p_path:path,p_filename:filename},undefined,true);return {submission};}
-  catch(e){await api('/storage/v1/object/classroom-submissions',{method:'DELETE',body:JSON.stringify({prefixes:[path]})},undefined,true);throw e;}
+  try {const submission=final?await rpc('finalize_classroom_project',{p_classroom:classroom,p_user:user.id,p_path:path,p_filename:filename,p_expected:expected,p_request:requestId,p_checksum:Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(n=>n.toString(16).padStart(2,'0')).join('')},undefined,true):await rpc('append_classroom_submission',{p_classroom:classroom,p_user:user.id,p_lesson:lesson,p_path:path,p_filename:filename},undefined,true);if(submission.object_path!==path)await api('/storage/v1/object/classroom-submissions',{method:'DELETE',body:JSON.stringify({prefixes:[path]})},undefined,true);return {submission};}
+  catch(e){let committed;try{committed=await api('/rest/v1/submissions?object_path=eq.'+encodeURIComponent(path)+'&select=*',{},undefined,true);}catch{throw e;}if(committed.length)return {submission:committed[0]};await api('/storage/v1/object/classroom-submissions',{method:'DELETE',body:JSON.stringify({prefixes:[path]})},undefined,true);throw e;}
  }
  const raw=new TextDecoder().decode(await boundedBody(req,600000));const b=JSON.parse(raw);
  if(b.action==='registration-code'||b.action==='close-registration') {

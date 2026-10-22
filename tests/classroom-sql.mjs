@@ -13,6 +13,7 @@ grant usage on schema auth to public;grant execute on all functions in schema au
 create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);`);
 try{await db.exec(fs.readFileSync('supabase/schema/classroom.sql','utf8'));}catch(e){console.error('SQL schema failed:',e.message);process.exit(1);}
 await db.exec(fs.readFileSync('supabase/schema/enrollment.sql','utf8'));
+await db.exec(fs.readFileSync('supabase/schema/learning-evidence.sql','utf8'));
 const c1='10000000-0000-0000-0000-000000000001',c2='10000000-0000-0000-0000-000000000002';
 const a='20000000-0000-0000-0000-000000000001',b='20000000-0000-0000-0000-000000000002',t='20000000-0000-0000-0000-000000000003',x='20000000-0000-0000-0000-000000000004';
 const session=u=>u.replace('20000000','30000000');for(const u of [a,b,t,x])await db.exec(`insert into auth.users values('${u}');insert into auth.sessions(id,user_id) values('${session(u)}','${u}');`);
@@ -31,18 +32,36 @@ assert.deepEqual((await load()).rows[0].v.state,snapshot,'current field snapshot
 await assert.rejects(db.query(`select public.save_classroom_progress($1,'stale','{}',0,1)`,[c1]),e=>e.code==='PT409');
 const afterConflict=(await load()).rows[0].v;
 assert.deepEqual(afterConflict.state,snapshot);assert.equal(afterConflict.completed_count,1);assert.equal(Number(afterConflict.version),2);
+// Final submissions freeze the server-saved notes and are idempotent by request + checksum.
+await db.exec('reset role;set role service_role');
+const request='60000000-0000-0000-0000-000000000001',checksum='c'.repeat(64),path=c1+'/'+a+'/final.zip';
+const finalArgs=[c1,a,path,'final.zip',2,request,checksum];
+const finish=()=>db.query('select public.finalize_classroom_project($1,$2,$3,$4,$5,$6,$7) s',finalArgs);
+const final=(await finish()).rows[0].s;
+assert.equal((await finish()).rows[0].s.id,final.id,'lost response retry returns same permanent revision');
+await assert.rejects(db.query('select public.finalize_classroom_project($1,$2,$3,$4,$5,$6,$7)',[c1,a,path,'changed.zip',2,request,checksum]),e=>e.code==='PT409');
+await as(a);assert.equal(await count('project6_submissions'),1);await assert.rejects(finish());
+const frozen=(await db.query('select notes from public.project6_submissions')).rows[0].notes;
+assert.deepEqual(frozen,snapshot.notebook);
+await db.query('select public.save_classroom_progress($1,$2,$3,1,2)',[c1,snapshot.guide.active,JSON.stringify({...snapshot,notebook:{version:1,notes:{'define-problem':{goal:'Later private edit'}}}})]);
+await as(b);assert.equal(await count('project6_submissions'),0);
+await as(t);assert.deepEqual((await db.query('select notes from public.project6_submissions')).rows[0].notes,frozen);assert.equal(await count('student_state'),0);
+await assert.rejects(db.query("update public.project6_submissions set notes='{}'"));
+await db.exec('reset role;set role service_role');
+await assert.rejects(db.query('select public.finalize_classroom_project($1,$2,$3,$4,$5,$6,$7)',[c1,a,path,'new.zip',2,'60000000-0000-0000-0000-000000000002',checksum]),e=>e.code==='PT409');
+await as(a);
 const event='50000000-0000-0000-0000-000000000001';
 await db.query(`select public.record_classroom_activity($1,$2,15,'lesson')`,[c1,event]);
 await db.exec('reset role');await db.query(`update public.engagement set last_seen_at=clock_timestamp()-interval '20 seconds' where user_id=$1`,[a]);await as(a);
 const newEvent='50000000-0000-0000-0000-000000000002';
 const credit=()=>db.query(`select public.record_classroom_activity($1,$2,15,'lesson') v`,[c1,newEvent]);
 assert.equal(Number((await credit()).rows[0].v),15);assert.equal(Number((await credit()).rows[0].v),15,'duplicate activity events never double credit');
-await as(b);assert.equal(await count('progress'),0);assert.equal(await count('student_state'),0);assert.equal(await count('memberships'),1);
-await as(t);assert.equal(await count('progress'),1);assert.equal(await count('student_state'),0);assert.equal(await count('memberships'),3);assert.equal(await count('classrooms'),1);
+await as(b);assert.equal(await count('learning_snapshots'),0);assert.equal(await count('progress'),0);assert.equal(await count('student_state'),0);assert.equal(await count('memberships'),1);
+await as(t);assert.equal(await count('learning_snapshots'),1);const evidence=(await db.query('select learning from public.learning_snapshots')).rows[0].learning;assert.deepEqual(evidence.lessons[snapshot.guide.active].answers, snapshot.guide.lessons[snapshot.guide.active].answers);assert.equal(JSON.stringify(evidence).includes('BBBB'),false,'teacher projection excludes private notes');assert.equal(evidence.notebook,undefined);assert.equal(await count('progress'),1);assert.equal(await count('student_state'),0);assert.equal(await count('memberships'),3);assert.equal(await count('classrooms'),1);
 await assert.rejects(db.query(`select public.save_classroom_progress($1,'teacher','{}',0,0)`,[c1]));
 await db.exec('reset role');await db.exec(`insert into public.submissions(id,classroom_id,user_id,lesson_id,revision,object_path,filename) values('40000000-0000-0000-0000-000000000001','${c1}','${a}','lesson',1,'private/path','answer.m');insert into public.comments(submission_id,teacher_id,body) values('40000000-0000-0000-0000-000000000001','${t}','Feedback');`);
 await as(b);assert.equal(await count('submissions'),0);assert.equal(await count('comments'),0);
-await as(a);assert.equal(await count('submissions'),1);assert.equal(await count('comments'),1);await assert.rejects(db.query(`delete from public.submissions`));
+await as(a);assert.equal(await count('submissions'),2);assert.equal(await count('comments'),1);await assert.rejects(db.query(`delete from public.submissions`));
 await db.exec('reset role');await db.query('select public.classroom_revoke_sessions($1)',[a]);await as(a);assert.equal(await count('progress'),0);assert.equal(await count('submissions'),0);assert.equal(await count('comments'),0);
 await db.exec('reset role;set role anon');await assert.rejects(db.query('select * from public.memberships'));await assert.rejects(db.query(`select public.classroom_resolve('anything')`));
 await assert.rejects(db.query("select public.enroll_classroom_student('hash',null,'mail','name','user')"));
