@@ -1,7 +1,7 @@
 # Recovery and assessment verification — 2026-10-22
 
 - 112 component regression tests passed: numeric input, current question validation, stable step IDs, lesson flow, code explanations, local field storage, snapshot import/export and note-conflict preservation.
-- 40 DOM regression tests passed: first-visit/replay introduction, teacher setup, student header, code explanations, independent account clients, final submission consent/save ordering/retry, and teacher evidence rendering/escaping.
+- 41 DOM regression tests passed: first-visit/replay introduction, teacher setup, student header, code explanations, independent account clients, final submission consent/save ordering/retry, teacher evidence rendering/escaping, and correct Project 6 section activity.
 - Standalone classroom DOM scenario passed: signup, password confirmation, account isolation, copying device work without altering local fields, exports and sign-out.
 - PostgreSQL/RLS scenario passed against the actual SQL using PGlite: account/class isolation, optimistic conflicts, teacher projection excluding draft notes, immutable final notes, exact saved version, idempotent finalization, client write denial and revoked sessions.
 - 27 backend regression tests passed: authentication/configuration/origin gates, registration controls, file validation, final consent/version checks, verified caller identity, upload cleanup after conflict, uncertain commit handling and retry checksum.

@@ -15,7 +15,7 @@ function setup(server){
  else if(path.endsWith('/classrooms'))data=[{id:'class-a',name:'Class'}];
  else if(path.endsWith('/classroom-data')){
   if(b.action==='load-progress')data={progress:server.version?{state:copy(server.state),version:server.version}:null};
-  if(b.action==='progress'){if(b.expectedVersion!==server.version){status=409;data={error:'Version conflict'};}else{server.state=copy(b.state);data={version:++server.version};}}
+  if(b.action==='progress'){if(b.expectedVersion!==server.version){status=409;data={error:'Version conflict'};}else{server.state=copy(b.state);server.lessonId=b.lessonId;data={version:++server.version};}}
   if(opts.body instanceof w.FormData){server.uploads.push(opts.body);if(server.failOnce){server.failOnce=false;status=503;data={error:'Temporary upload failure'};}else data={submission:{revision:1}};}
  }
  return {ok:status===200,status,json:async()=>data};};
@@ -49,5 +49,11 @@ test('Final submission displays assessment, requires consent and notes, saves be
 test('Teacher dashboard shows saved responses and accepted results, and renders submitted notes as text',async()=>{
  const server={role:'teacher',version:0,state:{},uploads:[],learning:[{user_id:'pupil',version:4,learning:{active:'bootcamp:first-command',completed:{bootcamp:['first-command']},lessons:{'bootcamp:first-command':{answers:{'transfer-v2':'423'},solved:['transfer-v2'],cursorId:'10'}}}}],submissions:[{id:'receipt',user_id:'pupil',lesson_id:'investigation:final',filename:'final.zip',revision:1,created_at:'2026-10-22'}],finals:[{submission_id:'receipt',progress_version:3,rubric_version:'project6-20-v1',notes:{version:1,notes:{'define-problem':{decision:'<script>Submitted notes</script>'}}},learning:{completed:{investigation:['define-problem']}}}]},a=setup(server);
  try{await a.login();const html=a.el('#classroom-work');assert.match(html.textContent,/Accepted result/);assert.match(html.textContent,/423/);assert.match(html.textContent,/Passed/);assert.match(html.textContent,/Submitted notes/);assert.equal(html.querySelectorAll('script').length,0);assert.match(html.textContent,/Not an attempt log/);assert.equal(a.w.document.querySelector('#final-project-form'),null);}
+ finally{await a.w.happyDOM.close();}
+});
+
+test('Project 6 section activity and last visited section save without changing guided step IDs',async()=>{
+ const server={version:0,state:{},uploads:[]},a=setup(server);
+ try{await a.login();await a.click('[data-act=close]');a.w.location.hash='#/investigation/plan-tests';a.w.dispatchEvent(new a.w.Event('hashchange'));await tick();await a.click('[data-classroom-open]');await a.save();assert.equal(server.lessonId,'investigation:plan-tests');assert.equal(server.state.app.progress.investigation.lastLesson,'plan-tests');}
  finally{await a.w.happyDOM.close();}
 });

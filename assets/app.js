@@ -103,6 +103,7 @@
    if(steps[st.cursor].done&&!review&&!state.completed.includes(course.lessons[current.index].id)&&LabGuide.complete(steps,st,LabCore)){state.completed.push(course.lessons[current.index].id);}
    persist();saveGuide();
   }
+  if(current.page==='lesson'&&course.kind==='capstone'&&!review){state.lastLesson=course.lessons[current.index].id;persist();}
   app.innerHTML=header()+`<main id="main" class="student-main ${course.kind==='capstone'&&current.page!=='map'?'cap-main':''}" tabindex="-1">${review?`<div class="review-banner notice">${F('Teacher preview · student progress is unchanged','教师预览 · 不改变学生进度')}<a href="${esc(location.pathname+location.hash)}">${F('Student view','学生模式')}</a></div>`:''}${!storageOK||!guideOK?`<p class="notice" role="status">${F('Progress cannot be saved. Keep this page open.','无法保存进度，请保持本页打开。')}</p>`:''}${notice?`<p class="notice">${esc(notice)}</p>`:''}${current.page==='map'?map():current.page==='lesson'?lesson():current.page==='complete'?completion():home()}</main><div id="modal-root"></div><div id="toast" class="toast" role="status"></div>`;
   document.title=(current.page==='lesson'?t(course.lessons[current.index].title):current.page==='map'?tr('Course map','课程目录'):t(course.title))+' · MATLAB Lab';
   if(focus){window.scrollTo(0,0);document.getElementById('step-title')?.focus({preventScroll:true});}
@@ -166,6 +167,7 @@
   return {app:a,guide:fullBook(LabGuide.clean(g.sync(),guides,LabCore)),notebook:LabCapstone.cleanNotebook(n.sync(),courses.investigation)};
  };
  if(window.LabClassroom){
+  window.LabClassroom.activeLesson=()=>current?.page==='lesson'?course.id+':'+course.lessons[current.index].id:book.active;
   window.LabClassroom.currentSnapshot=()=>({app:JSON.parse(JSON.stringify(store)),guide:fullBook(JSON.parse(JSON.stringify(book))),notebook:JSON.parse(JSON.stringify(notebook))});
   window.LabClassroom.restoreDeviceSnapshot=snapshot=>{
    if(review||window.LabClassroom.signedIn())throw Error('Cannot restore device work in this mode. / 当前模式无法恢复设备记录。');
