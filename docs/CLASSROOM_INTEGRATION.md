@@ -1,3 +1,5 @@
+> Historical integration record from October 7. For the October 22 backend and progress-preservation work, see [PROGRESS_ROLLOUT.md](PROGRESS_ROLLOUT.md).
+
 # Classroom integration — ready for review, not deployed
 
 Branch: `integration/classroom-v2-20261007`.

@@ -2,11 +2,12 @@ const {test}=require('node:test'),assert=require('node:assert/strict');
 const {client}=require('./app-harness.cjs');
 const config={enabled:true,securityReviewed:true,url:'https://test.supabase.co',publishableKey:'sb_publishable_fixture'};
 const plain=x=>JSON.parse(JSON.stringify(x));
-function fixture(shared=new Map(),search='',fetch=async()=>({ok:true,json:async()=>({version:1})})){
- const a=client(shared,'#/',search,{context:{LAB_CLASSROOM_CONFIG:config,fetch},transform(file,source){
+function fixture(shared=new Map(),search='',fetch=async()=>({ok:true,json:async()=>({version:1})}),session=new Map()){
+ const sessionStorage={get length(){return session.size;},key:i=>[...session.keys()][i],getItem:k=>session.get(k)??null,setItem:(k,v)=>session.set(k,v),removeItem:k=>session.delete(k)};
+ const a=client(shared,'#/',search,{context:{LAB_CLASSROOM_CONFIG:config,fetch,sessionStorage},transform(file,source){
   if(file!=='assets/classroom.js')return source;
   // Closure access is test-only. The shipped client has no seed/debug hooks.
-  return source.replace('root.LabClassroom=api;',`api.test={flush,signout,request,peek:()=>({values,dirty,conflict,version}),seed(snapshot={},role='student',name='A',rev=0){generation++;identity={role,display_name:name,classroom_id:'class-'+name};token='token-'+name;expires=Date.now()+3600000;values=JSON.parse(JSON.stringify(snapshot));fields=new Map();version=rev;dirty=false;conflict=false;saving=false;changed();}};root.LabClassroom=api;`);
+  return source.replace('root.LabClassroom=api;',`api.test={flush,signout,request,chooseClass,authenticate(name='A'){token='token-'+name;expires=Date.now()+3600000;},expire(){expires=0;},peek:()=>({values,dirty,conflict,version,recoveryCopies}),seed(snapshot={},role='student',name='A',rev=0){generation++;identity={role,user_id:'user-'+name,display_name:name,classroom_id:'class-'+name};token='token-'+name;expires=Date.now()+3600000;values=JSON.parse(JSON.stringify(snapshot));fields=new Map();version=rev;dirty=false;conflict=false;saving=false;changed();}};root.LabClassroom=api;`);
  }});return {...a,account:a.ctx.LabClassroom.test};
 }
 function finish(a,key){for(const step of a.ctx.LAB_GUIDES[key].slice(0,-1)){if(step.question){a.submit(Array.isArray(step.question.answer)?step.question.answer.join(' '):String(step.question.answer));assert.match(a.app.innerHTML,/step-feedback is-correct/);}a.click('next-step');}}
@@ -75,4 +76,23 @@ test('A stale account request cannot expire or conflict a newly signed-in studen
  for(const status of [401,409]){let release;const a=fixture(new Map(),'',()=>new Promise(r=>{release=r;}));a.account.seed({},'student','A');const pending=a.account.request('/late').catch(()=>{});
   a.account.seed({},'student','B');release({ok:false,status,json:async()=>({})});await pending;assert.equal(a.ctx.LabClassroom.label(),'B');assert.equal(a.account.peek().conflict,false);
  }
+});
+test('Refresh recovers unsaved account work only for its owner and preserves device work',async()=>{
+ const local=new Map(),session=new Map();const fetch=async(url,options)=>({ok:true,json:async()=>url.includes('classroom-data')?{progress:null}:[]});
+ const a=fixture(local,'',fetch,session);a.account.seed();a.goto('#/bootcamp/first-command');a.click('next-step');
+ const before=JSON.stringify([...local]);assert(session.size>0);assert(!JSON.stringify([...session]).includes('token-A'));
+ const reloaded=fixture(local,'',fetch,session);reloaded.account.authenticate();await reloaded.account.chooseClass({role:'student',user_id:'user-A',classroom_id:'class-A'});
+ assert.equal(reloaded.account.peek().dirty,true);assert.equal(reloaded.account.peek().values.guide.lessons['bootcamp:first-command'].cursorId,'1');assert.equal(JSON.stringify([...local]),before);
+ const other=fixture(local,'',fetch,session);other.account.authenticate('B');await other.account.chooseClass({role:'student',user_id:'user-B',classroom_id:'class-B'});assert.equal(other.account.peek().values.guide.active,'');
+});
+test('Recovery from an older server version stays available for export and never overwrites online work',async()=>{
+ const session=new Map(),a=fixture(new Map(),'',async()=>({ok:true,json:async()=>({})}),session);a.account.seed({},'student','A',2);a.goto('#/bootcamp/first-command');a.click('next-step');
+ const requests=[],fetch=async(url,options={})=>{requests.push(options.body);return {ok:true,json:async()=>url.includes('classroom-data')?{progress:{version:3,state:{}}}:[]};};
+ const reloaded=fixture(new Map(),'',fetch,session);reloaded.account.authenticate();await reloaded.account.chooseClass({role:'student',user_id:'user-A',classroom_id:'class-A'});
+ assert.equal(reloaded.account.peek().values.guide.active,'');assert.equal(reloaded.account.peek().recoveryCopies.length,1);assert.equal(reloaded.account.peek().recoveryCopies[0].state.guide.lessons['bootcamp:first-command'].cursorId,'1');assert(!requests.some(body=>body&&JSON.parse(body).action==='progress'));
+});
+test('Expired authentication keeps unsaved work for re-sign-in; explicit logout clears its recovery',async()=>{
+ const session=new Map(),calls=[],a=fixture(new Map(),'',async(url)=>{calls.push(url);return {ok:true,json:async()=>({})};},session);a.account.seed();a.goto('#/bootcamp/first-command');a.click('next-step');a.account.expire();
+ await assert.rejects(a.account.request('/private'),/Session expired/);assert(session.size>0);assert(calls.some(url=>url.endsWith('logout?scope=local')));assert(!calls.some(url=>url.includes('scope=global')));
+ a.account.seed();await a.account.signout();assert.equal(session.size,0);
 });

@@ -113,7 +113,7 @@ declare v bigint; begin
  insert into public.progress(classroom_id,user_id) values(p_classroom,auth.uid()) on conflict do nothing;
  update public.progress set lesson_id=p_lesson,completed_count=p_completed,version=version+1,updated_at=clock_timestamp()
  where classroom_id=p_classroom and user_id=auth.uid() and version=p_expected returning version into v;
- if v is null then raise exception 'version conflict' using errcode='40001'; end if;
+ if v is null then raise exception 'version conflict' using errcode='PT409'; end if;
  insert into public.student_state(classroom_id,user_id,state) values(p_classroom,auth.uid(),p_state) on conflict(classroom_id,user_id) do update set state=excluded.state;
  return v;
 end $$;

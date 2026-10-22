@@ -1,15 +1,21 @@
 // No SDK, third-party runtime dependency, or client-side service credentials.
 export class Failure extends Error { status: number; constructor(status: number, message: string) { super(message); this.status = status; } }
 export const url = Deno.env.get('SUPABASE_URL')!;
-const secret = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-const publicKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+function keyMap(name:string){try{return JSON.parse(Deno.env.get(name)||'{}');}catch{return {};}}
+const secret = keyMap('SUPABASE_SECRET_KEYS').default||Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const publicKey = keyMap('SUPABASE_PUBLISHABLE_KEYS').default||Deno.env.get('SUPABASE_ANON_KEY')!;
 export function headers(token?: string, service = false) {
-  return { apikey: service ? secret : publicKey, Authorization: `Bearer ${service ? secret : token || publicKey}`, 'Content-Type': 'application/json' };
+  const key=service?secret:publicKey;
+  const bearer=service?(key?.startsWith('sb_secret_')?null:key):token||(key?.startsWith('sb_publishable_')?null:key);
+  return {apikey:key,...(bearer?{Authorization:`Bearer ${bearer}`}:{ }),'Content-Type':'application/json'};
 }
 export async function api(path: string, init: RequestInit = {}, token?: string, service = false) {
   const r = await fetch(url + path, { ...init, headers: { ...headers(token, service), ...init.headers } });
   const body = await r.text(); let data; try { data = body ? JSON.parse(body) : null; } catch { data = null; }
-  if (!r.ok) throw new Failure(data?.code === '40001' ? 409 : r.status >= 500 ? 503 : 400, data?.code === '40001' ? 'Progress changed on another device. Reload before saving.' : 'Request could not be completed.');
+  if (!r.ok) {
+    const conflict=data?.code==='PT409'||data?.code==='40001';
+    throw new Failure(conflict?409:r.status>=500?503:[401,403,404,409,413,429].includes(r.status)?r.status:400,conflict?'Progress changed on another device. Reload before saving.':'Request could not be completed.');
+  }
   return data;
 }
 export const rpc = (name: string, body: unknown, token?: string, service = false) => api('/rest/v1/rpc/' + name, { method: 'POST', body: JSON.stringify(body) }, token, service);

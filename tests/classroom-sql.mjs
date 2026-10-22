@@ -28,7 +28,7 @@ const snapshot={app:{version:2,lang:'zh',progress:{bootcamp:{version:1,completed
 await db.query(`select public.save_classroom_progress($1,$2,$3,1,1)`,[c1,snapshot.guide.active,JSON.stringify(snapshot)]);
 const load=()=>db.query('select public.load_classroom_progress($1) v',[c1]);
 assert.deepEqual((await load()).rows[0].v.state,snapshot,'current field snapshots and full conflict copies round-trip');
-await assert.rejects(db.query(`select public.save_classroom_progress($1,'stale','{}',0,1)`,[c1]),e=>e.code==='40001');
+await assert.rejects(db.query(`select public.save_classroom_progress($1,'stale','{}',0,1)`,[c1]),e=>e.code==='PT409');
 const afterConflict=(await load()).rows[0].v;
 assert.deepEqual(afterConflict.state,snapshot);assert.equal(afterConflict.completed_count,1);assert.equal(Number(afterConflict.version),2);
 const event='50000000-0000-0000-0000-000000000001';

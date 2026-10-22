@@ -2,9 +2,9 @@
 
 **[Live course](https://colourfour.github.io/matlab-lab/)** · **[Teacher page](https://colourfour.github.io/matlab-lab/?teacher=1)** · **[Teacher preview](https://colourfour.github.io/matlab-lab/?review=1)**
 
-**October 8 release: classroom layout and the original 30-second introduction are included. Account access stays disabled until its separate Supabase project is configured and live security checks pass.**
+**October 22 update: a dedicated MATLAB Lab backend is configured for classroom accounts. Existing device saves and MATLAB reference files are preserved. See the [rollout record](docs/PROGRESS_ROLLOUT.md) for deployment verification.**
 
-A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts include class-code student self-registration and a separate teacher page. The account backend remains disabled pending configuration.
+A static English / Simplified Chinese MATLAB course for high-school beginners. Six guided projects with **48 lessons**, followed by an open independent project with eight working sections. Anonymous lessons need no build step, backend, external fonts, runtime libraries or package installation. Optional classroom accounts include class-code student self-registration and a separate teacher page. Teacher summaries and student account saves use a separate Supabase project; anonymous lessons continue to work locally.
 
 | Project | Students build | New ideas |
 |---|---|---|
@@ -54,7 +54,7 @@ For a fresh repository, upload this folder's contents, including `.nojekyll`. In
 
 ## Classroom use and model boundaries
 
-Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The site checks numbers and choices entered on the page; it does **not** execute MATLAB or inspect scripts. With the shipped classroom configuration disabled, it does not upload work or send progress to a teacher. Arrange school MATLAB access and your usual submission method.
+Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The site checks numbers and choices entered on the page; it does **not** execute MATLAB or inspect scripts. Anonymous use stays on the device. Signed-in students share lesson progress and submitted files with their assigned teacher; private draft notes remain student-only. The site uploads only files students explicitly choose. It never reads or changes files in their MATLAB folders. Arrange school MATLAB access before class.
 
 - Project 1 assumes no drag, constant gravity and equal launch/landing height.
 - Project 2 uses fictional tokens. Random trials estimate probabilities; checkpoints use deterministic results or exact identities instead of requiring particular random digits. A fair expected value does not guarantee a winning run.
@@ -65,15 +65,17 @@ Students run scripts in MATLAB desktop or MATLAB Online beside this guide. The s
 
 For anonymous use, progress is stored in this browser on this device, separately for each project. Each changed field is saved independently, so a stale tab cannot replace another section’s notes or erase unrelated completed lessons. Tabs synchronize changes; a reset starts a new progress generation and keeps notes/language. If two tabs edit the same note, the other version is preserved separately, shown below the notes, and included in the export. Existing whole-record saves migrate once; new field records then take precedence. Existing Boot Camp and Projectile Motion progress is preserved when the new courses load. Localhost and the public address have separate storage. Guided step position, answer drafts and successful checks survive reload on the same browser. The September 28 checkpoint revision restarts in-progress lesson steps once, so old answers cannot bypass new tasks; completed lessons, language preferences and Project 6 notes are preserved. Project 6 notes autosave separately and survive reload; export them to keep a backup or move devices. Self-review can be recorded in any order after entering notes or file references. **Reset all project progress** removes completion/self-review marks but keeps Project 6 notes. Shared computers share these records: export needed work, then clear this site’s browser data between students to remove notes as well. Private browsing or clearing site data can remove records. When storage is unavailable, the app warns and continues in memory.
 
-## Restored classroom features (disabled draft)
+## Classroom accounts and introduction
 
-The home page offers the original 30-second video on a first visit. It starts only when the student presses Play; it never blocks Start. Help offers replay. Native controls provide pause, sound and captions; EN/中文 chooses the initial caption language. Closing stops playback, and replay starts at the beginning. Both captions and the transcript are local assets.
+The first student visit opens with the original 30-second video. Playback begins muted when the browser allows it; students who prefer reduced motion press Play themselves. Start learning is available immediately. Continuing or dismissing the introduction remembers the visit on this browser without changing lesson progress. Returning visitors resume learning, and Help offers replay. Direct teacher/sign-up links and lesson links open their intended screen without an extra video dialog. Native controls provide pause, sound and captions; EN/中文 also works inside the welcome screen and persists through the normal language setting. Closing stops playback, and replay starts at the beginning. Both captions and the transcript are local assets.
 
-Classroom sign-in, student submissions and teacher feedback screens are restored from the October 3 ZIP. They remain unavailable in the shipped configuration. Lessons still work without an account. The backend includes class-scoped permissions, student-only drafts, teacher summaries, append-only file revisions and short-lived downloads.
+Classroom sign-in, student submissions and teacher feedback screens are restored from the October 3 ZIP. They use the dedicated MATLAB Lab backend. Lessons still work without an account. The backend includes class-scoped permissions, student-only drafts, teacher summaries, append-only file revisions and short-lived downloads.
 
-Signed-in drafts use separate in-memory field storage and version-checked cloud snapshots. They never overwrite anonymous device work or another account's draft. Conflicts stop further saves and retain the local draft; Export a backup downloads the whole account snapshot. Explicit device import reads the current save format, including stable lesson IDs and preserved note conflicts. Account reload requires sign-in again; unsaved account work can be lost on close, so export it first. Teacher preview never syncs lesson practice.
+Signed-in work uses separate account/class fields and version-checked cloud snapshots. Unsaved snapshots also have a per-tab `sessionStorage` recovery copy. After a refresh, sign in to the same account and class to recover it. A newer online version is never overwritten automatically: older drafts stay available for download. Explicit sign-out clears that account's recovery copies, and closing the tab may remove them; export unsaved work first. No passwords or login tokens are stored in browser storage. Recovery copies are ordinary browser data, so always sign out on shared computers.
 
-Keep `enabled` and `securityReviewed` **false**, and the URL/key blank, in `assets/classroom-config.js`. Configuring a publishable key alone cannot enable accounts. Edge functions also require `CLASSROOM_ACCOUNTS_ENABLED=true`, which must remain unset until review and staging checks pass. No secrets belong in browser code. See [integration report](docs/CLASSROOM_INTEGRATION.md) and [backend configuration and security gates](docs/CLASSROOM_BACKEND.md).
+**Copy saved device progress** reads the current local save format, including stable step IDs and preserved note conflicts, without changing it. The current account draft downloads as a JSON backup before import. Original device progress and local MATLAB files stay intact. Teacher preview never syncs lesson practice.
+
+For a new backend, keep `enabled` and `securityReviewed` **false**, with a blank URL/key, until live access checks pass. A publishable key alone cannot enable accounts; Edge also requires `CLASSROOM_ACCOUNTS_ENABLED=true`. No server secrets or teacher invitation codes belong in browser code or this repository. See [integration report](docs/CLASSROOM_INTEGRATION.md) and [backend configuration and security gates](docs/CLASSROOM_BACKEND.md).
 
 ## Source structure
 
@@ -85,7 +87,8 @@ Keep `enabled` and `securityReviewed` **false**, and the URL/key blank, in `asse
 - `content/guided.js`: the authored short-step sequences and active transfer answer keys for all 48 guided lessons. Original course files and reference downloads retain the worked examples.
 - `assets/celebrations.js` and `celebrations.css`: the shuffled reward selection, bounded overlay lifecycle and 16 CSS animations.
 - `assets/*diagrams.js`: accessible inline SVGs. Lesson visuals have no external image dependencies; the separate intro includes its original local video/poster.
-- `assets/classroom*`: optional classroom client, disabled public configuration and imported interface styling.
+- `assets/classroom*`: classroom client, publishable configuration and interface styling.
+- `assets/account-recovery.js`: account/class-scoped recovery in this tab; separate from anonymous saves.
 - `assets/intro.js` and `assets/intro/`: player, original 30-second MP4, poster, captions and transcript.
 - `supabase/`: unapplied schema, Edge function drafts and local tests; no deployed backend.
 - `docs/`: integration provenance, conflict decisions and account release gates.
@@ -95,7 +98,7 @@ Keep `enabled` and `securityReviewed` **false**, and the URL/key blank, in `asse
 
 ## Verification and remaining audit
 
-Run `node --test tests/*.test.cjs` with Node 18+. Tests cover all guided checkpoint sets and short-step sequences, bounded instructions, intact MATLAB blocks, resume state, dependency invalidation, open capstone navigation/state, notebook sanitation/export/escaping, bilingual completeness, malformed input, numerical tolerance, dependencies, progress migration, fractal geometry, compression error, projectile physics and SIR updates. See [QA record](tests/QA.md) for browser results.
+Run `node --test tests/*.test.cjs` with Node 18+. For the pinned DOM/SQL checks, install `tests/runtime` with `npm ci --prefix tests/runtime` and run `node --test tests/intro-dom.mjs`, `node tests/classroom-dom.mjs`, and `node tests/classroom-sql.mjs`. Backend checks use `node --experimental-transform-types --test supabase/tests/*.test.mjs` with Node 22.14+. Tests cover all guided checkpoint sets and short-step sequences, bounded instructions, intact MATLAB blocks, resume state, dependency invalidation, open capstone navigation/state, notebook sanitation/export/escaping, bilingual completeness, malformed input, numerical tolerance, dependencies, progress migration, fractal geometry, compression error, projectile physics and SIR updates. See [QA record](tests/QA.md) for browser results.
 
 For the additional classroom checks, use Node 22.14+ and install only the pinned test dependencies (the site itself needs none):
 

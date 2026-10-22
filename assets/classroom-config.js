@@ -1,3 +1,3 @@
 // Public configuration only. Never add service-role keys, passwords, or roster data.
-// Leave empty until the separate MATLAB Lab backend has passed its security tests.
-window.LAB_CLASSROOM_CONFIG = Object.freeze({ enabled: false, securityReviewed: false, url: '', publishableKey: '' });
+// Dedicated MATLAB Lab project; live access checks reviewed October 22, 2026.
+window.LAB_CLASSROOM_CONFIG = Object.freeze({ enabled: true, securityReviewed: true, url: 'https://mywniwhaepvvfczmljfv.supabase.co', publishableKey: 'sb_publishable_pfJ3HmpbINhXEevcjEJuBg_5RtXgqJq' });

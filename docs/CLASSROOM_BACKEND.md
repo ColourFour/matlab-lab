@@ -1,12 +1,17 @@
-# Classroom backend: local draft, not deployed
+# Classroom backend configuration
 
-No Supabase project was created or changed, no account was provisioned, and no real student data or credentials were used. The SQL remains an unapplied schema draft, not a deployment migration. Local PostgreSQL WASM tests execute the schema with minimal Auth/Storage stubs; they are not a Supabase service test. The CLI is available here, but Deno/Docker/native MATLAB are not on PATH. No live Auth/RLS/Storage test or security-advisor run has occurred. Keep both frontend activation flags false and `CLASSROOM_ACCOUNTS_ENABLED` unset until the required checks below pass.
+The dedicated **MATLAB Lab** project was created in C4 Projects on October 22, 2026, in Singapore (`mywniwhaepvvfczmljfv`). The account and enrollment migrations and both Edge functions are deployed. See [the progress rollout record](PROGRESS_ROLLOUT.md) for release verification and remaining operational limits. Other C4 projects were not changed. No real roster or teacher password was imported.
+
+For a new environment, leave the frontend and server activation gates off until the checks below pass. Only a publishable key belongs in the frontend. Server secrets stay in Supabase secret storage.
 
 ## Architecture and API
 
-Frontend configuration contains only disabled activation flags, project URL and publishable key. Both `enabled` and `securityReviewed` must be explicitly true after security review; URL/key alone cannot enable accounts. Edge owns the service-role secret. There is no browser account creation, self-enrolment, role editing, or teacher promotion route. Teacher email/password signs in directly through Supabase Auth; student name selection uses classroom-auth to resolve a random synthetic Auth identity server-side. Auth itself may return a user's own synthetic email to an authenticated request; it is not a secret or an authorization boundary. Never encode real names/emails in these aliases.
+Frontend configuration contains only disabled activation flags, project URL and publishable key. Both `enabled` and `securityReviewed` must be explicitly true after security review; URL/key alone cannot enable accounts. Edge owns the service-role secret. Students can create accounts with a teacher-issued class code. Teacher setup requires a separate private, expiring, single-use invitation; there is no public role-editing or teacher-promotion route. Teacher email/password signs in directly through Supabase Auth; student name selection uses classroom-auth to resolve a random synthetic Auth identity server-side. Auth itself may return a user's own synthetic email to an authenticated request; it is not a secret or an authorization boundary. Never encode real names/emails in these aliases.
 
 POST `/functions/v1/classroom-auth`:
+- `{action:"register",code,name,username,password}` → a newly enrolled student session.
+- `{action:"teacher-register",code,name,email,password}` → a newly enrolled teacher session, only with a valid private invitation.
+- `{action:"username-login",code,username,password}` → a student session.
 - `{action:"roster",code}` → `{classroom:{id,name},students:[{id,display_name}]}`
 - `{action:"login",code,studentId,password}` → `{session:{access_token,expires_at,expires_in,token_type,user:{id}}}`. No refresh token returned.
 
@@ -21,7 +26,7 @@ POST `/functions/v1/classroom-data`, Authorization Bearer access token:
 
 GET Data API is permitted for scoped `classrooms`, `memberships`, `progress`, `engagement`, `submissions`, `comments`. A student sees their own rows; a teacher sees active assigned-class summaries, submissions, comments and roster. `student_state` is student-only, including from teacher accounts. No client direct mutations are granted. No Storage client policies are created, including SELECT; otherwise users could generate signed URLs with arbitrary lifetimes.
 
-## Required local verification before deployment
+## Verification for a new environment
 
 1. Install current official Supabase CLI after checking its `--help`; initialize a disposable local project (do not link a production project).
 2. Inspect `supabase db --help` / `supabase migration --help`. Execute the draft in the local database for iteration, run advisors and the RLS tests below, then use the CLI migration generation workflow. Never treat this draft path as an applied migration.
@@ -34,13 +39,13 @@ GET Data API is permitted for scoped `classrooms`, `memberships`, `progress`, `e
 
 ## Server configuration and identity provisioning
 
-Use Supabase's injected `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` only in Edge secret storage. Never put service credentials in a public config, repository, browser bundle or command output. Configure only after review and disposable staging tests:
+Use Supabase's injected `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEYS` and `SUPABASE_SECRET_KEYS` in Edge; legacy `SUPABASE_ANON_KEY`/`SUPABASE_SERVICE_ROLE_KEY` remain a compatibility fallback. Opaque modern keys go only in `apikey`, never in `Authorization`. Keep server keys in Edge secret storage. Never put service credentials in a public config, repository, browser bundle or command output. Configure only after review and disposable staging tests:
 - `CLASSROOM_ACCOUNTS_ENABLED`: leave unset/false in this draft. Set `true` only after the release gates pass; Edge requests fail closed with 503 otherwise. This guards these functions, not the separate Auth/Data APIs.
 - `CLASSROOM_ALLOWED_ORIGINS`: exact comma-separated trusted HTTPS website origins; no wildcard. Missing Origin is rejected.
 - `CLASSROOM_RATE_PEPPER`: random server-only string, used to avoid retaining raw IP addresses in rate-limit keys.
 - `CLASSROOM_TRUSTED_IP_HEADER`: a request header that the deployed gateway demonstrably **overwrites** with the verified client IP. Do not blindly use arbitrary `X-Forwarded-For` or assume headers are trustworthy. Verify behavior in staging. If unavailable, add a trusted gateway/rate limiter before deployment. Sign-in fails closed without this setting/header.
 
-Disable public signup and anonymous sign-in in Supabase Auth. Disable mail-based reset for synthetic student aliases and do not use a deliverable domain. Apply platform Auth rate limits and require teacher passwords of at least 12 characters; configure project password policy accordingly. Teacher MFA is recommended but not implemented as a mandatory assurance check here. Set a short access-token lifetime (e.g. 15–30 minutes); frontend also signs out after idle expiry.
+Disable **global** public signup and anonymous sign-in in Supabase Auth. Keep the email/password provider enabled for already enrolled users; disabling `[auth.email].enable_signup` through this CLI also disables password login. The deployed configuration uses `[auth].enable_signup=false` and `[auth.email].enable_signup=true`; direct `/auth/v1/signup` must still be rejected. Disable mail-based reset for synthetic student aliases and do not use a deliverable domain. Apply platform Auth rate limits and require teacher passwords of at least 12 characters; configure project password policy accordingly. Teacher MFA is recommended but not implemented as a mandatory assurance check here. Set a short access-token lifetime (e.g. 15–30 minutes); frontend also signs out after idle expiry. Normal logout uses `scope=local`, preserving other devices; teacher password reset retains the separate account-wide revocation check.
 
 Student self-registration now uses class code, name, unique class username and a password of at least 12 characters. An Edge function creates a new synthetic Auth identity, then a service-only transaction inserts a literal student membership. Duplicate usernames, a full class, code rotation or closed registration cannot claim an existing account. Failed enrollment removes the newly created identity. Teachers can generate a class code, close registration and reset a student password from the assigned classroom dashboard.
 
@@ -56,7 +61,9 @@ Private schemas are not in Data API exposed schemas. Public RPCs are security-in
 
 File acceptance is an allowlist of UTF-8 `.m/.txt/.csv/.json`, PDF, PNG and JPEG up to 5 MiB. Binary magic/type checks are basic format checks, not malware scanning. MATLAB code is never executed. Files must be downloaded as attachments; the application should never render uploaded HTML/scripts. Deploy scanning if required by the institution. Storage and database transactions are not atomic: an upload whose subsequent insertion fails is deleted best-effort; service operators must reconcile orphaned unreferenced objects after interrupted requests. Existing revision records are append-only to all clients. The service/admin is trusted and can maintain or delete data under institutional policy.
 
-Rechecked official docs/changelog on 2026-10-07:
+Rechecked official docs/changelog on 2026-10-22. The November 10 TLS cipher retirement is compatible with the HTTPS browser clients used here. Application version conflicts use `PT409`, avoiding the documented PostgREST 14 retry loop for custom `40001` errors:
+- https://supabase.com/docs/guides/troubleshooting/high-cpu-and-infinite-transaction-retries-when-using-custom-error-codes-in-rpc-functions-77326b
+- https://supabase.com/docs/guides/auth/signout
 - https://supabase.com/changelog.md
 - https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes
 - https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically

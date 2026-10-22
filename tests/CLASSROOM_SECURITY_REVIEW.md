@@ -1,3 +1,5 @@
+> Original review checklist. The completed October 22 access tests and current operational limits are recorded in [PROGRESS_ROLLOUT.md](../docs/PROGRESS_ROLLOUT.md).
+
 # Independent classroom security review
 
 Original review 2026-10-03; integration updated 2026-10-07. This is a source/VM review, **not a production security certification**. No real accounts, credentials, deployments, or databases were created or changed by this review.
