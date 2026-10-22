@@ -3,7 +3,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const env={}, handlers=[];
 globalThis.Deno={env:{get:k=>env[k]||''},serve:handler=>handlers.push(handler)};
-const {boundedBody,uuid,str,serve,api}=await import('../functions/_shared/backend.ts');
+const {boundedBody,uuid,str,serve,api,classCode}=await import('../functions/_shared/backend.ts');
+test('Friendly student codes normalize case while long existing codes retain their identity',()=>{
+ assert.equal(classCode(' PBL-1022 '),'pbl-1022');assert.equal(classCode('CaseSensitiveOldCode_A123'),'CaseSensitiveOldCode_A123');
+ for(const code of ['pbl','pbl-22','pbl 1022','<pbl-1022>','pbl-1022&role=teacher'])assert.throws(()=>classCode(code));
+});
 test('Modern server keys stay in apikey; only a user session JWT goes in Authorization',async()=>{
  env.SUPABASE_SECRET_KEYS=JSON.stringify({default:'sb_secret_server_fixture'});env.SUPABASE_PUBLISHABLE_KEYS=JSON.stringify({default:'sb_publishable_fixture'});
  try{const {headers}=await import('../functions/_shared/backend.ts?modern-key-test');

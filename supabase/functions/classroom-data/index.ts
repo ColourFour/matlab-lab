@@ -1,4 +1,4 @@
-import {boundedBody,api,caller,digest,Failure,headers,limit,membership,rpc,serve,str,url,uuid} from '../_shared/backend.ts';
+import {boundedBody,api,caller,classCode,digest,Failure,headers,limit,membership,rpc,serve,str,url,uuid} from '../_shared/backend.ts';
 serve(async req=>{
  const {token,user}=await caller(req);
  await limit('data:'+user.id,180,60);
@@ -32,7 +32,7 @@ serve(async req=>{
  const raw=new TextDecoder().decode(await boundedBody(req,600000));const b=JSON.parse(raw);
  if(b.action==='registration-code'||b.action==='close-registration') {
   const classroom=uuid(b.classroomId);await membership(token,user.id,classroom,'teacher');await limit('invite:'+user.id,10,3600);
-  const code=b.action==='registration-code'?crypto.randomUUID().replaceAll('-','') : null;
+  const code=b.action==='registration-code'?(b.code===undefined?crypto.randomUUID().replaceAll('-',''):classCode(b.code)):null;
   await rpc('configure_classroom_signup',{p_classroom:classroom,p_hash:code?await digest(code):null,p_enabled:!!code},token);
   return code?{code}:{ok:true};
  }

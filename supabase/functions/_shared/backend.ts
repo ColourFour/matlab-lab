@@ -20,6 +20,14 @@ export async function api(path: string, init: RequestInit = {}, token?: string, 
 }
 export const rpc = (name: string, body: unknown, token?: string, service = false) => api('/rest/v1/rpc/' + name, { method: 'POST', body: JSON.stringify(body) }, token, service);
 export function str(value: unknown, max = 160): string { if (typeof value !== 'string' || !value.length || value.length > max) throw new Failure(400,'Invalid request.'); return value; }
+// Friendly student codes are enrollment labels, never teacher invitations.
+// Preserve the case of existing long random codes for compatibility.
+export function classCode(value:unknown):string {
+ const code=str(value,128).trim();
+ if(/^[A-Za-z0-9_-]{22,128}$/.test(code))return code;
+ if(code.length>=8&&code.length<=21&&/^[a-z0-9]+(?:-[a-z0-9]+)+$/i.test(code))return code.toLowerCase();
+ throw new Failure(400,'Enter the class code your teacher gave you. / 请输入老师给你的班级码。');
+}
 export function uuid(value: unknown) { const v = str(value,36); if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)) throw new Failure(400,'Invalid request.'); return v; }
 export async function digest(s: string) { return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join(''); }
 export async function limit(key: string, count: number, seconds=600) { if (!await rpc('classroom_rate_limit',{p_key:key,p_limit:count,p_window:seconds},undefined,true)) throw new Failure(429,'Too many requests. Try again later.'); }

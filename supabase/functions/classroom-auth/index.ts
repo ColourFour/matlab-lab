@@ -1,4 +1,4 @@
-import {boundedBody,api,digest,Failure,limit,rpc,serve,str,uuid} from '../_shared/backend.ts';
+import {boundedBody,api,classCode,digest,Failure,limit,rpc,serve,str,uuid} from '../_shared/backend.ts';
 serve(async req=>{
  await limit('auth:global',300,60);
  // Deployment gate: trusted gateway must overwrite this header, never append client values.
@@ -10,8 +10,10 @@ serve(async req=>{
  if(Number(req.headers.get('content-length')||0)>8192) throw new Failure(413,'Request too large.');
  const raw=new TextDecoder().decode(await boundedBody(req,8192));
  const body=JSON.parse(raw); if(!['roster','login','username-login','register','teacher-register'].includes(body.action)) throw new Failure(400,'Invalid request.');
- const code=str(body.code,128).trim();
- if(!/^[A-Za-z0-9_-]{22,128}$/.test(code)) throw new Failure(401,'Classroom or credentials unavailable.');
+ const code=body.action==='teacher-register'?str(body.code,128).trim():classCode(body.code);
+ if(body.action==='teacher-register'&&!/^[A-Za-z0-9_-]{22,128}$/.test(code)) throw new Failure(401,'Classroom or credentials unavailable.');
+ // A readable class code must not disclose a roster before authentication.
+ if(['roster','login'].includes(body.action)&&code.length<22)throw new Failure(401,'Sign in with your username and password. / 请使用用户名和密码登录。');
  const hash=await digest(code); await limit('code:'+hash,120);
  if(body.action==='register'||body.action==='teacher-register') {
   const teacher=body.action==='teacher-register';

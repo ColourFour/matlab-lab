@@ -40,3 +40,13 @@ test('A sign-in failure after enrollment reports an existing account and never d
 test('Missing tested client-IP header fails closed before any Auth calls',async()=>{
  reset();const r=req({});r.headers.delete('x-tested-client-ip');assert.equal((await handler(r)).status,503);assert(!calls.some(c=>c.url.includes('/auth/v1/')));
 });
+test('Friendly class codes support signup and username login without weakening teacher invitations',async()=>{
+ reset();let r=await handler(req({code:' PBL-1022 '}));assert.equal(r.status,200);
+ const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('pbl-1022')))].map(b=>b.toString(16).padStart(2,'0')).join('');
+ assert.equal(calls.find(c=>c.url.endsWith('/classroom_signup_info')).body.p_hash,hash);
+ reset();r=await handler(req({action:'username-login',code:'pbl-1022',username:'taken'}));assert.equal(r.status,200);
+ reset();teacherInvite=true;r=await handler(req({action:'teacher-register',code:'pbl-1022',email:'teacher@example.test'}));assert.equal(r.status,401);assert(!calls.some(c=>c.url.endsWith('/admin/users')));
+});
+test('Readable class codes never disclose the legacy roster or permit name-picker login',async()=>{
+ for(const action of ['roster','login']){reset();const r=await handler(req({action,code:'pbl-1022'}));assert.equal(r.status,401);assert(!calls.some(c=>c.url.endsWith('/classroom_resolve')));assert(!calls.some(c=>c.url.includes('/auth/v1/')));}
+});
